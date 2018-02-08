@@ -1,6 +1,6 @@
 rules:
   indentation:
-    - 2
+    - 1
     - size: 2
   leading-zero:
     - 2
@@ -8,6 +8,9 @@ rules:
   property-sort-order:
     - 1
     - order: recess
+  hex-length:
+    - 1
+    - style: long
   no-ids: 0
   no-color-literals: 0
   no-vendor-prefixes: 0
