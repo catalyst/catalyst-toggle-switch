@@ -169,8 +169,8 @@ class CatalystToggleSwitch extends HTMLElement {
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', 0);
     }
-    if (!this.hasAttribute('aria-pressed')) {
-      this.setAttribute('aria-pressed', this.checked);
+    if (!this.hasAttribute('aria-checked')) {
+      this.setAttribute('aria-checked', this.checked);
     }
     if (!this.hasAttribute('aria-disabled')) {
       this.setAttribute('aria-disabled', this.disabled);
@@ -341,7 +341,7 @@ class CatalystToggleSwitch extends HTMLElement {
     switch (name) {
       case 'checked':
         // Set the aria value.
-        this.setAttribute('aria-pressed', hasValue);
+        this.setAttribute('aria-checked', hasValue);
         break;
 
       case 'disabled':
