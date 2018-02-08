@@ -53,6 +53,7 @@ $shadow-dark:
   width: var(--catalyst-toggle-switch-bar-width, $bar-width);
   height: $bar-height;
   height: var(--catalyst-toggle-switch-bar-height, $bar-height);
+  cursor: pointer;
   background-color: $bar-bg-color;
   background-color: var(--catalyst-toggle-switch-bar-color, $bar-bg-color);
   border: $bar-border;
@@ -60,6 +61,12 @@ $shadow-dark:
   border-radius: $bar-height / 2;
   border-radius: calc(var(--catalyst-toggle-switch-bar-height, #{$bar-height}) / 2);
   box-sizing: border-box;
+  transition:
+    background-color 0.3s ease,
+    border 0.3s ease;
+  will-change:
+    background-color,
+    border;
 
   &.negitive-knob-offset {
     top: 0;
@@ -86,8 +93,16 @@ $shadow-dark:
   box-shadow: $shadow-light;
   box-shadow: var(--catalyst-toggle-switch-knob-box-shadow, $shadow-light);
   box-sizing: border-box;
-  transition: transform 0.3s ease,
-              box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    background-color 0.3s ease,
+    border 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change:
+    background-color,
+    border,
+    transform,
+    box-shadow;
 
   &:hover {
     box-shadow: $shadow-medium;
