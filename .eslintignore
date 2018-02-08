@@ -1,0 +1,4 @@
+# node_modules and bower_components are automatically ignored
+
+docs/
+dist/

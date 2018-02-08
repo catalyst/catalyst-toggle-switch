@@ -1,0 +1,27 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "plugins": [
+    "html",
+    "mocha"
+  ],
+  "globals": {
+    "ShadyCSS": false,
+    "expect": false,
+    "should": false,
+    "assert": false,
+    "fixture": false,
+    "WCT": false
+  },
+  "rules": {
+    "quotes":  ["error", "single", {
+      "avoidEscape": true
+    }]
+  }
+}

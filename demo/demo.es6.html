@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>&lt;catalyst-toggle-switch&gt; ES6 Demo</title>
+
+    <!-- Web Component Pollyfills -->
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/@webcomponents/shadycss/scoping-shim.min.js"></script>
+
+    <!-- Helper for the demo -->
+    <link rel="import" href="../node_modules/@bower_components/iron-demo-helpers/demo-snippet.html">
+
+    <!-- Custom Element Definition -->
+    <script src="../dist/catalyst-toggle-switch.js"></script>
+  </head>
+  <body>
+    <demo-snippet>
+      <template>
+        <label for="demo1" id="demo1-label" style="display:inline-block;width:30px;">Off</label>
+        <catalyst-toggle-switch id="demo1"></catalyst-toggle-switch>
+
+        <script>
+          let demo1 = document.querySelector('#demo1');
+          let demo1Label = document.querySelector('#demo1-label');
+          demo1.addEventListener('change', (e) => {
+            demo1Label.textContent = e.detail.checked ? 'On' : 'Off';
+          });
+        </script>
+      </template>
+    </demo-snippet>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "entrypoint": "index.html",
+  "fragments": [],
+  "sources": [
+    "index.html",
+    "demo/**/*"
+  ],
+  "extraDependencies": [
+    "node_modules/@webcomponents/webcomponentsjs/*.js",
+    "node_modules/@webcomponents/shadycss/*.js",
+    "node_modules/@bower_components/iron-demo-helpers/demo-snippet.html",
+    "dist/**/*",
+    "analysis.json"
+  ],
+  "builds": [{
+    "name": "docs",
+    "bundle": false,
+    "js": {
+      "compile": false,
+      "minify": false
+    },
+    "css": {
+      "minify": false
+    },
+    "html": {
+      "minify": false
+    },
+    "addServiceWorker": false,
+    "addPushManifest": false,
+    "insertPrefetchLinks": false
+  }]
+}

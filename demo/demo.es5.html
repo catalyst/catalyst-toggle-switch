@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>&lt;catalyst-toggle-switch&gt; ES5 Demo</title>
+
+    <!-- Web Component Pollyfills -->
+    <script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/@webcomponents/shadycss/scoping-shim.min.js"></script>
+
+    <!-- Custom Element Definition -->
+    <script src="../dist/catalyst-toggle-switch.es5.min.js"></script>
+  </head>
+  <body>
+      <label for="demo1" id="demo1-label" style="display:inline-block;width:30px;">Off</label>
+        <catalyst-toggle-switch id="demo1"></catalyst-toggle-switch>
+
+        <script>
+          var demo1 = document.querySelector('#demo1');
+          var demo1Label = document.querySelector('#demo1-label');
+          demo1.addEventListener('change', function(e) {
+            demo1Label.textContent = e.detail.checked ? 'On' : 'Off';
+          });
+        </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+rules:
+  indentation:
+    - 2
+    - size: 2
+  leading-zero:
+    - 2
+    - include: true
+  property-sort-order:
+    - 1
+    - order: recess
+  no-ids: 0
+  no-color-literals: 0
+  no-vendor-prefixes: 0
