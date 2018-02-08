@@ -12,21 +12,59 @@
 
     <!-- Custom Element Definition -->
     <script src="../dist/catalyst-toggle-switch.js"></script>
+
+    <style>
+        body {
+          font-family: Arial;
+        }
+      </style>
   </head>
   <body>
+    <h3>Basic:</h3>
     <demo-snippet>
       <template>
-        <label for="demo1" id="demo1-label" style="display:inline-block;width:30px;">Off</label>
-        <catalyst-toggle-switch id="demo1"></catalyst-toggle-switch>
-
-        <script>
-          let demo1 = document.querySelector('#demo1');
-          let demo1Label = document.querySelector('#demo1-label');
-          demo1.addEventListener('change', (e) => {
-            demo1Label.textContent = e.detail.checked ? 'On' : 'Off';
-          });
-        </script>
+        <catalyst-toggle-switch></catalyst-toggle-switch>
       </template>
     </demo-snippet>
+
+    <h3>Styled:</h3>
+    <demo-snippet>
+        <template>
+          <style>
+            #demo2 {
+              --catalyst-toggle-switch-bar-color: transparent;
+              --catalyst-toggle-switch-bar-border: solid 2px #cc0000;
+              --catalyst-toggle-switch-bar-width: 50px;
+              --catalyst-toggle-switch-bar-height: 24px;
+              --catalyst-toggle-switch-knob-color: #cc0000;
+              --catalyst-toggle-switch-knob-size: 16px;
+              --catalyst-toggle-switch-knob-offset: -2px;
+              --catalyst-toggle-switch-knob-box-shadow: none;
+            }
+
+            #demo2:focus {
+              --catalyst-toggle-switch-knob-color: #ff0000;
+            }
+          </style>
+
+          <catalyst-toggle-switch id="demo2"></catalyst-toggle-switch>
+        </template>
+      </demo-snippet>
+
+      <h3>With Label:</h3>
+      <demo-snippet>
+        <template>
+          <label for="demo3" id="demo3-label" style="display:inline-block;width:30px;">Off</label>
+          <catalyst-toggle-switch id="demo3"></catalyst-toggle-switch>
+
+          <script>
+            let demo3 = document.querySelector('#demo3');
+            let demo3Label = document.querySelector('#demo3-label');
+            demo3.addEventListener('change', (e) => {
+              demo3Label.textContent = e.detail.checked ? 'On' : 'Off';
+            });
+          </script>
+        </template>
+      </demo-snippet>
   </body>
 </html>

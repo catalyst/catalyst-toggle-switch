@@ -15,7 +15,19 @@
  *
  * ### Styling
  *
- * There are no custom properties or mixins available for styling this component.
+ * The following css custom properties are available for this element:
+ *
+ * Property | Description | Default Value
+ * -------- |------------ | -------------
+ * --catalyst-toggle-switch-bar-color       | The color of the bar. | `#ced4da`
+ * --catalyst-toggle-switch-knob-color      | The color of the knob. | `#ffffff`
+ * --catalyst-toggle-switch-bar-width       | The width of the bar. | `44px`
+ * --catalyst-toggle-switch-bar-height      | The height of the bar. | `16px`
+ * --catalyst-toggle-switch-knob-size       | The size of the knob (width and height). | `26px`
+ * --catalyst-toggle-switch-knob-offset     | The offset applied to the knob's location. | `5px`
+ * --catalyst-toggle-switch-bar-border      | The bar's border. | `none`
+ * --catalyst-toggle-switch-knob-border     | The knob's border. | `none`
+ * --catalyst-toggle-switch-knob-box-shadow | The box shadow applied to the knob. |
  *
  * @class
  * @extends HTMLElement
@@ -44,7 +56,7 @@ class CatalystToggleSwitch extends HTMLElement {
   static get _template() {
     if (this.__template === undefined) {
       this.__template = document.createElement('template');
-      this.__template.innerHTML = `<style>:host{position:relative;display:inline-block;width:54px;height:26px;margin:0 8px;vertical-align:middle}#switch{top:5px;left:5px;width:44px;height:16px;background-color:#ced4da;border-radius:8px}#knob,#switch{position:absolute}#knob{top:-5px;left:-5px;width:26px;height:26px;background:#fff;border-radius:13px;-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);-webkit-transition:-webkit-transform .3s ease,-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);transition:-webkit-transform .3s ease,-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);transition:transform .3s ease,box-shadow .28s cubic-bezier(.4,0,.2,1);transition:transform .3s ease,box-shadow .28s cubic-bezier(.4,0,.2,1),-webkit-transform .3s ease,-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1)}#knob:hover{-webkit-box-shadow:0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4);box-shadow:0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4)}:host([checked]) #knob{-webkit-transform:translateX(28px);transform:translateX(28px)}:host([disabled]) #switch{background:#f1f3f5}:host([disabled]) #knob{background:#ced4da;-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.07),0 1px 5px 0 rgba(0,0,0,.06),0 3px 1px -2px rgba(0,0,0,.1);box-shadow:0 2px 2px 0 rgba(0,0,0,.07),0 1px 5px 0 rgba(0,0,0,.06),0 3px 1px -2px rgba(0,0,0,.1)}:host(:focus){outline:none}:host(:focus) #knob{-webkit-box-shadow:0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.4);box-shadow:0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.4)}:host([hidden]){display:none}</style><div id="switch"><div id="knob"></div></div>`;  // eslint-disable-line quotes
+      this.__template.innerHTML = `<style>:host{position:relative;display:inline-block;width:54px;width:calc(var(--catalyst-toggle-switch-bar-width, 44px) + 2 * var(--catalyst-toggle-switch-knob-offset, 5px));height:26px;height:calc(var(--catalyst-toggle-switch-bar-height, 16px) + 2 * var(--catalyst-toggle-switch-knob-offset, 5px));min-width:var(--catalyst-toggle-switch-bar-width,44px);min-height:var(--catalyst-toggle-switch-bar-height,16px);margin:0 8px;vertical-align:middle}#bar{position:absolute;top:5px;top:var(--catalyst-toggle-switch-knob-offset,5px);left:5px;left:var(--catalyst-toggle-switch-knob-offset,5px);width:44px;width:var(--catalyst-toggle-switch-bar-width,44px);height:16px;height:var(--catalyst-toggle-switch-bar-height,16px);background-color:#ced4da;background-color:var(--catalyst-toggle-switch-bar-color,#ced4da);border:none;border:var(--catalyst-toggle-switch-bar-border,none);border-radius:8px;border-radius:calc(var(--catalyst-toggle-switch-bar-height, 16px) / 2);-webkit-box-sizing:border-box;box-sizing:border-box}#bar.negitive-knob-offset{top:0;left:0}#knob{position:absolute;top:-5px;top:calc(0px - var(--catalyst-toggle-switch-knob-offset, 5px));left:-5px;left:calc(0px - var(--catalyst-toggle-switch-knob-offset, 5px));width:26px;width:var(--catalyst-toggle-switch-knob-size,26px);height:26px;height:var(--catalyst-toggle-switch-knob-size,26px);background-color:#fff;background-color:var(--catalyst-toggle-switch-knob-color,#fff);border:none;border:var(--catalyst-toggle-switch-knob-border,none);border-radius:13px;border-radius:calc(var(--catalyst-toggle-switch-knob-size, 26px) / 2);-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);-webkit-box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2));box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2));-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transition:-webkit-transform .3s ease,-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);transition:-webkit-transform .3s ease,-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);transition:transform .3s ease,box-shadow .28s cubic-bezier(.4,0,.2,1);transition:transform .3s ease,box-shadow .28s cubic-bezier(.4,0,.2,1),-webkit-transform .3s ease,-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1)}#knob:hover{-webkit-box-shadow:0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4);box-shadow:0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4);-webkit-box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4));box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4))}:host([checked]) #knob{-webkit-transform:translateX(28px);transform:translateX(28px);-webkit-transform:translateX(calc(var(--catalyst-toggle-switch-bar-width, 44px) + 2 * var(--catalyst-toggle-switch-knob-offset, 5px) - var(--catalyst-toggle-switch-knob-size, 26px) + var(--catalyst-toggle-switch-knob-slide-dist-adjust, 0px)));transform:translateX(calc(var(--catalyst-toggle-switch-bar-width, 44px) + 2 * var(--catalyst-toggle-switch-knob-offset, 5px) - var(--catalyst-toggle-switch-knob-size, 26px) + var(--catalyst-toggle-switch-knob-slide-dist-adjust, 0px)))}:host([disabled]) #bar{background-color:#f1f3f5;background-color:var(--catalyst-toggle-switch-bar-color,#f1f3f5)}:host([disabled]) #knob{background-color:#ced4da;background-color:var(--catalyst-toggle-switch-knob-color,#f1f3f5);-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.07),0 1px 5px 0 rgba(0,0,0,.06),0 3px 1px -2px rgba(0,0,0,.1);box-shadow:0 2px 2px 0 rgba(0,0,0,.07),0 1px 5px 0 rgba(0,0,0,.06),0 3px 1px -2px rgba(0,0,0,.1);-webkit-box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 2px 2px 0 rgba(0,0,0,.07),0 1px 5px 0 rgba(0,0,0,.06),0 3px 1px -2px rgba(0,0,0,.1));box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 2px 2px 0 rgba(0,0,0,.07),0 1px 5px 0 rgba(0,0,0,.06),0 3px 1px -2px rgba(0,0,0,.1))}:host(:focus){outline:none}:host(:focus) #knob{-webkit-box-shadow:0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.4);box-shadow:0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.4);-webkit-box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.4));box-shadow:var(--catalyst-toggle-switch-knob-box-shadow,0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.4))}:host([hidden]){display:none}</style><div id="bar"><div id="knob"></div></div>`;  // eslint-disable-line quotes
 
       // If using ShadyCSS.
       if (window.ShadyCSS !== undefined) {
@@ -99,6 +111,20 @@ class CatalystToggleSwitch extends HTMLElement {
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(CatalystToggleSwitch._template.content.cloneNode(true));
 
+    /**
+     * The bar.
+     *
+     * @type {HTMLElement}
+     */
+    this._bar = this.shadowRoot.querySelector('#bar');
+
+    /**
+     * The knob.
+     *
+     * @type {HTMLElement}
+     */
+    this._knob = this._bar.querySelector('#knob');
+
     // The input element needs to be in the lightDom to work with form elements.
 
     /**
@@ -120,6 +146,16 @@ class CatalystToggleSwitch extends HTMLElement {
     if (window.ShadyCSS !== undefined) {
       // Style the element.
       window.ShadyCSS.styleElement(this);
+    }
+
+    // Adjust the knob slide distance based on the with of the x borders.
+    let barStyle = getComputedStyle(this._bar);
+    let barXBorderWidth = Number.parseFloat(barStyle.borderLeftWidth) + Number.parseFloat(barStyle.borderRightWidth);
+    this.style.setProperty('--catalyst-toggle-switch-knob-slide-dist-adjust', `${-barXBorderWidth}px`);
+
+    // Figure out if the knob-offset is negitive.
+    if (Number.parseFloat(getComputedStyle(this).getPropertyValue('--catalyst-toggle-switch-knob-offset')) < 0) {
+      this._bar.classList.add('negitive-knob-offset');
     }
 
     // Upgrade the element's properties.

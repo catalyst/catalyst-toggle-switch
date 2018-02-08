@@ -15,7 +15,19 @@
  *
  * ### Styling
  *
- * There are no custom properties or mixins available for styling this component.
+ * The following css custom properties are available for this element:
+ *
+ * Property | Description | Default Value
+ * -------- |------------ | -------------
+ * `--catalyst-toggle-switch-bar-color`       | The color of the bar. | `#ced4da`
+ * `--catalyst-toggle-switch-knob-color`      | The color of the knob. | `#ffffff`
+ * `--catalyst-toggle-switch-bar-width`       | The width of the bar. | `44px`
+ * `--catalyst-toggle-switch-bar-height`      | The height of the bar. | `16px`
+ * `--catalyst-toggle-switch-knob-size`       | The size of the knob (width and height). | `26px`
+ * `--catalyst-toggle-switch-knob-offset`     | The offset applied to the knob's location. | `5px`
+ * `--catalyst-toggle-switch-bar-border`      | The bar's border. | `none`
+ * `--catalyst-toggle-switch-knob-border`     | The knob's border. | `none`
+ * `--catalyst-toggle-switch-knob-box-shadow` | The box shadow applied to the knob. | _Too Long..._
  *
  * @class
  * @extends HTMLElement
@@ -99,6 +111,20 @@ class CatalystToggleSwitch extends HTMLElement {
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(CatalystToggleSwitch._template.content.cloneNode(true));
 
+    /**
+     * The bar.
+     *
+     * @type {HTMLElement}
+     */
+    this._bar = this.shadowRoot.querySelector('#bar');
+
+    /**
+     * The knob.
+     *
+     * @type {HTMLElement}
+     */
+    this._knob = this._bar.querySelector('#knob');
+
     // The input element needs to be in the lightDom to work with form elements.
 
     /**
@@ -120,6 +146,16 @@ class CatalystToggleSwitch extends HTMLElement {
     if (window.ShadyCSS !== undefined) {
       // Style the element.
       window.ShadyCSS.styleElement(this);
+    }
+
+    // Adjust the knob slide distance based on the with of the x borders.
+    let barStyle = getComputedStyle(this._bar);
+    let barXBorderWidth = Number.parseFloat(barStyle.borderLeftWidth) + Number.parseFloat(barStyle.borderRightWidth);
+    this.style.setProperty('--catalyst-toggle-switch-knob-slide-dist-adjust', `${-barXBorderWidth}px`);
+
+    // Figure out if the knob-offset is negitive.
+    if (Number.parseFloat(getComputedStyle(this).getPropertyValue('--catalyst-toggle-switch-knob-offset')) < 0) {
+      this._bar.classList.add('negitive-knob-offset');
     }
 
     // Upgrade the element's properties.
