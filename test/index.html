@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Polyfills -->
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/@webcomponents/shadycss/custom-style-interface.min.js"></script>
+
+    <!-- Web Tester -->
+    <script src="../node_modules/@bower_components/web-component-tester/browser.js"></script>
+  </head>
+  <body>
+    <script>
+      // Run tests.
+      WCT.loadSuites([
+        'basics.html',
+        'form.html'
+      ]);
+    </script>
+  </body>
+</html>

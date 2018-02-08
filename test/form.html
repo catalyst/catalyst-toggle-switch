@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Polyfills -->
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../node_modules/@webcomponents/shadycss/custom-style-interface.min.js"></script>
+
+  <!-- Web Tester -->
+  <script src="../node_modules/@bower_components/web-component-tester/browser.js"></script>
+
+  <!-- Element -->
+  <script src="../dist/catalyst-toggle-switch.js"></script>
+</head>
+<body>
+
+  <test-fixture id="form">
+    <template>
+      <form>
+        <catalyst-toggle-switch name="foo" value="bar"></catalyst-toggle-switch>
+        <input type="submit" name="submit-btn">
+      </form>
+    </template>
+  </test-fixture>
+
+  <script>
+    /**
+     * Form suite.
+     */
+    suite('', () => {
+      let form;
+      let element;
+
+      /**
+       * Called before each following test is run.
+       */
+      setup(() => {
+        form = fixture('form');
+        element = form.querySelector('catalyst-toggle-switch');
+      });
+
+      /**
+       * Test the inital state of the element.
+       */
+      suite('Initial State', () => {
+
+        /**
+         * Test the attributes and properties of the element in it's inital state.
+         */
+        suite('Attributes & Properties', () => {
+
+          /**
+           * Test element has name.
+           */
+          test('name', () => {
+            expect(element.hasAttribute('name')).to.be.true;
+            expect(element.getAttribute('name')).to.equal('foo');
+            expect(element).to.have.property('name', 'foo');
+            expect(element.inputElement).to.have.property('name', 'foo');
+          });
+
+          /**
+           * Test element has value.
+           */
+          test('value', () => {
+            expect(element).to.have.property('value', 'bar');
+            expect(element.inputElement).to.have.property('value', 'bar');
+          });
+
+          /**
+           * Test element has form.
+           */
+          test('form', () => {
+            expect(element).to.have.property('form', form);
+            expect(element.inputElement).to.have.property('form', form);
+          });
+        });
+
+        /**
+         * Test the form.
+         */
+        suite('Form', () => {
+
+          /**
+           * Test form has element.
+           */
+           test('Element is part of the form', () => {
+            expect(form.elements['foo']).to.exist;
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
