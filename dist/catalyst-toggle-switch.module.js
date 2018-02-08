@@ -91,7 +91,7 @@ class CatalystToggleSwitch extends HTMLElement {
    *   The attributes this element is observing for changes.
    */
   static get observedAttributes() {
-    return ['checked', 'disabled', 'name', 'value', 'form'];
+    return ['checked', 'disabled', 'required', 'name', 'value', 'form'];
   }
 
   /**
@@ -161,19 +161,19 @@ class CatalystToggleSwitch extends HTMLElement {
     // Upgrade the element's properties.
     this._upgradeProperty('checked');
     this._upgradeProperty('disabled');
+    this._upgradeProperty('required');
 
-    // Set this element's role, tab index and aria attributes if they are not already set.
+    // Set the aria attributes.
+    this.setAttribute('aria-checked', this.checked);
+    this.setAttribute('aria-disabled', this.disabled);
+    this.setAttribute('aria-required', this.required);
+
+    // Set this element's role and tab index if they are not already set.
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'checkbox');
     }
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', 0);
-    }
-    if (!this.hasAttribute('aria-checked')) {
-      this.setAttribute('aria-checked', this.checked);
-    }
-    if (!this.hasAttribute('aria-disabled')) {
-      this.setAttribute('aria-disabled', this.disabled);
     }
 
     // Add the element's event listeners.
@@ -263,6 +263,32 @@ class CatalystToggleSwitch extends HTMLElement {
   }
 
   /**
+   * Setter for `required`.
+   *
+   * @param {boolean} value
+   *   If truthy, `required` will be set to true, otherwise `required` will be set to false.
+   */
+  set required(value) {
+    const isRequired = Boolean(value);
+    if (isRequired) {
+      this.setAttribute('required', '');
+    }
+    else {
+      this.removeAttribute('required');
+    }
+  }
+
+  /**
+   * States whether or not this element is required.
+   *
+   * @default false
+   * @returns {boolean}
+   */
+  get required() {
+    return this.hasAttribute('required');
+  }
+
+  /**
    * Setter for `name`.
    *
    * @param {string} value
@@ -291,7 +317,7 @@ class CatalystToggleSwitch extends HTMLElement {
    * @returns {HTMLFormElement}
    */
   get form() {
-    return this._inputElement.form;
+    return this.inputElement.form;
   }
 
   /**
@@ -337,19 +363,27 @@ class CatalystToggleSwitch extends HTMLElement {
    *   The new value of the attribute that changed.
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    const hasValue = newValue !== null;
+    let boolVal = Boolean(newValue);
+
     switch (name) {
       case 'checked':
-        // Set the aria value.
-        this.setAttribute('aria-checked', hasValue);
+        // Set the aria attribue.
+        this.setAttribute('aria-checked', boolVal);
+
+        if (boolVal) {
+          this.inputElement.setAttribute('checked', '');
+        } else {
+          this.inputElement.removeAttribute('checked');
+        }
         break;
 
       case 'disabled':
-        // Set the aria value.
-        this.setAttribute('aria-disabled', hasValue);
+        // Set the aria attribue.
+        this.setAttribute('aria-disabled', boolVal);
 
-        // Add/Remove the tabindex attribute based `hasValue`.
-        if (hasValue) {
+        if (boolVal) {
+          this.inputElement.setAttribute('disabled', '');
+
           // If the tab index is set.
           if (this.hasAttribute('tabindex')) {
             this._tabindexBeforeDisabled = this.getAttribute('tabindex');
@@ -357,6 +391,8 @@ class CatalystToggleSwitch extends HTMLElement {
             this.blur();
           }
         } else {
+          this.inputElement.removeAttribute('disabled');
+
           // If the tab index isn't already set and the previous value is known.
           if (!this.hasAttribute('tabindex') && this._tabindexBeforeDisabled !== undefined && this._tabindexBeforeDisabled !== null) {
             this.setAttribute('tabindex', this._tabindexBeforeDisabled);
@@ -364,19 +400,31 @@ class CatalystToggleSwitch extends HTMLElement {
         }
         break;
 
+      case 'required':
+        // Set the aria attribue.
+        this.setAttribute('aria-required', boolVal);
+
+        if (boolVal) {
+          this.inputElement.setAttribute('required', '');
+        }
+        else {
+          this.inputElement.removeAttribute('required');
+        }
+        break;
+
       case 'name':
-        // Update the form element's name.
-        this._inputElement.name = newValue;
+        // Update the input element's name.
+        this.inputElement.setAttribute('name', new String(newValue));
         break;
 
       case 'value':
-        // Update the form element's value.
-        this._inputElement.value = newValue;
+        // Update the input element's value.
+        this.inputElement.setAttribute('value', new String(newValue));
         break;
 
       case 'form':
-        // Update the form element's form.
-        this._inputElement.setAttribute('form', newValue);
+        // Update the input element's form.
+        this.inputElement.setAttribute('form', newValue);
         break;
     }
   }
