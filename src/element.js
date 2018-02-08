@@ -178,6 +178,7 @@ class CatalystToggleSwitch extends HTMLElement {
 
     // Add the element's event listeners.
     this.addEventListener('click', this._onClick);
+    this.addEventListener('keydown', this._onKeyDown);
   }
 
   /**
@@ -207,6 +208,7 @@ class CatalystToggleSwitch extends HTMLElement {
   disconnectedCallback() {
     // Remove the element's event listeners.
     this.removeEventListener('click', this._onClick);
+    this.removeEventListener('keydown', this._onKeyDown);
   }
 
   /**
@@ -409,9 +411,34 @@ class CatalystToggleSwitch extends HTMLElement {
   }
 
   /**
-   * Called when the element is clicked.
+   * Called when this element is clicked.
    */
   _onClick() {
     this._toggleChecked();
+  }
+
+  /**
+   * Called when a key is pressed on this element.
+   *
+   * @param {KeyboardEvent} event
+   */
+  _onKeyDown(event) {
+    // Don’t handle modifier shortcuts typically used by assistive technology.
+    if (event.altKey) {
+      return;
+    }
+
+    // What key was pressed?
+    switch (event.keyCode) {
+      case CatalystToggleSwitch._KEYCODE.SPACE:
+      case CatalystToggleSwitch._KEYCODE.ENTER:
+        event.preventDefault();
+        this._toggleChecked();
+        break;
+
+      // Any other key press is ignored and passed back to the browser.
+      default:
+        return;
+    }
   }
 }
