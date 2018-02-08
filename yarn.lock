@@ -38,7 +38,7 @@
   resolved "https://codeload.github.com/PolymerElements/iron-a11y-keys-behavior/tar.gz/a3f03fc3fb5a0d8e93eaa33c2b6c02c16098b402"
 
 "@bower_components/iron-ajax@PolymerElements/iron-ajax#1 - 2":
-  version ""
+  version "0.0.0"
   resolved "https://codeload.github.com/PolymerElements/iron-ajax/tar.gz/e2ed54fb6f54337312f8a5638d787852c7284273"
 
 "@bower_components/iron-behaviors@PolymerElements/iron-behaviors#1 - 2":
@@ -86,7 +86,7 @@
   resolved "https://codeload.github.com/PolymerElements/iron-iconset-svg/tar.gz/0f36a7d380e0edfd81344e6cdbc89519355df8bd"
 
 "@bower_components/iron-location@PolymerElements/iron-location#1 - 2":
-  version ""
+  version "0.0.0"
   resolved "https://codeload.github.com/PolymerElements/iron-location/tar.gz/f6ce5dcc97e25ca0aa9363fe0b7b51c2276d2e1e"
 
 "@bower_components/iron-media-query@PolymerElements/iron-media-query#1 - 2":
