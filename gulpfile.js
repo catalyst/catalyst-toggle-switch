@@ -24,9 +24,10 @@ const clean = require('gulp-clean');
 const closureCompiler = require('google-closure-compiler').gulp();
 const eslint = require('gulp-eslint');
 const file = require('gulp-file');
+const escodegen = require('escodegen');
+const esprima = require('esprima');
 const htmlExtract = require('gulp-html-extract');
 const htmlmin = require('gulp-htmlmin');
-const indent = require('gulp-indent');
 const inject = require('gulp-inject');
 const mergeStream = require('merge-stream');
 const modifyFile = require('gulp-modify-file');
@@ -87,27 +88,84 @@ function transformGetFileContents(filePath, file) {
 }
 
 /**
- * Create the element file.
- *
- * @param {Boolean} forModule
+ * Create the element module file.
  */
-function createElement(forModule) {
+function createElementModule() {
   return gulp.src(`${srcPath}/element.js`)
-    .pipe(indent({
-      tabs: false,
-      amount: forModule ? 0 : 4
+    .pipe(rename({
+      basename: tagName,
+      extname: '.module.js'
     }))
-    .pipe(modifyFile((content) => {
-      if (forModule) {
-        const postfix = `
-// Export the element.
-export { ${className} };
-`;
+    .pipe(gulp.dest(tmpPath));
+}
 
-        return `${content}${postfix}`;
+/**
+ * Create the element file.
+ */
+function createElement() {
+  return gulp.src(`${srcPath}/element.js`)
+    .pipe(modifyFile((content) => {
+      // Parse the code.
+      let parsed = esprima.parseModule(content, {
+        raw: true,
+        tokens: true,
+        range: true,
+        comment: true
+      });
+
+      // Attached the comments to the parsed code.
+      parsed = escodegen.attachComments(parsed, parsed.comments, parsed.tokens);
+
+      // Get info about the code.
+      let codeIndexesToRemove = [];
+      let catalystImports = {};
+      for (let i = 0; i < parsed.body.length; i++) {
+        switch (parsed.body[i].type) {
+          case 'ImportDeclaration':
+            for (let j = 0; j < parsed.body[i].specifiers.length; j++) {
+              if ((parsed.body[i].specifiers[j].type === 'ImportDefaultSpecifier' && parsed.body[i].specifiers[j].local.name.startsWith('Catalyst')) ||
+                  (parsed.body[i].specifiers[j].type === 'ImportSpecifier'        && parsed.body[i].specifiers[j].imported.name.startsWith('Catalyst'))) {
+                catalystImports[i] = parsed.body[i];
+                codeIndexesToRemove.push(i);
+              }
+            }
+            break;
+
+          case 'ExportNamedDeclaration':
+            codeIndexesToRemove.push(i);
+            break;
+        }
       }
-      else {
-        return `(() => {
+
+      // Remove imports and exports.
+      parsed.body = parsed.body.filter((e, i) => !codeIndexesToRemove.includes(i));
+
+      // Replace catalyst element's imports with globally accessible object import.
+      for (let i in catalystImports) {
+        for (let j = catalystImports[i].specifiers.length - 1; j >=0 ; j--) {
+          let localName = catalystImports[i].specifiers[j].local.name;
+          let importedName = catalystImports[i].specifiers[j].imported ? catalystImports[i].specifiers[j].imported.name : localName;
+
+          if (importedName.startsWith('Catalyst')) {
+            parsed.body.splice(i, 0, esprima.parseScript(`let ${localName} = window.CatalystElements.${importedName};`));
+          }
+        }
+      }
+
+      // Generate the updated code.
+      content = escodegen.generate(parsed, {
+        format: {
+          indent: {
+            style: '  ',
+            base: 2,
+            adjustMultilineComment: true
+          },
+          quotes: 'single'
+        },
+        comment: true,
+      });
+
+      return `(() => {
   /**
    * Namespace for all the Catalyst Elements.
    *
@@ -143,11 +201,10 @@ ${content}
     console.warn('${className} has already been defined, cannot redefine.');
   }
 })();`;
-      }
     }))
     .pipe(rename({
       basename: tagName,
-      extname: forModule ? '.module.js' : '.js'
+      extname: '.js'
     }))
     .pipe(gulp.dest(tmpPath));
 }
@@ -245,11 +302,11 @@ gulp.task('clean-tmp', () => {
 });
 
 gulp.task('create-element:module', () => {
-  return createElement(true);
+  return createElementModule();
 });
 
 gulp.task('create-element', () => {
-  return createElement(false);
+  return createElement();
 });
 
 gulp.task('inject:template:module', () => {

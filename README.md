@@ -10,6 +10,8 @@
 
 `<catalyst-toggle-switch>` is a web component toggle switch, part of the `Catalyst Elements Collection`.
 
+It extends [`<catalyst-toggle-button>`](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button)
+
 ## Installation
 
 ```sh
@@ -18,9 +20,13 @@ npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/ca
 
 ## Usage
 
-Import the component's definition on each page it is to be used on:
+Import the component's definition and its dependencies on each page it is to be used on:
 
 ```html
+<!-- Import dependencies -->
+<script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
+
+<!-- Import the element -->
 <script src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.js"></script>
 ```
 
@@ -32,7 +38,9 @@ Then simply use it like any other tag:
 
 ### Usage as a Module
 
-Import the module on each page that uses the component, then register the element:
+Import the module on each page that uses the component, then register the element.
+
+Note: you do not need to import the element's dependencies; the module will handle this for you.
 
 ```html
 <script type="module">

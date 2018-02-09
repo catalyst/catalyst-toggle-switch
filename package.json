@@ -14,6 +14,9 @@
     "lint": "scripts/lint.sh",
     "postinstall": "scripts/postinstall.sh"
   },
+  "dependencies": {
+    "@catalyst-elements/catalyst-toggle-button": "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git"
+  },
   "devDependencies": {
     "@bower_components/accessibility-developer-tools": "GoogleChrome/accessibility-developer-tools#^2.10.0",
     "@bower_components/app-layout": "PolymerElements/app-layout#1 - 2",
@@ -63,9 +66,11 @@
     "@webcomponents/shadycss": "^1.1.0",
     "@webcomponents/webcomponentsjs": "^1.0.20",
     "cssnano": "^3.10.0",
+    "escodegen": "^1.9.0",
     "eslint": "^4.15.0",
     "eslint-plugin-html": "^4.0.1",
     "eslint-plugin-mocha": "^4.11.0",
+    "esprima": "^4.0.0",
     "google-closure-compiler": "^20180101.0.0",
     "gulp": "^4.0.0",
     "gulp-clean": "^0.4.0",
@@ -73,7 +78,6 @@
     "gulp-file": "^0.4.0",
     "gulp-html-extract": "^0.3.0",
     "gulp-htmlmin": "^4.0.0",
-    "gulp-indent": "^1.0.1",
     "gulp-inject": "^4.3.0",
     "gulp-modify-file": "^1.0.0",
     "gulp-postcss": "^7.0.1",
