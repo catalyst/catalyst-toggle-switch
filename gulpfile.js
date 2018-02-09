@@ -92,6 +92,10 @@ function transformGetFileContents(filePath, file) {
  */
 function createElementModule() {
   return gulp.src(`${srcPath}/element.js`)
+    .pipe(modifyFile((content) => {
+      content = content.replace(/\.\.\/node_modules\/@catalyst-elements\//g, '../../');
+      return content;
+    }))
     .pipe(rename({
       basename: tagName,
       extname: '.module.js'

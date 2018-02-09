@@ -1,5 +1,5 @@
 // Import dependencies.
-import {CatalystToggleButton} from '../node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
+import {CatalystToggleButton} from '../../catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
 
 /**
  * Get the template for this element.
