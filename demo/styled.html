@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>&lt;catalyst-toggle-switch&gt; ES6 Demo</title>
+
+    <!-- Web Component Pollyfills -->
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/@webcomponents/shadycss/scoping-shim.min.js"></script>
+
+    <!-- Helper for the demo -->
+    <script src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js" type="module"></script>
+
+    <!-- Import the element -->
+    <script type="module">
+      import { CatalystToggleSwitch } from '../node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.module.js';
+
+      if (window.WebComponents === undefined || window.WebComponents.ready) {
+        CatalystToggleSwitch.register();
+      } else {
+        window.addEventListener('WebComponentsReady', () => {
+          CatalystToggleSwitch.register();
+        });
+      }
+    </script>
+
+    <style>
+        body {
+          font-family: Arial;
+        }
+      </style>
+  </head>
+  <body>
+    <h3>Styled:</h3>
+    <demo-snippet>
+      <template>
+        <style>
+          .switch {
+            --catalyst-toggle-switch-bar-color: #ff0000;
+            --catalyst-toggle-switch-knob-color: #ffeeee;
+            --catalyst-toggle-switch-knob-border: solid 2px #ff0000;
+          }
+          .switch[checked] {
+            --catalyst-toggle-switch-bar-color: #008000;
+            --catalyst-toggle-switch-knob-color: #eeffee;
+            --catalyst-toggle-switch-knob-border: solid 2px #008000;
+          }
+        </style>
+
+        <catalyst-toggle-switch class="switch"></catalyst-toggle-switch>
+      </template>
+    </demo-snippet>
+  </body>
+</html>

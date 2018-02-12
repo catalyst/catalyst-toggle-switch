@@ -25,6 +25,7 @@ const clean = require('gulp-clean');
 const closureCompiler = require('google-closure-compiler').gulp();
 const eslint = require('gulp-eslint');
 const file = require('gulp-file');
+const fs = require('graceful-fs')
 const escodegen = require('escodegen');
 const esprima = require('esprima');
 const htmlExtract = require('gulp-html-extract');
@@ -376,6 +377,9 @@ gulp.task('build', gulp.series('clean-dist', gulp.parallel('build-es6-module', '
 gulp.task('build-docs', gulp.series('clean-docs', () => {
   return mergeStream(docBuilder.sources(), docBuilder.dependencies())
     .pipe(gulp.dest(docsPath));
+}, () => {
+  let packageInfo = JSON.parse(fs.readFileSync('./package.json'));
+  return gulp.src(`${distPath}/**`).pipe(gulp.dest(`${docsPath}/node_modules/${packageInfo.name}/${distPath}`));
 }));
 
 // Analyze all the components.

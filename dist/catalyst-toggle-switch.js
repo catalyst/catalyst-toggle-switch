@@ -62,8 +62,9 @@
      * @memberof CatalystElements
      * @group Catalyst Elements
      * @element catalyst-toggle-switch
-     * @demo demo/demo.es5.html ES5 Component Demo
-     * @demo demo/demo.es6.html ES6 Component Demo
+     * @demo demo/basic.html Basic
+     * @demo demo/styled.html Styled
+     * @demo demo/alternative-style.html Alternative Style
      */
     class CatalystToggleSwitch extends CatalystToggleButton {
       /**
