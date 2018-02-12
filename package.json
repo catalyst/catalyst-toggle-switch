@@ -1,7 +1,7 @@
 {
   "name": "@catalyst-elements/catalyst-toggle-switch",
   "license": "BSD-3-Clause",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A switch that toggles between two states; on and off.",
   "private": true,
   "repository": "git@gitlab.wgtn.cat-it.co.nz:CatalystElements/catalyst-toggle-switch.git",
