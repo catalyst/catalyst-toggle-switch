@@ -2,246 +2,238 @@
 # yarn lockfile v1
 
 
-"@bower_components/accessibility-developer-tools@GoogleChrome/accessibility-developer-tools#^2.10.0":
-  version "2.12.0"
-  resolved "https://codeload.github.com/GoogleChrome/accessibility-developer-tools/tar.gz/e12bfeba8616416ea376ddfaa1be0120d9706a9b"
-
-"@bower_components/app-layout@PolymerElements/app-layout#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/app-layout/tar.gz/623997a76bea695a51de0d4e96e11a8198e367da"
-
-"@bower_components/async@caolan/async#^1.5.0":
-  version "1.5.2"
-  resolved "https://codeload.github.com/caolan/async/tar.gz/9ab5c67b7cb3a4c3dad4a2d4552a2f6775545d6c"
-
-"@bower_components/chai@chaijs/chai#^4.1.2":
-  version "4.1.2"
-  resolved "https://codeload.github.com/chaijs/chai/tar.gz/529d395fa08091af2a02a8398b1144c51ed62178"
-  dependencies:
-    assertion-error "^1.0.1"
-    check-error "^1.0.1"
-    deep-eql "^3.0.0"
-    get-func-name "^2.0.0"
-    pathval "^1.0.0"
-    type-detect "^4.0.0"
-
-"@bower_components/font-roboto@PolymerElements/font-roboto#^1.0.1":
-  version "1.0.1"
-  resolved "https://codeload.github.com/PolymerElements/font-roboto/tar.gz/6b16584ff654fea05d6bf3e812fb8b225202663f"
-
-"@bower_components/iron-a11y-announcer@PolymerElements/iron-a11y-announcer#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-a11y-announcer/tar.gz/6f67e135f6a6371f879aceee1f08faee56330cab"
-
-"@bower_components/iron-a11y-keys-behavior@PolymerElements/iron-a11y-keys-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-a11y-keys-behavior/tar.gz/a3f03fc3fb5a0d8e93eaa33c2b6c02c16098b402"
-
-"@bower_components/iron-ajax@PolymerElements/iron-ajax#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-ajax/tar.gz/e2ed54fb6f54337312f8a5638d787852c7284273"
-
-"@bower_components/iron-behaviors@PolymerElements/iron-behaviors#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-behaviors/tar.gz/d14d6d9061115d210d803c4e43124119ca94cb8f"
-
-"@bower_components/iron-checked-element-behavior@PolymerElements/iron-checked-element-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-checked-element-behavior/tar.gz/c3c6cf6038ea246c6952bbd46fb79cc70ea5fd16"
-
-"@bower_components/iron-component-page@PolymerElements/iron-component-page#^3.0.1":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-component-page/tar.gz/194e7f593837ac255e19aa41302bd333dee30f6f"
-
-"@bower_components/iron-demo-helpers@PolymerElements/iron-demo-helpers#^2.0.0":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-demo-helpers/tar.gz/ff460d296c3072104273234d5f0ddec47ea69861"
-
-"@bower_components/iron-doc-viewer@PolymerElements/iron-doc-viewer#^3.0.0":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-doc-viewer/tar.gz/ec3f39ab5c31a40de638a8f4fac68b7dc2ecf1b4"
-
-"@bower_components/iron-fit-behavior@PolymerElements/iron-fit-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-fit-behavior/tar.gz/d112c1c0c4fb6ac7a848c8a5712d9a9021242bdb"
-
-"@bower_components/iron-flex-layout@PolymerElements/iron-flex-layout#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-flex-layout/tar.gz/f1d33ea9589e0a8d632ee4d5e00174df4c53661a"
-
-"@bower_components/iron-form-element-behavior@PolymerElements/iron-form-element-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-form-element-behavior/tar.gz/6087b69013619e5b3e023a10824d25cf7530d1fc"
-
-"@bower_components/iron-icon@PolymerElements/iron-icon#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-icon/tar.gz/bfdf82f7c8eb4c205cb2d4af6996ffc98f41b1c1"
-
-"@bower_components/iron-icons@PolymerElements/iron-icons#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-icons/tar.gz/8d999f711c42366c7f81247eddbd11882b473533"
-
-"@bower_components/iron-iconset-svg@PolymerElements/iron-iconset-svg#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-iconset-svg/tar.gz/0f36a7d380e0edfd81344e6cdbc89519355df8bd"
-
-"@bower_components/iron-location@PolymerElements/iron-location#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-location/tar.gz/f6ce5dcc97e25ca0aa9363fe0b7b51c2276d2e1e"
-
-"@bower_components/iron-media-query@PolymerElements/iron-media-query#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-media-query/tar.gz/1840027d1ba76dad13304187e5ec5dc2cfc19f05"
-
-"@bower_components/iron-meta@PolymerElements/iron-meta#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-meta/tar.gz/730e0d736a5eefd7d9601e4916786ec5706fd5fa"
-
-"@bower_components/iron-overlay-behavior@PolymerElements/iron-overlay-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-overlay-behavior/tar.gz/801c585feb7a7d3f7be21b03419e0cdf247870f2"
-
-"@bower_components/iron-resizable-behavior@PolymerElements/iron-resizable-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-resizable-behavior/tar.gz/c96b96b9fe922c3692fa256cf3a60beaf786dfd0"
-
-"@bower_components/iron-scroll-target-behavior@PolymerElements/iron-scroll-target-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-scroll-target-behavior/tar.gz/eaefca92b9e1c94a0e692a047a415b076b332e80"
-
-"@bower_components/iron-validatable-behavior@PolymerElements/iron-validatable-behavior#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/iron-validatable-behavior/tar.gz/1e3dcc441a4f72b97248e64e59b6b6d309009992"
-
-"@bower_components/lodash@lodash/lodash#^4.17.4":
-  version "4.17.5"
-  resolved "https://codeload.github.com/lodash/lodash/tar.gz/97e9edc53d2cc55df7adf765a003c800c54a6bda"
-
-"@bower_components/marked-element@PolymerElements/marked-element#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/marked-element/tar.gz/5acd8f882e337fb3e281323bec572dddff6d82d9"
-
-"@bower_components/marked@chjj/marked#^0.3.7":
-  version "0.3.12"
-  resolved "https://codeload.github.com/chjj/marked/tar.gz/1dc772bb94815a1e9364c8a143cc303002aefe4f"
-
-"@bower_components/mocha@mochajs/mocha#^3.5.3":
-  version "3.5.3"
-  resolved "https://codeload.github.com/mochajs/mocha/tar.gz/e838a774ac238c7e5556838dafb6163aad49cf9e"
-  dependencies:
-    browser-stdout "1.3.0"
-    commander "2.9.0"
-    debug "2.6.8"
-    diff "3.2.0"
-    escape-string-regexp "1.0.5"
-    glob "7.1.1"
-    growl "1.9.2"
-    he "1.1.1"
-    json3 "3.3.2"
-    lodash.create "3.1.1"
-    mkdirp "0.5.1"
-    supports-color "3.1.2"
-
-"@bower_components/paper-behaviors@PolymerElements/paper-behaviors#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/paper-behaviors/tar.gz/a6fb186616a605de1d5f787181ff1fe6c3d448b9"
-
-"@bower_components/paper-icon-button@PolymerElements/paper-icon-button#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/paper-icon-button/tar.gz/7816606a3ef5052ceade43beeb786f0836c08e68"
-
-"@bower_components/paper-ripple@PolymerElements/paper-ripple#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/paper-ripple/tar.gz/d0884e8508263e680fd9ee6c11b52c74a416f27f"
-
-"@bower_components/paper-styles@PolymerElements/paper-styles#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/paper-styles/tar.gz/739c14c9114dd3f80172e43d4ea2c5faf9bae132"
-
-"@bower_components/paper-toast@PolymerElements/paper-toast#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/paper-toast/tar.gz/d1ece312011034304773208e1bde056ea31d109d"
-
-"@bower_components/polymer@Polymer/polymer#1.9 - 2":
-  version "2.5.0"
-  resolved "https://codeload.github.com/Polymer/polymer/tar.gz/8b733e522769654c6dba5d991f98b15c8636bd97"
-
-"@bower_components/prism-element@PolymerElements/prism-element#1 - 2":
-  version "0.0.0"
-  resolved "https://codeload.github.com/PolymerElements/prism-element/tar.gz/9f716147477e2f27302e3252e4bd289fc840a4f8"
-
-"@bower_components/prism@LeaVerou/prism#^1.9.0":
-  version "1.11.0"
-  resolved "https://codeload.github.com/LeaVerou/prism/tar.gz/11f55176a701a60e0da781a2774ca4ef7402814c"
-  optionalDependencies:
-    clipboard "^1.7.1"
-
-"@bower_components/shadycss@webcomponents/shadycss#^v1.1.0":
-  version "1.1.1"
-  resolved "https://codeload.github.com/webcomponents/shadycss/tar.gz/b51eea17d43b9e7ad80c6cc750e097236d24bbc2"
-
-"@bower_components/sinon-chai@domenic/sinon-chai#^2.14.0":
-  version "2.14.0"
-  resolved "https://codeload.github.com/domenic/sinon-chai/tar.gz/fca669fd676d3146d44c79faf1e96ca8a9af7a93"
-
-"@bower_components/sinonjs@blittle/sinon.js#^1.17.1":
-  version "0.0.0"
-  resolved "https://codeload.github.com/blittle/sinon.js/tar.gz/9b970e7b8ff7fcb95d2c4d9a41b33370af764fc9"
-
-"@bower_components/stacky@PolymerLabs/stacky#^1.3.0":
-  version "1.3.2"
-  resolved "https://codeload.github.com/PolymerLabs/stacky/tar.gz/fa297bb077559544c56b4a123c05df2ff97e9fdc"
-  dependencies:
-    chalk "^1.1.1"
-    lodash "^3.0.0"
-
-"@bower_components/test-fixture@PolymerElements/test-fixture#^3.0.0":
-  version "3.0.0-rc.1"
-  resolved "https://codeload.github.com/PolymerElements/test-fixture/tar.gz/05caebd9ecbb464024455923bd351d2ba640932e"
-
-"@bower_components/web-component-tester@Polymer/web-component-tester#^6.5.0":
-  version "6.5.0"
-  resolved "https://codeload.github.com/Polymer/web-component-tester/tar.gz/8b979f3475a7040242f7255872156f080cf373a8"
-  dependencies:
-    "@polymer/sinonjs" "^1.14.1"
-    "@polymer/test-fixture" "^0.0.3"
-    "@webcomponents/webcomponentsjs" "^1.0.7"
-    accessibility-developer-tools "^2.12.0"
-    async "^2.4.1"
-    body-parser "^1.17.2"
-    chai "^4.0.2"
-    chalk "^1.1.3"
-    cleankill "^2.0.0"
-    express "^4.15.3"
-    findup-sync "^1.0.0"
-    glob "^7.1.2"
-    lodash "^3.10.1"
-    mocha "^3.4.2"
-    multer "^1.3.0"
-    nomnom "^1.8.1"
-    polyserve "^0.23.0"
-    promisify-node "^0.4.0"
-    resolve "^1.3.3"
-    semver "^5.3.0"
-    send "^0.11.1"
-    server-destroy "^1.0.1"
-    sinon "^2.3.5"
-    sinon-chai "^2.10.0"
-    socket.io "^2.0.3"
-    stacky "^1.3.1"
-    wd "^1.2.0"
-  optionalDependencies:
-    update-notifier "^2.2.0"
-    wct-local "^2.1.0"
-    wct-sauce "^2.0.0"
-
-"@bower_components/webcomponentsjs@webcomponents/webcomponentsjs#^v1.0.20":
-  version "1.1.0"
-  resolved "https://codeload.github.com/webcomponents/webcomponentsjs/tar.gz/6d7e89a8ff2a27a8ee7077bcf984c15e597c05f4"
-
 "@catalyst-elements/catalyst-toggle-button@git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git":
-  version "0.2.1"
-  resolved "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git#52deb1c2083a3cada283e0713617008a213529cb"
+  version "0.3.0"
+  resolved "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git#a79ce5e18e61198bef657e1fd76b077e81fb3b9d"
+
+"@polymer/app-layout@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/app-layout/-/app-layout-3.0.0-pre.8.tgz#3ee697c2bdceac4e7c94f651eb7be8ef24256489"
+  dependencies:
+    "@polymer/iron-flex-layout" "^3.0.0-pre.7"
+    "@polymer/iron-media-query" "^3.0.0-pre.7"
+    "@polymer/iron-resizable-behavior" "^3.0.0-pre.7"
+    "@polymer/iron-scroll-target-behavior" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/font-roboto@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/font-roboto/-/font-roboto-3.0.0-pre.8.tgz#c8a3e168eacab03cd91fd52d7be72f4fd199cab9"
+
+"@polymer/iron-a11y-announcer@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-a11y-announcer/-/iron-a11y-announcer-3.0.0-pre.8.tgz#f8da5f22de28e12448738e376f0427e695835191"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-a11y-keys-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-a11y-keys-behavior/-/iron-a11y-keys-behavior-3.0.0-pre.8.tgz#bb090ba4065596c2f2bc5d463e408c499b706e1b"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-ajax@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-ajax/-/iron-ajax-3.0.0-pre.8.tgz#cc2cfec08eb5bc7fbe853c64b06d3d317e270dbb"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-behaviors@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-behaviors/-/iron-behaviors-3.0.0-pre.8.tgz#02916fe2314bd8b7fc2c3fe411b875fd46b32edb"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-checked-element-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-checked-element-behavior/-/iron-checked-element-behavior-3.0.0-pre.8.tgz#926aae13c180898aff8cda822df5c5011f79da3c"
+  dependencies:
+    "@polymer/iron-form-element-behavior" "^3.0.0-pre.7"
+    "@polymer/iron-validatable-behavior" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-component-page@^3.0.0-pre.1":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-component-page/-/iron-component-page-3.0.0-pre.8.tgz#0ebb43fa5baf40495eaff3863ebf276bf0c7325d"
+  dependencies:
+    "@polymer/app-layout" "^3.0.0-pre.7"
+    "@polymer/iron-ajax" "^3.0.0-pre.7"
+    "@polymer/iron-doc-viewer" "^3.0.0-pre.7"
+    "@polymer/iron-icons" "^3.0.0-pre.7"
+    "@polymer/paper-icon-button" "^3.0.0-pre.7"
+    "@polymer/paper-styles" "^3.0.0-pre.7"
+    "@polymer/paper-toast" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-demo-helpers@^3.0.0-pre.1":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-demo-helpers/-/iron-demo-helpers-3.0.0-pre.8.tgz#58a3d527f1ab7222cc71ede7618541b93607386f"
+  dependencies:
+    "@polymer/font-roboto" "^3.0.0-pre.7"
+    "@polymer/iron-flex-layout" "^3.0.0-pre.7"
+    "@polymer/iron-location" "^3.0.0-pre.7"
+    "@polymer/marked-element" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+    "@polymer/prism-element" "^3.0.0-pre.7"
+
+"@polymer/iron-doc-viewer@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-doc-viewer/-/iron-doc-viewer-3.0.0-pre.8.tgz#f520936f078f3aea670e7d90f05df000962f9b28"
+  dependencies:
+    "@polymer/iron-location" "^3.0.0-pre.7"
+    "@polymer/marked-element" "^3.0.0-pre.7"
+    "@polymer/paper-styles" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+    "@polymer/prism-element" "^3.0.0-pre.7"
+
+"@polymer/iron-fit-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-fit-behavior/-/iron-fit-behavior-3.0.0-pre.8.tgz#789e252acde3fae08b0fd33d7ef763de96497cd3"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-flex-layout@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-flex-layout/-/iron-flex-layout-3.0.0-pre.8.tgz#9588dec5d06e1a3d0671007680e54121141df7f4"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-form-element-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-form-element-behavior/-/iron-form-element-behavior-3.0.0-pre.8.tgz#49cfbbcc053371b8f664b49509544566d94ac56b"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-icon@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-icon/-/iron-icon-3.0.0-pre.8.tgz#5f1a5aa53ee74e0e76932a6ddd77f9ee380f055f"
+  dependencies:
+    "@polymer/iron-flex-layout" "^3.0.0-pre.7"
+    "@polymer/iron-meta" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-icons@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-icons/-/iron-icons-3.0.0-pre.8.tgz#6adf32c7294acb4d159c770c0a471819b38ae145"
+  dependencies:
+    "@polymer/iron-icon" "^3.0.0-pre.7"
+    "@polymer/iron-iconset-svg" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-iconset-svg@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-iconset-svg/-/iron-iconset-svg-3.0.0-pre.8.tgz#06c8f650517e7346f96b7200a2a4c3bef38255e0"
+  dependencies:
+    "@polymer/iron-meta" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-location@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-location/-/iron-location-3.0.0-pre.8.tgz#2acf2a95decd72412f5c68e7cc732f8cee4422c2"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-media-query@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-media-query/-/iron-media-query-3.0.0-pre.8.tgz#2e733d499de700620701fbf59261f463ae915e41"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-meta@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-meta/-/iron-meta-3.0.0-pre.8.tgz#820585d219f7a76c940be6cc3cf851e9df66db38"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-overlay-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-overlay-behavior/-/iron-overlay-behavior-3.0.0-pre.8.tgz#2536b03b82b7e753744d5521ce4b4c6d3596cae1"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.7"
+    "@polymer/iron-fit-behavior" "^3.0.0-pre.7"
+    "@polymer/iron-resizable-behavior" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-resizable-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-resizable-behavior/-/iron-resizable-behavior-3.0.0-pre.8.tgz#2aa4489b1b45367fde383aa262374a5bb77c68a5"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-scroll-target-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-scroll-target-behavior/-/iron-scroll-target-behavior-3.0.0-pre.8.tgz#7cf1147ba27d1f3a069a68f5ab46ec73471b495c"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/iron-validatable-behavior@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-validatable-behavior/-/iron-validatable-behavior-3.0.0-pre.8.tgz#36f68542ba16b3b0692540db0c29c69af96e26df"
+  dependencies:
+    "@polymer/iron-meta" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/marked-element@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/marked-element/-/marked-element-3.0.0-pre.8.tgz#4b7044b2a24594f59302b95059b1fddecbdcc73d"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/paper-behaviors@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-behaviors/-/paper-behaviors-3.0.0-pre.8.tgz#cc509c8f8f6fd59310f65bf14712668e2ae245d7"
+  dependencies:
+    "@polymer/iron-behaviors" "^3.0.0-pre.7"
+    "@polymer/iron-checked-element-behavior" "^3.0.0-pre.7"
+    "@polymer/paper-ripple" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/paper-icon-button@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-icon-button/-/paper-icon-button-3.0.0-pre.8.tgz#f7bd8a53761eaafd8ba9c2a6431516a2d2d48b54"
+  dependencies:
+    "@polymer/iron-icon" "^3.0.0-pre.7"
+    "@polymer/paper-behaviors" "^3.0.0-pre.7"
+    "@polymer/paper-styles" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/paper-ripple@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-ripple/-/paper-ripple-3.0.0-pre.8.tgz#e319e9f331148e68d333daf6bd3b709e09025ce1"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/paper-styles@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-styles/-/paper-styles-3.0.0-pre.8.tgz#3f5ee7b025a8af914928c7c86add23ff05ae4f4d"
+  dependencies:
+    "@polymer/font-roboto" "^3.0.0-pre.7"
+    "@polymer/iron-flex-layout" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/paper-toast@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-toast/-/paper-toast-3.0.0-pre.8.tgz#6bca5443a7c5db24719b4c78b75478595401dccb"
+  dependencies:
+    "@polymer/iron-a11y-announcer" "^3.0.0-pre.7"
+    "@polymer/iron-fit-behavior" "^3.0.0-pre.7"
+    "@polymer/iron-overlay-behavior" "^3.0.0-pre.7"
+    "@polymer/polymer" "^3.0.0-pre.7"
+
+"@polymer/polymer@^3.0.0-pre.7":
+  version "3.0.0-pre.9"
+  resolved "https://registry.yarnpkg.com/@polymer/polymer/-/polymer-3.0.0-pre.9.tgz#f25a9f6674a9fee0e486259b34ec60a6dcaffb28"
+  dependencies:
+    "@webcomponents/shadycss" "^1.0.0"
+    "@webcomponents/webcomponentsjs" "^1.0.0"
+
+"@polymer/prism-element@^3.0.0-pre.7":
+  version "3.0.0-pre.8"
+  resolved "https://registry.yarnpkg.com/@polymer/prism-element/-/prism-element-3.0.0-pre.8.tgz#81bcc04837a92626b185557335ce7b8c7b55b330"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.7"
 
 "@polymer/sinonjs@^1.14.1":
   version "1.17.1"
@@ -431,20 +423,20 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@^9.3.0":
-  version "9.4.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.2.tgz#b109a6c4f64147ccf9476d9e1a6fbf69a10faeb8"
+  version "9.4.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.5.tgz#d2a90c634208173d1b1a0a6ba9f1df3de62edcf5"
 
 "@types/node@^4.2.3":
   version "4.2.23"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-4.2.23.tgz#9241f00d64eb91084f68367746ef10d5fb2f2fc4"
 
 "@types/node@^6.0.0", "@types/node@^6.0.41", "@types/node@^6.0.77":
-  version "6.0.98"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.98.tgz#69e6af43ade9e76bc5fba6864cd16195564b9d35"
+  version "6.0.100"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.100.tgz#26e5599c65f96efa0f100915144eb92cddaa95df"
 
 "@types/node@^8.0.0":
-  version "8.9.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.9.0.tgz#99449266e9f023cc3ad5de304d759de787d18ea4"
+  version "8.9.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.9.3.tgz#47d00392c5834dd5a095346d72df7ff8995f7365"
 
 "@types/opn@^3.0.28":
   version "3.0.28"
@@ -498,16 +490,16 @@
   resolved "https://registry.yarnpkg.com/@types/which/-/which-1.3.1.tgz#7802c380887986ca909008afea4e08025b130f8d"
 
 "@types/winston@^2.2.0":
-  version "2.3.7"
-  resolved "https://registry.yarnpkg.com/@types/winston/-/winston-2.3.7.tgz#2ea18b2dc772d459b6af0f587447704df31afec2"
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/@types/winston/-/winston-2.3.8.tgz#88964f45ecb5ed1feb4bfb38a24316bee8bf8768"
   dependencies:
     "@types/node" "*"
 
-"@webcomponents/shadycss@^1.1.0":
+"@webcomponents/shadycss@^1.0.0", "@webcomponents/shadycss@^1.1.0":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@webcomponents/shadycss/-/shadycss-1.1.1.tgz#abc821961c99a2b1c5e0f225cd01b139899ebc4c"
 
-"@webcomponents/webcomponentsjs@^1.0.20", "@webcomponents/webcomponentsjs@^1.0.7":
+"@webcomponents/webcomponentsjs@^1.0.0", "@webcomponents/webcomponentsjs@^1.0.20", "@webcomponents/webcomponentsjs@^1.0.7":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.1.0.tgz#1392799c266fca142622a720176f688beb74d181"
 
@@ -650,7 +642,7 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-ansi-styles@^3.1.0:
+ansi-styles@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.0.tgz#c159b8d5be0f9e5a6f346dab94f16ce022161b88"
   dependencies:
@@ -940,14 +932,14 @@ autoprefixer@^6.3.1:
     postcss-value-parser "^3.2.3"
 
 autoprefixer@^7.1.1:
-  version "7.2.5"
-  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-7.2.5.tgz#04ccbd0c6a61131b6d13f53d371926092952d192"
+  version "7.2.6"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-7.2.6.tgz#256672f86f7c735da849c4f07d008abb056067dc"
   dependencies:
-    browserslist "^2.11.1"
-    caniuse-lite "^1.0.30000791"
+    browserslist "^2.11.3"
+    caniuse-lite "^1.0.30000805"
     normalize-range "^0.1.2"
     num2fraction "^1.2.2"
-    postcss "^6.0.16"
+    postcss "^6.0.17"
     postcss-value-parser "^3.2.3"
 
 aws-sign2@~0.6.0:
@@ -1453,8 +1445,8 @@ boxen@^1.2.1:
     widest-line "^2.0.0"
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
   dependencies:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
@@ -1501,7 +1493,7 @@ browserslist@^1.3.6, browserslist@^1.5.2, browserslist@^1.7.6:
     caniuse-db "^1.0.30000639"
     electron-to-chromium "^1.2.7"
 
-browserslist@^2.0.0, browserslist@^2.11.1:
+browserslist@^2.0.0, browserslist@^2.11.3:
   version "2.11.3"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-2.11.3.tgz#fe36167aed1bbcde4827ebfe71347a2cc70b99b2"
   dependencies:
@@ -1616,12 +1608,12 @@ caniuse-api@^2.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000804"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000804.tgz#84feb42018fc64cf6aff6371e43115f292c00179"
+  version "1.0.30000808"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000808.tgz#30dfd83009d5704f02dffb37725068ed12a366bb"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000791, caniuse-lite@^1.0.30000792:
-  version "1.0.30000804"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000804.tgz#8729a143d65378e8936adbb161f550e9c49fc09d"
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805:
+  version "1.0.30000808"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000808.tgz#7d759b5518529ea08b6705a19e70dbf401628ffc"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -1657,12 +1649,12 @@ chalk@^1.0.0, chalk@^1.1.1, chalk@^1.1.3:
     supports-color "^2.0.0"
 
 chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.3.0.tgz#b5ea48efc9c1793dccc9b4767c93914d3f2d52ba"
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.3.1.tgz#523fe2678aec7b04e8041909292fe8b17059b796"
   dependencies:
-    ansi-styles "^3.1.0"
+    ansi-styles "^3.2.0"
     escape-string-regexp "^1.0.5"
-    supports-color "^4.0.0"
+    supports-color "^5.2.0"
 
 chalk@~0.4.0:
   version "0.4.0"
@@ -1695,8 +1687,8 @@ cheerio@^0.19.0:
     lodash "^3.2.0"
 
 chokidar@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.0.tgz#6686313c541d3274b2a5c01233342037948c911b"
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.1.tgz#6e67e9998fe10e8f651e975ca62460456ff8e297"
   dependencies:
     anymatch "^2.0.0"
     async-each "^1.0.0"
@@ -1708,6 +1700,7 @@ chokidar@^2.0.0:
     normalize-path "^2.1.1"
     path-is-absolute "^1.0.0"
     readdirp "^2.0.0"
+    upath "1.0.0"
   optionalDependencies:
     fsevents "^1.0.0"
 
@@ -1927,23 +1920,15 @@ command-line-usage@^3.0.3:
     table-layout "^0.3.0"
     typical "^2.6.0"
 
-commander@2.12.x:
-  version "2.12.2"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
+commander@2.14.x, commander@^2.8.1, commander@^2.9.0, commander@~2.14.1:
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
 
 commander@2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
   dependencies:
     graceful-readlink ">= 1.0.0"
-
-commander@^2.8.1, commander@^2.9.0:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
-
-commander@~2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
 
 component-bind@1.0.0:
   version "1.0.0"
@@ -3957,9 +3942,9 @@ has-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-1.0.0.tgz#9d9e793165ce017a00f00418c43f942a7b1d11fa"
 
-has-flag@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
+has-flag@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
 
 has-gulplog@^0.1.0:
   version "0.1.0"
@@ -4069,12 +4054,12 @@ html-comment-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
 
 html-minifier@^3.0.3:
-  version "3.5.8"
-  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.8.tgz#5ccdb1f73a0d654e6090147511f6e6b2ee312700"
+  version "3.5.9"
+  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.9.tgz#74424014b872598d4bb0e20ac420926ec61024b6"
   dependencies:
     camel-case "3.0.x"
     clean-css "4.1.x"
-    commander "2.12.x"
+    commander "2.14.x"
     he "1.1.x"
     ncname "1.0.x"
     param-case "2.1.x"
@@ -5056,13 +5041,13 @@ lodash.values@~2.4.1:
   dependencies:
     lodash.keys "~2.4.1"
 
+lodash@3.x, lodash@^3.0.0, lodash@^3.0.1, lodash@^3.10.1, lodash@^3.2.0:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+
 lodash@4.16.2:
   version "4.16.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.2.tgz#3e626db827048a699281a8a125226326cfc0e652"
-
-lodash@^3.0.0, lodash@^3.0.1, lodash@^3.10.1, lodash@^3.2.0:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
 lodash@^4.0.0, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.8.0, lodash@~4.17.4:
   version "4.17.5"
@@ -5147,6 +5132,10 @@ map-visit@^1.0.0:
   resolved "https://registry.yarnpkg.com/map-visit/-/map-visit-1.0.0.tgz#ecdca8f13144e660f1b5bd41f12f3479d98dfb8f"
   dependencies:
     object-visit "^1.0.0"
+
+marked@^0.3.12:
+  version "0.3.12"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.12.tgz#7cf25ff2252632f3fe2406bde258e94eee927519"
 
 matchdep@^2.0.0:
   version "2.0.0"
@@ -6436,8 +6425,8 @@ postcss-image-set-polyfill@^0.3.5:
     postcss-media-query-parser "^0.2.3"
 
 postcss-import@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-11.0.0.tgz#a962e2df82d3bc5a6da6a386841747204f41ef5b"
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-11.1.0.tgz#55c9362c9192994ec68865d224419df1db2981f0"
   dependencies:
     postcss "^6.0.1"
     postcss-value-parser "^3.2.3"
@@ -6682,7 +6671,7 @@ postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^6.0, postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.11, postcss@^6.0.13, postcss@^6.0.14, postcss@^6.0.16, postcss@^6.0.5, postcss@^6.0.6, postcss@^6.0.8:
+postcss@^6.0, postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.11, postcss@^6.0.13, postcss@^6.0.14, postcss@^6.0.17, postcss@^6.0.5, postcss@^6.0.6, postcss@^6.0.8:
   version "6.0.17"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.17.tgz#e259a051ca513f81e9afd0c21f7f82eda50c65c5"
   dependencies:
@@ -6710,13 +6699,23 @@ pretty-hrtime@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
 
+prismjs@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.11.0.tgz#297aef33eb79421bfdb19273a5092ca515970d29"
+  optionalDependencies:
+    clipboard "^1.7.1"
+
 private@^0.1.6, private@^0.1.7:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
 
-process-nextick-args@^1.0.6, process-nextick-args@^1.0.7, process-nextick-args@~1.0.6:
+process-nextick-args@^1.0.6, process-nextick-args@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
+
+process-nextick-args@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
 
 progress@2.0.0, progress@^2.0.0:
   version "2.0.0"
@@ -6876,13 +6875,13 @@ readable-stream@1.1.x, readable-stream@~1.1.9:
     string_decoder "~0.10.x"
 
 readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.9, readable-stream@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.3.tgz#368f2512d79f9d46fdfc71349ae7878bbc1eb95c"
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.4.tgz#c946c3f47fa7d8eabc0b6150f4a12f69a4574071"
   dependencies:
     core-util-is "~1.0.0"
     inherits "~2.0.3"
     isarray "~1.0.0"
-    process-nextick-args "~1.0.6"
+    process-nextick-args "~2.0.0"
     safe-buffer "~5.1.1"
     string_decoder "~1.0.3"
     util-deprecate "~1.0.1"
@@ -7922,17 +7921,11 @@ supports-color@^3.2.3:
   dependencies:
     has-flag "^1.0.0"
 
-supports-color@^4.0.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.5.0.tgz#be7a0de484dec5c5cddf8b3d59125044912f635b"
+supports-color@^5.1.0, supports-color@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.2.0.tgz#b0d5333b1184dd3666cbe5aa0b45c5ac7ac17a4a"
   dependencies:
-    has-flag "^2.0.0"
-
-supports-color@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.1.0.tgz#058a021d1b619f7ddf3980d712ea3590ce7de3d5"
-  dependencies:
-    has-flag "^2.0.0"
+    has-flag "^3.0.0"
 
 sver-compat@^1.5.0:
   version "1.5.0"
@@ -8270,10 +8263,10 @@ ua-parser-js@^0.7.15:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.17.tgz#e9ec5f9498b9ec910e7ae3ac626a805c4d09ecac"
 
 uglify-js@3.3.x:
-  version "3.3.9"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.9.tgz#33869666c8ab7f7658ce3d22f0f1ced40097d33a"
+  version "3.3.10"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.10.tgz#8e47821d4cf28e14c1826a0078ba0825ed094da8"
   dependencies:
-    commander "~2.13.0"
+    commander "~2.14.1"
     source-map "~0.6.1"
 
 uid-number@^0.0.6:
@@ -8287,6 +8280,10 @@ ultron@~1.1.0:
 unc-path-regex@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/unc-path-regex/-/unc-path-regex-0.1.2.tgz#e73dd3d7b0d7c5ed86fbac6b0ae7d8c6a69d50fa"
+
+underscore.string@2.3.x:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-2.3.3.tgz#71c08bf6b428b1133f37e78fa3a21c82f7329b0d"
 
 underscore.string@3.3.4:
   version "3.3.4"
@@ -8396,6 +8393,13 @@ unzip-response@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
 
+upath@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/upath/-/upath-1.0.0.tgz#b4706b9461ca8473adf89133d235689ca17f3656"
+  dependencies:
+    lodash "3.x"
+    underscore.string "2.3.x"
+
 update-notifier@^2.2.0, update-notifier@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/update-notifier/-/update-notifier-2.3.0.tgz#4e8827a6bb915140ab093559d7014e3ebb837451"
@@ -8415,8 +8419,8 @@ upper-case@^1.1.1:
   resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
 
 urijs@^1.16.1, urijs@^1.18.4:
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.0.tgz#d8aa284d0e7469703a6988ad045c4cbfdf08ada0"
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.1.tgz#5b0ff530c0cbde8386f6342235ba5ca6e995d25a"
 
 urix@^0.1.0:
   version "0.1.0"
