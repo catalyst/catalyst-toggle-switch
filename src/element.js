@@ -2,22 +2,6 @@
 import {CatalystToggleButton} from '../node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
 
 /**
- * Get the template for this element.
- */
-function getTemplate() {
-  let template = document.createElement('template');
-  template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
-
-  // If using ShadyCSS.
-  if (window.ShadyCSS !== undefined) {
-    // Rename classes as needed to ensure style scoping.
-    window.ShadyCSS.prepareTemplate(template, CatalystToggleSwitch.is);
-  }
-
-  return template;
-}
-
-/**
  * `<catalyst-toggle-switch>` is a toggle switch web component.
  *
  *     <catalyst-toggle-switch></catalyst-toggle-switch>
@@ -68,6 +52,22 @@ class CatalystToggleSwitch extends CatalystToggleButton {
   }
 
   /**
+   * Get the default template used by this element.
+   */
+  static get template() {
+    let template = document.createElement('template');
+    template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
+
+    // If using ShadyCSS.
+    if (window.ShadyCSS !== undefined) {
+      // Rename classes as needed to ensure style scoping.
+      window.ShadyCSS.prepareTemplate(template, CatalystToggleSwitch.is);
+    }
+
+    return template;
+  }
+
+  /**
    * Register this class as an element.
    */
   static register() {
@@ -80,7 +80,7 @@ class CatalystToggleSwitch extends CatalystToggleButton {
    * @param {HTMLTemplate} [template]
    *   The template to use.
    */
-  constructor(template = getTemplate()) {
+  constructor(template = CatalystToggleSwitch.template) {
     super(template);
 
     /**
