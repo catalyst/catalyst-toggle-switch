@@ -8,7 +8,7 @@
 |
 [API documentation ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-switch)
 
-`<catalyst-toggle-switch>` is a web component toggle switch, part of the `Catalyst Elements Collection`.
+`<catalyst-toggle-switch>` is a web component toggle switch, part of the `Catalyst Elements Collection`. It is essentially a checkbox.
 
 It extends [`<catalyst-toggle-button>`](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button)
 
