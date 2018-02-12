@@ -45,7 +45,7 @@ Note: you do not need to import the element's dependencies; the module will hand
 ```html
 <script type="module">
   // Import the component.
-  import { CatalystToggleSwitch } from 'node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.module.js';
+  import { CatalystToggleSwitch } from './node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.module.js';
 
   // If not using web component polyfills or if polyfills are ready, register the elements.
   if (window.WebComponents === undefined || window.WebComponents.ready) {
