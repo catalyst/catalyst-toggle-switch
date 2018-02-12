@@ -20,27 +20,9 @@ npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/ca
 
 ## Usage
 
-Import the component's definition and its dependencies on each page it is to be used on:
-
-```html
-<!-- Import dependencies -->
-<script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
-
-<!-- Import the element -->
-<script src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.js"></script>
-```
-
-Then simply use it like any other tag:
-
-```html
-<catalyst-toggle-switch></catalyst-toggle-switch>
-```
-
-### Usage as a Module
+### As a Module (Recommend)
 
 Import the module on each page that uses the component, then register the element.
-
-Note: you do not need to import the element's dependencies; the module will handle this for you.
 
 ```html
 <script type="module">
@@ -58,6 +40,26 @@ Note: you do not need to import the element's dependencies; the module will hand
     });
   }
 </script>
+```
+
+Then simply use it like any other tag:
+
+```html
+<catalyst-toggle-switch></catalyst-toggle-switch>
+```
+
+### As a script
+
+Import the script for the component on each page that it is uses on.
+
+Note: you will also have to import the dependancies the component uses first.
+
+```html
+<!-- Import dependencies -->
+<script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
+
+<!-- Import the element -->
+<script src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.js"></script>
 ```
 
 ## Browser Compatibility
