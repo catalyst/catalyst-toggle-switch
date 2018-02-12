@@ -13,6 +13,7 @@ const analysisFilename = 'analysis';
 const srcPath = './src';
 const distPath = './dist';
 const tmpPath = './tmp';
+const docsPath = './docs';
 
 // Libraries.
 const gulp = require('gulp');
@@ -305,6 +306,11 @@ gulp.task('clean-tmp', () => {
   return gulp.src(tmpPath, {read: false, allowEmpty: true}).pipe(clean());
 });
 
+// Clean the docs path.
+gulp.task('clean-docs', () => {
+  return gulp.src(docsPath, {read: false, allowEmpty: true}).pipe(clean());
+});
+
 gulp.task('create-element:module', () => {
   return createElementModule();
 });
@@ -367,10 +373,10 @@ gulp.task('create-analysis', () => {
 gulp.task('build', gulp.series('clean-dist', gulp.parallel('build-es6-module', 'build-es6'), gulp.parallel('build-es6-min', 'build-es5-min')));
 
 // Build the docs for all the components' versions.
-gulp.task('build-docs', () => {
+gulp.task('build-docs', gulp.series('clean-docs', () => {
   return mergeStream(docBuilder.sources(), docBuilder.dependencies())
-    .pipe(gulp.dest('docs'));
-});
+    .pipe(gulp.dest(docsPath));
+}));
 
 // Analyze all the components.
 gulp.task('analyze', gulp.series('build-es6', 'create-analysis', 'clean-tmp'));
