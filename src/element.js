@@ -39,7 +39,6 @@ import {CatalystToggleButton} from '../node_modules/@catalyst-elements/catalyst-
  * @element catalyst-toggle-switch
  * @demo demo/basic.html Basic
  * @demo demo/styled.html Styled
- * @demo demo/alternative-style.html Alternative Style
  */
 class CatalystToggleSwitch extends CatalystToggleButton {
 
@@ -102,15 +101,8 @@ class CatalystToggleSwitch extends CatalystToggleButton {
    * Fires when the element is inserted into the DOM.
    */
   connectedCallback() {
-    // Adjust the knob slide distance based on the width of the x borders.
-    let barStyle = getComputedStyle(this._bar);
-    let barXBorderWidth = Number.parseFloat(barStyle.borderLeftWidth) + Number.parseFloat(barStyle.borderRightWidth);
-    this.style.setProperty('--catalyst-toggle-switch-knob-slide-dist-adjust', `${-barXBorderWidth}px`);
-
-    // Figure out if the knob-offset is negitive.
-    if (Number.parseFloat(getComputedStyle(this).getPropertyValue('--catalyst-toggle-switch-knob-offset')) < 0) {
-      this._bar.classList.add('negitive-knob-offset');
-    }
+    // Update the element's style.
+    this.styleUpdated();
 
     // Set this element's role if it's not already set.
     if (!this.hasAttribute('role')) {
@@ -118,6 +110,21 @@ class CatalystToggleSwitch extends CatalystToggleButton {
     }
 
     super.connectedCallback();
+  }
+
+  /**
+   * Should be called after changing the element's style.
+   */
+  styleUpdated() {
+    // Adjust the knob slide distance based on the width of the x borders.
+    let barStyle = getComputedStyle(this._bar);
+    this.style.setProperty('--catalyst-toggle-switch-bar-border-top-wdith', barStyle.borderTopWidth);
+    this.style.setProperty('--catalyst-toggle-switch-bar-border-left-wdith', barStyle.borderLeftWidth);
+
+    // Figure out if the knob-offset is negitive.
+    if (Number.parseFloat(getComputedStyle(this).getPropertyValue('--catalyst-toggle-switch-knob-offset')) < 0) {
+      this._bar.classList.add('negitive-knob-offset');
+    }
   }
 }
 

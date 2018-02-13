@@ -21,19 +21,84 @@
     <demo-snippet>
       <template>
         <style>
-          .switch {
+          .default-colored {
             --catalyst-toggle-switch-bar-color: #ff0000;
             --catalyst-toggle-switch-knob-color: #ffeeee;
             --catalyst-toggle-switch-knob-border: solid 2px #ff0000;
           }
-          .switch[checked] {
+
+          .default-colored:focus {
+            --catalyst-toggle-switch-knob-color: #ffdddd;
+          }
+
+          .default-colored[checked] {
             --catalyst-toggle-switch-bar-color: #008000;
             --catalyst-toggle-switch-knob-color: #eeffee;
             --catalyst-toggle-switch-knob-border: solid 2px #008000;
           }
+
+          .default-colored:focus[checked] {
+            --catalyst-toggle-switch-knob-color: #ddffdd;
+          }
         </style>
 
-        <catalyst-toggle-switch class="switch"></catalyst-toggle-switch>
+        <catalyst-toggle-switch class="default-colored"></catalyst-toggle-switch>
+      </template>
+    </demo-snippet>
+
+    <h3>Alternative Style:</h3>
+    <demo-snippet>
+      <template>
+        <style>
+          .alt-style-1 {
+            --catalyst-toggle-switch-bar-color: transparent;
+            --catalyst-toggle-switch-bar-border: solid 2px #0000bb;
+            --catalyst-toggle-switch-bar-width: 50px;
+            --catalyst-toggle-switch-bar-height: 24px;
+            --catalyst-toggle-switch-knob-color: #0000bb;
+            --catalyst-toggle-switch-knob-size: 16px;
+            --catalyst-toggle-switch-knob-offset: -4px;
+            --catalyst-toggle-switch-knob-box-shadow: none;
+          }
+
+          .alt-style-1:focus {
+            --catalyst-toggle-switch-knob-color: #4499ff;
+          }
+        </style>
+
+        <catalyst-toggle-switch class="alt-style-1"></catalyst-toggle-switch>
+      </template>
+    </demo-snippet>
+
+    <h3>Alternative Style 2:</h3>
+    <demo-snippet>
+      <template>
+        <style>
+          .alt-style-2 {
+            --catalyst-toggle-switch-bar-color: transparent;
+            --catalyst-toggle-switch-bar-border: solid 1px #bbbbbb;
+            --catalyst-toggle-switch-bar-width: 46px;
+            --catalyst-toggle-switch-bar-height: 28px;
+            --catalyst-toggle-switch-knob-color: #ffffff;
+            --catalyst-toggle-switch-knob-border: solid 1px rgba(0, 0, 0, 0.14);
+            --catalyst-toggle-switch-knob-size: 26px;
+            --catalyst-toggle-switch-knob-offset: -1px;
+          }
+
+          .alt-style-2:focus {
+            --catalyst-toggle-switch-knob-color: #fafafa;
+            --catalyst-toggle-switch-knob-border: solid 1px rgba(0, 0, 0, 0.33);
+          }
+
+          .alt-style-2[checked] {
+            --catalyst-toggle-switch-bar-border: solid 1px transparent;
+            --catalyst-toggle-switch-bar-color: #50d865;
+            --catalyst-toggle-switch-knob-size: 24px;
+            --catalyst-toggle-switch-knob-offset: -2px;
+          }
+        </style>
+
+        <catalyst-toggle-switch class="alt-style-2"></catalyst-toggle-switch>
       </template>
     </demo-snippet>
   </body>

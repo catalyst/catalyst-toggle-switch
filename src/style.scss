@@ -5,9 +5,11 @@ $bar-height: 16px;
 $bar-border: none;
 
 $knob-bg-color: #ffffff;
+$knob-bg-color-focused: #fafafa;
 $knob-bg-disabled-color: #ced4da;
 $knob-size: 26px;
-$knob-border: none;
+$knob-border: solid 1px rgba(0, 0, 0, 0.04);
+$knob-border-focused: solid 1px rgba(0, 0, 0, 0.16);
 $knob-offset: ($knob-size - $bar-height) / 2;
 
 $shadow-very-light:
@@ -77,9 +79,9 @@ $shadow-dark:
 #knob {
   position: absolute;
   top: -$knob-offset;
-  top: calc(0px - var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}));
+  top: calc(0px - var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) - var(--catalyst-toggle-switch-bar-border-top-wdith, 0px));
   left: -$knob-offset;
-  left: calc(0px - var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}));
+  left: calc(0px - var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) - var(--catalyst-toggle-switch-bar-border-left-wdith, 0px));
   width: $knob-size;
   width: var(--catalyst-toggle-switch-knob-size, $knob-size);
   height: $knob-size;
@@ -94,11 +96,15 @@ $shadow-dark:
   box-shadow: var(--catalyst-toggle-switch-knob-box-shadow, $shadow-light);
   box-sizing: border-box;
   transition:
-    background-color 0.3s ease,
-    border 0.3s ease,
-    transform 0.3s ease,
+    width 0.28s ease,
+    height 0.28s ease,
+    background-color 0.28s ease,
+    border 0.28s ease,
+    transform 0.28s ease,
     box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   will-change:
+    width,
+    height,
     background-color,
     border,
     transform,
@@ -113,7 +119,12 @@ $shadow-dark:
 :host([checked]) {
   #knob {
     transform: translateX($bar-width + 2 * $knob-offset - $knob-size);
-    transform: translateX(calc(var(--catalyst-toggle-switch-bar-width, #{$bar-width}) + 2 * var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) - var(--catalyst-toggle-switch-knob-size, #{$knob-size}) + var(--catalyst-toggle-switch-knob-slide-dist-adjust, 0px)));
+    transform: translateX(calc(var(--catalyst-toggle-switch-bar-width, #{$bar-width}) + 2 * var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) - var(--catalyst-toggle-switch-knob-size, #{$knob-size}) + var(--catalyst-toggle-switch-bar-border-left-wdith, 0px)));
+  }
+  .negitive-knob-offset {
+    #knob {
+      transform: translateX(calc(var(--catalyst-toggle-switch-bar-width, #{$bar-width}) + 2 * var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) - var(--catalyst-toggle-switch-knob-size, #{$knob-size}) + var(--catalyst-toggle-switch-bar-border-left-wdith, 0px) - (var(--catalyst-toggle-switch-bar-height, #{$bar-height}) - var(--catalyst-toggle-switch-knob-size, #{$knob-size})) / 2 + 1px));
+    }
   }
 }
 
@@ -135,6 +146,10 @@ $shadow-dark:
   outline: none;
 
   #knob {
+    background-color: $knob-bg-color-focused;
+    background-color: var(--catalyst-toggle-switch-knob-color, $knob-bg-color-focused);
+    border: $knob-border-focused;
+    border: var(--catalyst-toggle-switch-knob-border, $knob-border-focused);
     box-shadow: $shadow-dark;
     box-shadow: var(--catalyst-toggle-switch-knob-box-shadow, $shadow-dark);
   }
