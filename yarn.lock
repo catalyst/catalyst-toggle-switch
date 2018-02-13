@@ -3,8 +3,8 @@
 
 
 "@catalyst-elements/catalyst-toggle-button@git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git":
-  version "0.3.0"
-  resolved "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git#a79ce5e18e61198bef657e1fd76b077e81fb3b9d"
+  version "0.3.1"
+  resolved "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git#9a41a6862024be578d1941d273196b248f17478d"
 
 "@polymer/app-layout@^3.0.0-pre.7":
   version "3.0.0-pre.8"
