@@ -12,11 +12,11 @@ then
   # `test-fixture` is being loaded from the wrong place.
   ln -sf ./@polymer/test-fixture ./node_modules/test-fixture
 
-  # Fix lint to async.js
+  # Fix path to async.js
   mkdir -p ./node_modules/async/lib
   ln -sf ../dist/async.js ./node_modules/async/lib/async.js
 
-  # Fix linl to sinon.js
+  # Fix path to sinon.js
   mkdir -p ./node_modules/sinonjs
   ln -sf ../sinon/pkg/sinon.js ./node_modules/sinonjs/sinon.js
 fi
