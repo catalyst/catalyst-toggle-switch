@@ -14,8 +14,16 @@ It extends [`<catalyst-toggle-button>`](https://gitlab.wgtn.cat-it.co.nz/Catalys
 
 ## Installation
 
+Install with npm:
+
 ```sh
 npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-switch.git"
+```
+
+Install with yarn:
+
+```sh
+yarn add "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-switch.git"
 ```
 
 ## Usage
@@ -76,12 +84,12 @@ Please read our [contribution guidelines](./CONTRIBUTING.md).
 
 ### Dependencies
 
-Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/) (not npm directly).
+Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/).
 
 Install dependencies with:
 
 ```sh
-yarn install
+yarn
 ```
 
 ### Building
