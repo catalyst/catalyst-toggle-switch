@@ -361,6 +361,7 @@ gulp.task('build-es5-min', () => {
     }))
     .pipe(gulp.dest(distPath));
 });
+
 // Analyze the elements file.
 gulp.task('create-analysis', () => {
   return analyzer.analyze([`${distPath}/${tagName}.js`]).then((analysis) => {
