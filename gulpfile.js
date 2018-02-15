@@ -523,7 +523,6 @@ gulp.task('docs-generate', gulp.series((done) => {
 gulp.task('build', gulp.series('clean-dist', gulp.parallel('build-es6-module', 'build-es6'), gulp.parallel('build-es6-min', 'build-es5-min')));
 
 // Build the docs for all the components' versions.
-// Build the docs for all the components' versions.
 gulp.task('build-docs', gulp.series(
   'clean-docs',
   'docs-clone-dependencies',
