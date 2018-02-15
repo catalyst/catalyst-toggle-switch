@@ -69,6 +69,15 @@ function fixAnalysis(analysis) {
               analysis.namespaces[i].elements[j].tagname = tagName;
             }
 
+            // If `demos` is defined
+            if (analysis.namespaces[i].elements[j].demos) {
+              // For each demo.
+              for (let k = 0; k < analysis.namespaces[i].elements[j].demos.length; k++) {
+                // Prefix the path to the demo.
+                analysis.namespaces[i].elements[j].demos[k].url = `dependencies/${packageInfo.name}/${analysis.namespaces[i].elements[j].demos[k].url}`;
+              }
+            }
+
             // If `events` is defined
             if (analysis.namespaces[i].elements[j].events) {
               // For each event.
@@ -423,31 +432,6 @@ gulp.task('docs-clone-dependencies', gulp.series(() => {
   return gulp.src([`${distPath}/**`, `${demoPath}/**`], { base: './' }).pipe(gulp.dest(`${tmpPath}/dependencies/${packageInfo.name}/`));
 }));
 
-// Fix the paths to demos.
-gulp.task('docs-fix-demo-paths', () => {
-  return gulp.src(`${tmpPath}/analysis.json`, { base: './' })
-    .pipe(modifyFile((content) => {
-      let analysis = JSON.parse(content);
-      if (analysis.namespaces) {
-        for (let i = 0; i < analysis.namespaces.length; i++) {
-          if (analysis.namespaces[i].name === 'CatalystElements') {
-            if (analysis.namespaces[i].elements) {
-              for (let j = 0; j < analysis.namespaces[i].elements.length; j++) {
-                if (analysis.namespaces[i].elements[j].demos) {
-                  for (let k = 0; k < analysis.namespaces[i].elements[j].demos.length; k++) {
-                    analysis.namespaces[i].elements[j].demos[k].url = `dependencies/${packageInfo.name}/${analysis.namespaces[i].elements[j].demos[k].url}`;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      return JSON.stringify(analysis);
-    }))
-    .pipe(gulp.dest('./'));
-});
-
 // Build the docs imports.
 gulp.task('docs-build-imports', () => {
   return gulp.src(`${tmpPath}/docs-imports.js`, { base: tmpPath })
@@ -543,7 +527,6 @@ gulp.task('build', gulp.series('clean-dist', gulp.parallel('build-es6-module', '
 gulp.task('build-docs', gulp.series(
   'clean-docs',
   'docs-clone-dependencies',
-  'docs-fix-demo-paths',
   'docs-build-imports',
   'docs-build-demo-imports',
   'docs-generate',
