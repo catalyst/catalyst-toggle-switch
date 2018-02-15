@@ -3,9 +3,29 @@
   "license": "BSD-3-Clause",
   "version": "0.2.2",
   "description": "A switch that toggles between two states; on and off.",
-  "private": true,
-  "repository": "git@gitlab.wgtn.cat-it.co.nz:CatalystElements/catalyst-toggle-switch.git",
   "main": "dist/catalyst-toggle-switch.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalyst/catalyst-toggle-switch.git"
+  },
+  "author": {
+    "name" : "Rebecca Stevens",
+    "email" : "rebeccastevens@catalyst.net.nz"
+  },
+  "keywords": [
+    "web-components",
+    "toggle",
+    "switch",
+    "checkbox"
+  ],
+  "bugs": {
+    "url": "https://github.com/catalyst/catalyst-toggle-switch/issues"
+  },
+  "homepage": "https://github.com/catalyst/catalyst-toggle-switch#readme",
   "scripts": {
     "build": "scripts/build.sh",
     "analyze": "scripts/analyze.sh",
