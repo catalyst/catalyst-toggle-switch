@@ -12,7 +12,7 @@
     "build-docs": "scripts/build-docs.sh",
     "test": "scripts/test.sh",
     "lint": "scripts/lint.sh",
-    "postinstall": "scripts/postinstall.sh"
+    "fix-dependencies": "scripts/fix-dependencies.sh"
   },
   "dependencies": {
     "@catalyst-elements/catalyst-toggle-button": "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git"

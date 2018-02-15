@@ -95,6 +95,7 @@ Install dependencies with:
 
 ```sh
 yarn
+yarn run fix-dependencies
 ```
 
 ### Building
