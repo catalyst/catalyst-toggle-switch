@@ -54,9 +54,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@catalyst-elements/catalyst-toggle-button@git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git":
-  version "0.3.2"
-  resolved "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git#3633fa5255b5e725f38599c5fb052b84db1f149a"
+"@catalyst-elements/catalyst-toggle-button@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-button/-/catalyst-toggle-button-0.4.0.tgz#18e14e05b2a44f9446e91bbe250f30e2eb4a3cd2"
 
 "@polymer/app-layout@^3.0.0-pre.7":
   version "3.0.0-pre.8"
