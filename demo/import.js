@@ -1,11 +1,11 @@
 // Import the element.
-import { CatalystToggleSwitch } from '../node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.module.js';
+import { CatalystToggleSwitch } from '../../catalyst-toggle-switch/dist/catalyst-toggle-switch.module.js';
 
 /**
  * Load the polymer elements.
  */
 function loadPolymerElements() {
-  import('../node_modules/@polymer/iron-demo-helpers/demo-snippet.js');
+  import('../../../@polymer/iron-demo-helpers/demo-snippet.js');
 }
 
 // Register the element.

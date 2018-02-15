@@ -1,17 +1,14 @@
 {
-  "entrypoint": "index.html",
+  "entrypoint": "tmp/index.html",
   "fragments": [],
   "sources": [
-    "index.html",
-    "demo/**/*"
+    "tmp/index.html",
+    "tmp/dependencies/@catalyst-elements/**"
   ],
   "extraDependencies": [
-    "node_modules/@webcomponents/webcomponentsjs/*.js",
-    "node_modules/@webcomponents/shadycss/*.js",
-    "node_modules/@polymer/iron-demo-helpers/demo-snippet.js",
-    "node_modules/@catalyst-elements/*/dist/**",
-    "dist/**/*",
-    "analysis.json"
+    "tmp/dependencies/@webcomponents/webcomponentsjs/**/*",
+    "tmp/dependencies/@webcomponents/shadycss/**/*",
+    "tmp/analysis.json"
   ],
   "builds": [{
     "name": "docs",
