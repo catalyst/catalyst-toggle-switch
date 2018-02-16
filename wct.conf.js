@@ -5,7 +5,7 @@ module.exports = {
     'local': {
       'browsers': [
         'chrome',
-        // 'firefox'
+        'firefox'
       ],
       'browserOptions': {
         'chrome': [
@@ -13,9 +13,9 @@ module.exports = {
           'disable-gpu',
           'no-sandbox'
         ],
-        // 'firefox': [
-        //   '--headless'
-        // ]
+        'firefox': [
+          '--headless'
+        ]
       }
     }
   }
