@@ -1,0 +1,20 @@
+language: node_js
+dist: trusty
+sudo: required
+node_js: stable
+addons:
+  firefox: latest
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+  sauce_connect: true
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
+  - yarn install
+script:
+  - yarn run test
