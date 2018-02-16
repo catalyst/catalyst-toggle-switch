@@ -2,6 +2,8 @@
 
 [![Travis](https://img.shields.io/travis/catalyst/catalyst-toggle-switch.svg?style=flat-square)](https://travis-ci.org/catalyst/catalyst-toggle-switch)
 [![GitHub release](https://img.shields.io/github/release/catalyst/catalyst-toggle-switch.svg?style=flat-square)](https://github.com/catalyst/catalyst-toggle-switch/releases)
+[![David](https://img.shields.io/david/catalyst/catalyst-toggle-switch.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-switch)
+[![David](https://img.shields.io/david/dev/catalyst/catalyst-toggle-switch.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-switch?type=dev)
 [![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=flat-square)](LICENSE)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/catalyst/catalyst-toggle-switch)
 
