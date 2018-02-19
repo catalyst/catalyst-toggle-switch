@@ -89,16 +89,17 @@ yarn
 
 ### Viewing the element
 
-First start up the included local webserver:
+First analyze the projcet then start up the included local webserver:
 
 ```sh
+yarn run analyze
 yarn run serve
 ```
 
 Then visit http://127.0.0.1:8081/components/@catalyst-elements/catalyst-toggle-switch to load up un unbuilt version of the docs.
 Select the element and choose a demo to see the element in action.
 
-Please note that as this is an unbuild version of the docs, not all browser will be able to view the page. To view the built version of the docs see [Docs](#Docs)
+Please note that as this is an unbuild version of the docs, not all browser will be able to view the page. To view the built version of the docs see [Docs](#docs)
 
 ### Building
 
@@ -133,7 +134,7 @@ Note: This repo does not have it's own GitHub pages. Docs are hosted on the [Cat
 
 Docs are build with [Polymer](https://www.polymer-project.org), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).
 
-To build the docs, first run the analyzer which will update `./analysis.json`. The docs are then built from this file.
+To build the docs, first run the analyzer which will update `./analysis.json`. This file contains all the infomation about the element the docs will use.
 
 ```sh
 yarn run analyze
