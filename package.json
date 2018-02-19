@@ -1,7 +1,7 @@
 {
   "name": "@catalyst-elements/catalyst-toggle-switch",
   "license": "BSD-3-Clause",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A switch that toggles between two states; on and off.",
   "main": "dist/catalyst-toggle-switch.js",
   "directories": {
@@ -32,6 +32,7 @@
     "build-docs": "scripts/build-docs.sh",
     "test": "scripts/test.sh",
     "lint": "scripts/lint.sh",
+    "serve": "scripts/serve.sh",
     "postinstall": "scripts/fix-dependencies.sh"
   },
   "dependencies": {
@@ -71,6 +72,7 @@
     "merge-stream": "^1.0.1",
     "polymer-analyzer": "^v3.0.0-pre.7",
     "polymer-build": "^2.1.1",
+    "polyserve": "^0.23.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
     "postcss-reporter": "^5.0.0",
