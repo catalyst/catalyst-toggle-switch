@@ -6,10 +6,6 @@
    */
   window.CatalystElements = window.CatalystElements || {};
 
-  /**
-   * Create the custom element
-   */
-  function createElement() {
 // Import dependencies.
             let CatalystToggleButton = window.CatalystElements.CatalystToggleButton;
     /**
@@ -53,11 +49,20 @@
      */
     class CatalystToggleSwitch extends CatalystToggleButton {
       /**
-       * @constant {String}
-       *   The element's tag name.
+       * The element's tag name.
+       *
+       * @type {String}
        */
       static get is() {
         return 'catalyst-toggle-switch';
+      }
+      /**
+       * Return's true if this element has been registered, otherwise false.
+       *
+       * @type {Boolean}
+       */
+      static get _isRegistered() {
+        return !!CatalystToggleSwitch.__isRegistered;
       }
       /**
        * Get the default template used by this element.
@@ -76,8 +81,20 @@
       /**
        * Register this class as an element.
        */
-      static register() {
-        window.customElements.define(CatalystToggleSwitch.is, CatalystToggleSwitch);
+      static _register() {
+        const doRegister = () => {
+          window.customElements.define(CatalystToggleSwitch.is, CatalystToggleSwitch);
+          CatalystToggleSwitch.__isRegistered = true;
+        };
+        // If not using web component polyfills or if polyfills are ready, register the element.
+        if (window.WebComponents === undefined || window.WebComponents.ready) {
+          doRegister();
+        }  // Otherwise wait until the polyfills are ready, then register the element.
+        else {
+          window.addEventListener('WebComponentsReady', () => {
+            doRegister();
+          });
+        }
       }
       /**
        * Construct the element.
@@ -126,26 +143,10 @@
         }
       }
     }
+    // Register the element if it is not already registered.
+    if (!CatalystToggleSwitch._isRegistered) {
+      CatalystToggleSwitch._register();
+    }
     // Make the class globally accessible under the `CatalystElements` object.
     window.CatalystElements.CatalystToggleSwitch = CatalystToggleSwitch;
-
-    // Register the element.
-    CatalystToggleSwitch.register();
-  }
-
-  // If the `CatalystToggleSwitch` hasn't already been defined, define it.
-  if (window.CatalystElements.CatalystToggleSwitch === undefined) {
-    // If not using web component polyfills or if polyfills are ready, create the element.
-    if (window.WebComponents === undefined || window.WebComponents.ready) {
-      createElement();
-    }
-    // Otherwise wait until the polyfills is ready.
-    else {
-      window.addEventListener('WebComponentsReady', () => {
-        createElement();
-      });
-    }
-  } else {
-    console.warn('CatalystToggleSwitch has already been defined, cannot redefine.');
-  }
 })();

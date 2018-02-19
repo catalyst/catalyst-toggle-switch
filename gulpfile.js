@@ -196,33 +196,9 @@ function createElement() {
    */
   window.CatalystElements = window.CatalystElements || {};
 
-  /**
-   * Create the custom element
-   */
-  function createElement() {
 ${content}
     // Make the class globally accessible under the \`CatalystElements\` object.
     window.CatalystElements.${className} = ${className};
-
-    // Register the element.
-    ${className}.register();
-  }
-
-  // If the \`${className}\` hasn't already been defined, define it.
-  if (window.CatalystElements.${className} === undefined) {
-    // If not using web component polyfills or if polyfills are ready, create the element.
-    if (window.WebComponents === undefined || window.WebComponents.ready) {
-      createElement();
-    }
-    // Otherwise wait until the polyfills is ready.
-    else {
-      window.addEventListener('WebComponentsReady', () => {
-        createElement();
-      });
-    }
-  } else {
-    console.warn('${className} has already been defined, cannot redefine.');
-  }
 })();`;
     }))
     .pipe(rename({
