@@ -51,7 +51,7 @@
       /**
        * The element's tag name.
        *
-       * @type {String}
+       * @returns {string}
        */
       static get is() {
         return 'catalyst-toggle-switch';
@@ -59,13 +59,15 @@
       /**
        * Return's true if this element has been registered, otherwise false.
        *
-       * @type {Boolean}
+       * @returns {boolean}
        */
       static get _isRegistered() {
         return !!CatalystToggleSwitch.__isRegistered;
       }
       /**
        * Get the default template used by this element.
+       *
+       * @returns {HTMLTemplateElement}
        */
       static get template() {
         let template = document.createElement('template');
@@ -119,6 +121,8 @@
       }
       /**
        * Fires when the element is inserted into the DOM.
+       *
+       * @protected
        */
       connectedCallback() {
         // Update the element's style.
