@@ -32,7 +32,7 @@
     "build-docs": "scripts/build-docs.sh",
     "test": "scripts/test.sh",
     "lint": "scripts/lint.sh",
-    "fix-dependencies": "scripts/fix-dependencies.sh"
+    "postinstall": "scripts/fix-dependencies.sh"
   },
   "dependencies": {
     "@catalyst-elements/catalyst-toggle-button": "^0.4.0"
