@@ -62,7 +62,7 @@
        * @returns {boolean}
        */
       static get _isRegistered() {
-        return !!CatalystToggleSwitch.__isRegistered;
+        return window.customElements !== undefined && window.customElements.get(CatalystToggleSwitch.is) !== undefined;
       }
       /**
        * Get the default template used by this element.
@@ -86,7 +86,6 @@
       static _register() {
         const doRegister = () => {
           window.customElements.define(CatalystToggleSwitch.is, CatalystToggleSwitch);
-          CatalystToggleSwitch.__isRegistered = true;
         };
         // If not using web component polyfills or if polyfills are ready, register the element.
         if (window.WebComponents === undefined || window.WebComponents.ready) {
