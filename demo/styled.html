@@ -4,14 +4,14 @@
     <title>&lt;catalyst-toggle-switch&gt; Styled Demo</title>
 
     <!-- Web Component Pollyfills -->
-    <script src="../../../@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <!-- [[inject:custom-elements-es5-adapter]] --><script>console.info('custom-elements-es5-adapter is not in use.');</script><!-- [[endinject]] -->
     <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../../@webcomponents/shadycss/scoping-shim.min.js"></script>
     <script src="../../../@webcomponents/shadycss/apply-shim.min.js"></script>
 
     <!-- Import the things we need -->
     <script src="../../../marked/marked.min.js"></script>
-    <script src="import.build.js"></script>
+    <script type="module" src="import.js"></script>
 
     <style>
       body {

@@ -23,13 +23,13 @@ const analyzer = Analyzer.createForDirectory('./');
 const Builder = require('polymer-build').PolymerProject;
 const del = require('del');
 const closureCompiler = require('google-closure-compiler').gulp();
+const escodegen = require('escodegen');
 const eslint = require('gulp-eslint');
+const esprima = require('esprima');
 const file = require('gulp-file');
 const foreach = require('gulp-foreach');
 const fs = require('graceful-fs')
-const escodegen = require('escodegen');
-const esprima = require('esprima');
-const glob = require('glob');
+const globby = require('globby');
 const htmlExtract = require('gulp-html-extract');
 const htmlmin = require('gulp-htmlmin');
 const inject = require('gulp-inject');
@@ -42,6 +42,7 @@ const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const sassLint = require('gulp-sass-lint');
+const through = require('through2');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 
@@ -67,15 +68,6 @@ function fixAnalysis(analysis) {
             // If the element's tag name is not set for this element, set it.
             if (analysis.namespaces[i].elements[j].tagname === undefined && analysis.namespaces[i].elements[j].name.endsWith(className)) {
               analysis.namespaces[i].elements[j].tagname = tagName;
-            }
-
-            // If `demos` is defined
-            if (analysis.namespaces[i].elements[j].demos) {
-              // For each demo.
-              for (let k = 0; k < analysis.namespaces[i].elements[j].demos.length; k++) {
-                // Prefix the path to the demo.
-                analysis.namespaces[i].elements[j].demos[k].url = `dependencies/${packageInfo.name}/${analysis.namespaces[i].elements[j].demos[k].url}`;
-              }
             }
 
             // If `events` is defined
@@ -396,7 +388,7 @@ gulp.task('create-analysis', () => {
 
 // Clone all the dependencies needed for docs.
 gulp.task('docs-clone-dependencies', gulp.series(() => {
-  return gulp.src('node_modules/**', { follow: true }).pipe(gulp.dest(`${tmpPath}/dependencies`));
+  return gulp.src('node_modules/**', { follow: true }).pipe(gulp.dest(`${tmpPath}/scripts`));
 }, () => {
   return gulp.src([
     'index.html',
@@ -405,18 +397,72 @@ gulp.task('docs-clone-dependencies', gulp.series(() => {
     'docs-build-config.json'
   ]).pipe(gulp.dest(`${tmpPath}`));
 }, () => {
-  return gulp.src([`${distPath}/**`, `${demoPath}/**`], { base: './' }).pipe(gulp.dest(`${tmpPath}/dependencies/${packageInfo.name}/`));
+  return gulp.src([`${distPath}/**`, `${demoPath}/**`], { base: './' }).pipe(gulp.dest(`${tmpPath}/scripts/${packageInfo.name}/`));
+}));
+
+// Update analysis.
+gulp.task('docs-update-analysis', gulp.series(() => {
+  return gulp.src(`${tmpPath}/analysis.json`, { base: './' })
+    .pipe(modifyFile((content) => {
+      let analysis = JSON.parse(content);
+      if (analysis.namespaces) {
+        for (let i = 0; i < analysis.namespaces.length; i++) {
+          if (analysis.namespaces[i].name === 'CatalystElements') {
+            if (analysis.namespaces[i].elements) {
+              for (let j = 0; j < analysis.namespaces[i].elements.length; j++) {
+                if (analysis.namespaces[i].elements[j].demos) {
+                  for (let k = 0; k < analysis.namespaces[i].elements[j].demos.length; k++) {
+                    analysis.namespaces[i].elements[j].demos[k].url = `scripts/${packageInfo.name}/${analysis.namespaces[i].elements[j].demos[k].url}`;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      return JSON.stringify(analysis);
+    }))
+    .pipe(gulp.dest('./'));
+}));
+
+// Build the docs index.
+gulp.task('docs-build-index', gulp.series((done) => {
+  let content = '<script src="../../@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>';
+  fs.writeFileSync(`${tmpPath}/custom-elements-es5-adapter-import.html`, content);
+  done();
+}, () => {
+  return gulp.src(`${tmpPath}/index.html`, { base: './' })
+    .pipe(inject(gulp.src(`${tmpPath}/custom-elements-es5-adapter-import.html`), {
+      starttag: '<!-- [[inject:custom-elements-es5-adapter]] -->',
+      endtag: '<!-- [[endinject]] -->',
+      removeTags: true,
+      transform: transformGetFileContents
+    }))
+    .pipe(gulp.dest('./'));
+}, () => {
+  return gulp.src(`${tmpPath}/index.html`, { base: './' })
+    .pipe(modifyFile((content) => {
+      content = content.replace(/\.\.\/\.\.\//g, './scripts/');
+      return content.replace(/<script type="module"/g, '<script');
+    }))
+    .pipe(gulp.dest('./'));
 }));
 
 // Build the docs imports.
-gulp.task('docs-build-imports', () => {
+gulp.task('docs-build-imports', gulp.series(() => {
+  return gulp.src(`${tmpPath}/docs-imports.js`, { base: './' })
+    .pipe(modifyFile((content) => {
+      return content.replace(/\.\.\/\.\.\//g, './scripts/');
+    }))
+    .pipe(gulp.dest('./'));
+}, () => {
   return gulp.src(`${tmpPath}/docs-imports.js`, { base: tmpPath })
     .pipe(named())
     .pipe(webpackStream({
       target: 'web',
       output: {
-        chunkFilename: 'docs-imports.[id].build.js',
-        filename: '[name].build.js'
+        chunkFilename: 'docs-imports.[id].js',
+        filename: 'docs-imports.js'
       }
     }, webpack))
     .pipe(foreach(function(stream, file) {
@@ -436,19 +482,53 @@ gulp.task('docs-build-imports', () => {
         }))
         .pipe(gulp.dest(tmpPath));
     }));
-});
+}));
+
+// Build the demos.
+gulp.task('docs-build-demos', gulp.series(() => {
+  return gulp.src(`${tmpPath}/scripts/${packageInfo.name}/demo/**/*.html`, { base: './' })
+    .pipe(foreach(function(stream, file) {
+      let relPath = path.relative(path.join(file.cwd, file.base), file.path);
+      let dir = path.dirname(relPath);
+      let es5AdapterFile = `${dir}/custom-elements-es5-adapter-import.html`;
+      let es5AdapterSrc = path.relative(dir, `${tmpPath}/scripts/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js`);
+
+      let content = `<script src="${es5AdapterSrc}"></script>`;
+      fs.writeFileSync(es5AdapterFile, content);
+
+      return stream
+        .pipe(inject(gulp.src(es5AdapterFile, { base: './' }), {
+          starttag: '<!-- [[inject:custom-elements-es5-adapter]] -->',
+          endtag: '<!-- [[endinject]] -->',
+          removeTags: true,
+          transform: transformGetFileContents
+        }))
+        .pipe(through.obj(function(file, enc, cb) {
+          del(es5AdapterFile);
+          this.push(file);
+          cb();
+        }))
+        .pipe(gulp.dest('./'));
+    }));
+}, () => {
+  return gulp.src(`${tmpPath}/scripts/${packageInfo.name}/demo/*.html`, { base: './' })
+    .pipe(modifyFile((content) => {
+      return content.replace(/<script type="module"/g, '<script');
+    }))
+    .pipe(gulp.dest('./'));
+}));
 
 // Build the imports for each demo.
 gulp.task('docs-build-demo-imports', () => {
-  return gulp.src(`${tmpPath}/dependencies/@catalyst-elements/*/demo/import.js`)
+  return gulp.src(`${tmpPath}/scripts/@catalyst-elements/*/demo/import.js`)
     .pipe(foreach(function(stream, file) {
       let output = path.dirname(file.path);
       return stream
         .pipe(webpackStream({
           target: 'web',
           output: {
-            chunkFilename: 'import.[id].build.js',
-            filename: 'import.build.js'
+            chunkFilename: 'import.[id].js',
+            filename: 'import.js'
           }
         }, webpack))
         .pipe(foreach(function(stream, file) {
@@ -472,16 +552,15 @@ gulp.task('docs-build-demo-imports', () => {
 });
 
 // Generate the docs.
-gulp.task('docs-generate', gulp.series((done) => {
+gulp.task('docs-generate', gulp.series(async () => {
   let buildConfig = require(`${tmpPath}/docs-build-config.json`);
 
-  glob(`${tmpPath}/*.build.*`, {}, (er, files) => {
-    for (let i = 0; i < files.length; i++) {
-      buildConfig.extraDependencies.push(files[i]);
-    }
-    fs.writeFileSync(`${tmpPath}/docs-build-config.json`, JSON.stringify(buildConfig));
-    done();
-  });
+  let builtFiles = await globby(['docs-imports.js', 'docs-imports.*.js'], { cwd: tmpPath });
+
+  for (let i = 0; i < builtFiles.length; i++) {
+    buildConfig.extraDependencies.push(builtFiles[i]);
+  }
+  fs.writeFileSync(`${tmpPath}/docs-build-config.json`, JSON.stringify(buildConfig));
 }, () => {
   const docBuilder = new Builder(`${tmpPath}/docs-build-config.json`);
   return mergeStream(docBuilder.sources(), docBuilder.dependencies())
@@ -502,7 +581,10 @@ gulp.task('build', gulp.series('clean-dist', gulp.parallel('build-es6-module', '
 gulp.task('build-docs', gulp.series(
   'clean-docs',
   'docs-clone-dependencies',
+  'docs-update-analysis',
+  'docs-build-index',
   'docs-build-imports',
+  'docs-build-demos',
   'docs-build-demo-imports',
   'docs-generate',
   'clean-tmp'));

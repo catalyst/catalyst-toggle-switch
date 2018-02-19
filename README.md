@@ -87,6 +87,19 @@ Install dependencies with:
 yarn
 ```
 
+### Viewing the element
+
+First start up the included local webserver:
+
+```sh
+yarn run serve
+```
+
+Then visit http://127.0.0.1:8081/components/@catalyst-elements/catalyst-toggle-switch to load up un unbuilt version of the docs.
+Select the element and choose a demo to see the element in action.
+
+Please note that as this is an unbuild version of the docs, not all browser will be able to view the page. To view the built version of the docs see [Docs](#Docs)
+
 ### Building
 
 The build process will create the following versions of the component in the distribution folder (`./dist`):
@@ -129,7 +142,13 @@ yarn run build-docs
 
 The docs will be located under `./docs/`.
 
-In order to view the docs in a web browser, the files need to be served from a web server (they cannot be open using the `file:///` protocall).
+To view the docs, first start up a local webserver:
+
+```sh
+yarn run serve
+```
+
+Then visit http://127.0.0.1:8081/docs/
 
 ### Testing
 
@@ -143,10 +162,10 @@ yarn run test
 
 #### Running Tests In The Browser
 
-First start up a local server:
+First start up a local webserver:
 
 ```sh
-python -m SimpleHTTPServer 8000
+yarn run serve
 ```
 
-Then visit http://0.0.0.0:8000/test/ to see the tests in action.
+Then visit http://127.0.0.1:8081/test/ to see the tests in action.

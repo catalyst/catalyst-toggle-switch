@@ -1,14 +1,14 @@
 {
-  "entrypoint": "tmp/index.html",
+  "root": "tmp/",
+  "entrypoint": "index.html",
   "fragments": [],
   "sources": [
-    "tmp/index.html",
-    "tmp/dependencies/@catalyst-elements/**"
+    "scripts/@catalyst-elements/**"
   ],
   "extraDependencies": [
-    "tmp/dependencies/@webcomponents/webcomponentsjs/**/*",
-    "tmp/dependencies/@webcomponents/shadycss/**/*",
-    "tmp/analysis.json"
+    "scripts/@webcomponents/webcomponentsjs/**/*",
+    "scripts/@webcomponents/shadycss/**/*",
+    "analysis.json"
   ],
   "builds": [{
     "name": "docs",

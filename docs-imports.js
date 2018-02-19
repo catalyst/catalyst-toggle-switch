@@ -2,7 +2,7 @@
  * Load the polymer elements.
  */
 function loadPolymerElements() {
-  import('./dependencies/@polymer/iron-component-page/iron-component-page.js');
+  import('../../@polymer/iron-component-page/iron-component-page.js');
 }
 
 // If not using web component polyfills or if polyfills are ready, register all the Catalyst Elements.
