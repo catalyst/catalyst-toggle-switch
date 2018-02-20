@@ -1,7 +1,7 @@
 {
   "name": "@catalyst-elements/catalyst-toggle-switch",
   "license": "BSD-3-Clause",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A switch that toggles between two states; on and off.",
   "main": "dist/catalyst-toggle-switch.js",
   "directories": {
