@@ -12,5 +12,8 @@
     "switch",
     "checkbox"
   ],
-  "homepage": "https://github.com/catalyst/catalyst-toggle-switch"
+  "homepage": "https://github.com/catalyst/catalyst-toggle-switch",
+  "dependencies": {
+    "@catalyst-elements/catalyst-toggle-button": "catalyst/catalyst-toggle-button#^0.5.3"
+  }
 }
