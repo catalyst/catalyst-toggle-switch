@@ -15,6 +15,20 @@
 
 It extends [`<catalyst-toggle-button>`](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button)
 
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script type="module" src="dist/catalyst-toggle-switch.module.js"></script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<catalyst-toggle-switch></catalyst-toggle-switch>
+```
+
 ## Installation
 
 Install with npm:
@@ -39,11 +53,7 @@ Import the module on each page that uses the component.
 <script type="module" src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.module.js"></script>
 ```
 
-Then simply use it like any other tag:
-
-```html
-<catalyst-toggle-switch></catalyst-toggle-switch>
-```
+Then simply use it like any other tag.
 
 ### As a script
 
@@ -59,11 +69,7 @@ Note: you will also have to import the dependancies the component uses first.
 <script src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.js"></script>
 ```
 
-The element can then be use it like any other tag:
-
-```html
-<catalyst-toggle-switch></catalyst-toggle-switch>
-```
+The element can then be use it like any other tag.
 
 ## Browser Compatibility
 
