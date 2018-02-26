@@ -4,6 +4,8 @@
 [![David](https://img.shields.io/david/catalyst/catalyst-toggle-switch.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-switch)
 [![David](https://img.shields.io/david/dev/catalyst/catalyst-toggle-switch.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-switch?type=dev)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/catalyst/catalyst-toggle-switch)
+[![npm (scoped)](https://img.shields.io/npm/v/@catalyst-elements/catalyst-toggle-switch.svg?style=flat-square)](https://www.npmjs.com/package/@catalyst-elements/catalyst-toggle-switch)
+[![Bower not supported](https://img.shields.io/badge/bower-not_supported-red.svg?style=flat-square)]()
 [![Polymer 2 not supported](https://img.shields.io/badge/Polymer_2-not_supported-red.svg?style=flat-square)]()
 [![Polymer 3 support pending](https://img.shields.io/badge/Polymer_3-support_pending-yellow.svg?style=flat-square)]()
 
@@ -15,6 +17,8 @@
 
 It extends [`<catalyst-toggle-button>`](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button)
 
+## Example Usage
+
 <!---
 ```
 <custom-element-demo>
@@ -25,6 +29,7 @@ It extends [`<catalyst-toggle-button>`](https://gitlab.wgtn.cat-it.co.nz/Catalys
 </custom-element-demo>
 ```
 -->
+
 ```html
 <catalyst-toggle-switch></catalyst-toggle-switch>
 ```
@@ -42,6 +47,8 @@ Install with yarn:
 ```sh
 yarn add @catalyst-elements/catalyst-toggle-switch
 ```
+
+Please note that this package is not compatible with Bower.
 
 ## Usage
 
