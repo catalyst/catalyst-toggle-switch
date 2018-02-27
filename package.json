@@ -36,7 +36,7 @@
     "postinstall": "scripts/fix-dependencies.sh"
   },
   "dependencies": {
-    "@catalyst-elements/catalyst-toggle-button": "^0.5.1"
+    "@catalyst-elements/catalyst-toggle-button": "^0.6.0"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^3.0.0-pre.1",
@@ -53,7 +53,6 @@
     "eslint-plugin-mocha": "^4.11.0",
     "esprima": "^4.0.0",
     "globby": "^8.0.1",
-    "google-closure-compiler": "^20180101.0.0",
     "graceful-fs": "^4.1.11",
     "gulp": "^4.0.0",
     "gulp-eslint": "^4.0.1",
@@ -70,9 +69,9 @@
     "gulp-sass-lint": "^1.3.4",
     "marked": "^0.3.12",
     "merge-stream": "^1.0.1",
-    "polymer-analyzer": "^v3.0.0-pre.7",
+    "polymer-analyzer": "^v3.0.0-pre.12",
     "polymer-build": "^2.1.1",
-    "polyserve": "^0.23.0",
+    "polyserve": "^0.24.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
     "postcss-reporter": "^5.0.0",
@@ -80,7 +79,8 @@
     "through2": "^2.0.3",
     "vinyl-named": "^1.1.0",
     "web-component-tester": "^6.5.0",
-    "webpack": "^3.11.0",
+    "webpack": "^4.0.1",
+    "webpack-closure-compiler": "^2.1.6",
     "webpack-stream": "^4.0.1"
   },
   "engines": {

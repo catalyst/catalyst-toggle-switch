@@ -22,7 +22,6 @@ const {Analyzer, generateAnalysis} = require('polymer-analyzer');
 const analyzer = Analyzer.createForDirectory('./');
 const Builder = require('polymer-build').PolymerProject;
 const del = require('del');
-const closureCompiler = require('google-closure-compiler').gulp();
 const escodegen = require('escodegen');
 const eslint = require('gulp-eslint');
 const esprima = require('esprima');
@@ -44,49 +43,10 @@ const sass = require('gulp-sass');
 const sassLint = require('gulp-sass-lint');
 const through = require('through2');
 const webpack = require('webpack');
+const webpackClosureCompilerPlugin = require('webpack-closure-compiler');
 const webpackStream = require('webpack-stream');
 
 let packageInfo = JSON.parse(fs.readFileSync('./package.json'));
-
-/**
- * Fix issues with the automatically generated analysis.
- *
- * * @param {object} analysis
- */
-function fixAnalysis(analysis) {
-  // If `namespaces` is defined.
-  if (analysis.namespaces) {
-    for (let i = 0; i < analysis.namespaces.length; i++) {
-      // For the `CatalystElements` namespace.
-      if (analysis.namespaces[i].name === 'CatalystElements') {
-
-        // If `elements` is defined.
-        if (analysis.namespaces[i].elements) {
-          // For each element.
-          for (let j = 0; j < analysis.namespaces[i].elements.length; j++) {
-
-            // If the element's tag name is not set for this element, set it.
-            if (analysis.namespaces[i].elements[j].tagname === undefined && analysis.namespaces[i].elements[j].name.endsWith(className)) {
-              analysis.namespaces[i].elements[j].tagname = tagName;
-            }
-
-            // If `events` is defined
-            if (analysis.namespaces[i].elements[j].events) {
-              // For each event.
-              for (let k = 0; k < analysis.namespaces[i].elements[j].events.length; k++) {
-                // Fix up event descriptions.
-                // Remove the name of the event from the beginning of its description.
-                analysis.namespaces[i].elements[j].events[k].description = analysis.namespaces[i].elements[j].events[k].description.replace(new RegExp('^' + analysis.namespaces[i].elements[j].events[k].name), '').trim();
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  return analysis;
-}
 
 /**
  * Transform function that returns the contents of the given file.
@@ -109,7 +69,7 @@ function createElementModule() {
     }))
     .pipe(rename({
       basename: tagName,
-      extname: '.module.js'
+      extname: '.js'
     }))
     .pipe(gulp.dest(tmpPath));
 }
@@ -117,19 +77,11 @@ function createElementModule() {
 /**
  * Create the element file.
  */
-function createElement() {
+function createElementScript() {
   return gulp.src(`${srcPath}/element.js`)
     .pipe(modifyFile((content) => {
       // Parse the code.
-      let parsed = esprima.parseModule(content, {
-        raw: true,
-        tokens: true,
-        range: true,
-        comment: true
-      });
-
-      // Attached the comments to the parsed code.
-      parsed = escodegen.attachComments(parsed, parsed.comments, parsed.tokens);
+      let parsed = esprima.parseModule(content);
 
       // Get info about the code.
       let codeIndexesToRemove = [];
@@ -168,17 +120,7 @@ function createElement() {
       }
 
       // Generate the updated code.
-      content = escodegen.generate(parsed, {
-        format: {
-          indent: {
-            style: '  ',
-            base: 2,
-            adjustMultilineComment: true
-          },
-          quotes: 'single'
-        },
-        comment: true,
-      });
+      content = escodegen.generate(parsed);
 
       return `(() => {
   /**
@@ -187,7 +129,6 @@ function createElement() {
    * @namespace CatalystElements
    */
   window.CatalystElements = window.CatalystElements || {};
-
 ${content}
     // Make the class globally accessible under the \`CatalystElements\` object.
     window.CatalystElements.${className} = ${className};
@@ -195,7 +136,7 @@ ${content}
     }))
     .pipe(rename({
       basename: tagName,
-      extname: '.js'
+      extname: '.script.js'
     }))
     .pipe(gulp.dest(tmpPath));
 }
@@ -206,7 +147,7 @@ ${content}
  * @param {Boolean} forModule
  */
 function injectTemplate(forModule) {
-  return gulp.src(forModule ? `${tmpPath}/${tagName}.module.js` : `${tmpPath}/${tagName}.js`)
+  return gulp.src(forModule ? `${tmpPath}/${tagName}.js` : `${tmpPath}/${tagName}.script.js`)
     // Inject the template html.
     .pipe(inject(gulp.src(`${tmpPath}/template.html`), {
       starttag: '[[inject:template]]',
@@ -221,38 +162,7 @@ function injectTemplate(forModule) {
       removeTags: true,
       transform: transformGetFileContents
     }))
-    .pipe(gulp.dest(distPath));
-}
-
-// Workaround for: https://github.com/google/closure-compiler/issues/2182
-function adjustWebpackBuildForClosureCompiler() {
-  return modifyFile((content) => {
-    let parsed = esprima.parseModule(content, {}, (node) => {
-      if (Array.isArray(node.body)) {
-        let toInsert = {};
-        for (let i = 0; i < node.body.length; i++) {
-          if (node.body[i].type === 'ClassDeclaration') {
-            // Extends webpack module?
-            if (node.body[i].superClass !== null && node.body[i].superClass.type === 'MemberExpression' && node.body[i].superClass.object && node.body[i].superClass.object.name.startsWith('__WEBPACK_IMPORTED_MODULE_')) {
-              let workaroundVarName = `workaround_var${node.body[i].superClass.object.name}`;
-              toInsert[i] = esprima.parseScript(`let ${workaroundVarName} = ${node.body[i].superClass.object.name}[${node.body[i].superClass.property.raw}];`);
-
-              node.body[i].superClass = {
-                type: 'Identifier',
-                name: workaroundVarName
-              };
-            }
-          }
-        }
-        for (let i in toInsert) {
-          node.body.splice(i, 0, toInsert[i]);
-        }
-      }
-    });
-    content = escodegen.generate(parsed);
-
-    return content;
-  });
+    .pipe(gulp.dest(tmpPath));
 }
 
 // Lint JS
@@ -332,55 +242,53 @@ gulp.task('create-element:module', () => {
   return createElementModule();
 });
 
-gulp.task('create-element', () => {
-  return createElement();
+gulp.task('create-element:script', () => {
+  return createElementScript();
 });
 
 gulp.task('inject:template:module', () => {
   return injectTemplate(true);
 });
 
-gulp.task('inject:template', () => {
+gulp.task('inject:template:script', () => {
   return injectTemplate(false);
 });
 
-// Build the module version of the components.
-gulp.task('build-es6-module', gulp.series('create-element:module', gulp.parallel('html-min', 'sass-compile'), 'inject:template:module'));
-
-// Build the es6 version of the components.
-gulp.task('build-es6', gulp.series('create-element', gulp.parallel('html-min', 'sass-compile'), 'inject:template'));
-
-// Build the minified es6 version of the component.
-gulp.task('build-es6-min', () => {
-  return gulp.src(`${distPath}/${tagName}.js`)
-    .pipe(closureCompiler({
-      compilation_level: 'SIMPLE_OPTIMIZATIONS',
-      warning_level: 'QUIET',
-      language_in: 'ECMASCRIPT6_STRICT',
-      language_out: 'ECMASCRIPT6_STRICT',
-      output_wrapper: '(()=>{%output%})()',
-      js_output_file: `${tagName}.min.js`
-    }))
+// Build the es6 module version of the component.
+gulp.task('build-module', gulp.series('create-element:module', 'inject:template:module', () => {
+  return gulp.src(`${tmpPath}/${tagName}.js`)
     .pipe(gulp.dest(distPath));
-});
+}));
 
-// Build the minified es5 version of the component.
-gulp.task('build-es5-min', () => {
-  return gulp.src(`${distPath}/${tagName}.js`)
-    .pipe(closureCompiler({
-      compilation_level: 'SIMPLE_OPTIMIZATIONS',
-      warning_level: 'QUIET',
-      language_in: 'ECMASCRIPT6_STRICT',
-      language_out: 'ECMASCRIPT5_STRICT',
-      output_wrapper: '(function(){%output%}).call(this)',
-      js_output_file: `${tagName}.es5.min.js`
-    }))
+// Build the es5 script version of the component.
+gulp.task('build-script', gulp.series('create-element:script', 'inject:template:script', () => {
+  return gulp.src(`${tmpPath}/${tagName}.script.js`)
+    .pipe(webpackStream({
+      target: 'web',
+      mode: 'production',
+      output: {
+        chunkFilename: `${tagName}.[id].es5.min.js`,
+        filename: `${tagName}.es5.min.js`
+      },
+      plugins: [
+        new webpackClosureCompilerPlugin({
+          compiler: {
+            language_in: 'ECMASCRIPT6',
+            language_out: 'ECMASCRIPT5',
+            compilation_level: 'SIMPLE',
+            assume_function_wrapper: true,
+            output_wrapper: '(function(){%output%}).call(this)'
+          }
+        })
+      ]
+    }, webpack))
     .pipe(gulp.dest(distPath));
-});
+}));
+
 // Analyze the elements file.
 gulp.task('create-analysis', () => {
   return analyzer.analyze([`${distPath}/${tagName}.js`]).then((analysis) => {
-    let analysisFileContents = JSON.stringify(fixAnalysis(generateAnalysis(analysis, analyzer.urlResolver)));
+    let analysisFileContents = JSON.stringify(generateAnalysis(analysis, analyzer.urlResolver));
     return file(`${analysisFilename}.json`, analysisFileContents, { src: true })
       .pipe(gulp.dest('./'));
   });
@@ -405,17 +313,11 @@ gulp.task('docs-update-analysis', gulp.series(() => {
   return gulp.src(`${tmpPath}/analysis.json`, { base: './' })
     .pipe(modifyFile((content) => {
       let analysis = JSON.parse(content);
-      if (analysis.namespaces) {
-        for (let i = 0; i < analysis.namespaces.length; i++) {
-          if (analysis.namespaces[i].name === 'CatalystElements') {
-            if (analysis.namespaces[i].elements) {
-              for (let j = 0; j < analysis.namespaces[i].elements.length; j++) {
-                if (analysis.namespaces[i].elements[j].demos) {
-                  for (let k = 0; k < analysis.namespaces[i].elements[j].demos.length; k++) {
-                    analysis.namespaces[i].elements[j].demos[k].url = `scripts/${packageInfo.name}/${analysis.namespaces[i].elements[j].demos[k].url}`;
-                  }
-                }
-              }
+      if (analysis.elements) {
+        for (let i = 0; i < analysis.elements.length; i++) {
+          if (analysis.elements[i].demos) {
+            for (let j = 0; j < analysis.elements[i].demos.length; j++) {
+              analysis.elements[i].demos[j].url = `scripts/${packageInfo.name}/${analysis.elements[i].demos[j].url}`;
             }
           }
         }
@@ -460,20 +362,25 @@ gulp.task('docs-build-imports', gulp.series(() => {
     .pipe(named())
     .pipe(webpackStream({
       target: 'web',
+      mode: 'production',
       output: {
         chunkFilename: 'docs-imports.[id].js',
         filename: 'docs-imports.js'
-      }
+      },
+      plugins: [
+        new webpackClosureCompilerPlugin({
+          compiler: {
+            language_in: 'ECMASCRIPT6',
+            language_out: 'ECMASCRIPT5',
+            compilation_level: 'SIMPLE',
+            assume_function_wrapper: true,
+            output_wrapper: '(function(){%output%}).call(this)'
+          }
+        })
+      ]
     }, webpack))
     .pipe(foreach(function(stream, file) {
       return stream
-        .pipe(adjustWebpackBuildForClosureCompiler())
-        .pipe(closureCompiler({
-          compilation_level: 'SIMPLE_OPTIMIZATIONS',
-          warning_level: 'QUIET',
-          language_in: 'ECMASCRIPT6_STRICT',
-          language_out: 'ECMASCRIPT5_STRICT'
-        }))
         .pipe(modifyFile((content) => {
           return content.replace(/\\\\\$/g, '$');
         }))
@@ -526,20 +433,25 @@ gulp.task('docs-build-demo-imports', () => {
       return stream
         .pipe(webpackStream({
           target: 'web',
+          mode: 'production',
           output: {
             chunkFilename: 'import.[id].js',
             filename: 'import.js'
-          }
+          },
+          plugins: [
+            new webpackClosureCompilerPlugin({
+              compiler: {
+                language_in: 'ECMASCRIPT6',
+                language_out: 'ECMASCRIPT5',
+                compilation_level: 'SIMPLE',
+                assume_function_wrapper: true,
+                output_wrapper: '(function(){%output%}).call(this)'
+              }
+            })
+          ]
         }, webpack))
         .pipe(foreach(function(stream, file) {
           return stream
-            .pipe(adjustWebpackBuildForClosureCompiler())
-            .pipe(closureCompiler({
-              compilation_level: 'SIMPLE_OPTIMIZATIONS',
-              warning_level: 'QUIET',
-              language_in: 'ECMASCRIPT6_STRICT',
-              language_out: 'ECMASCRIPT5_STRICT'
-            }))
             .pipe(modifyFile((content) => {
               return content.replace(/\\\\\$/g, '$');
             }))
@@ -574,10 +486,10 @@ gulp.task('docs-generate', gulp.series(async () => {
   });
 }));
 
-// Build all the components' versions.
-gulp.task('build', gulp.series('clean-dist', gulp.parallel('build-es6-module', 'build-es6'), gulp.parallel('build-es6-min', 'build-es5-min')));
+// Build all the component's versions.
+gulp.task('build', gulp.series('clean-dist', gulp.parallel('html-min', 'sass-compile'), gulp.parallel('build-module', 'build-script'), 'clean-tmp'));
 
-// Build the docs for all the components' versions.
+// Build the docs.
 gulp.task('build-docs', gulp.series(
   'clean-docs',
   'docs-clone-dependencies',
@@ -589,8 +501,8 @@ gulp.task('build-docs', gulp.series(
   'docs-generate',
   'clean-tmp'));
 
-// Analyze all the components.
-gulp.task('analyze', gulp.series('build-es6', 'create-analysis', 'clean-tmp'));
+// Analyze the component.
+gulp.task('analyze', gulp.series('create-analysis', 'clean-tmp'));
 
 // Default task.
-gulp.task('default', gulp.series('build', 'clean-tmp'));
+gulp.task('default', gulp.series('build'));

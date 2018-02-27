@@ -3,11 +3,12 @@
   "entrypoint": "index.html",
   "fragments": [],
   "sources": [
-    "scripts/@catalyst-elements/**"
+    "scripts/@catalyst-elements/*/demo/**",
+    "scripts/@catalyst-elements/*/dist/**"
   ],
   "extraDependencies": [
-    "scripts/@webcomponents/webcomponentsjs/**/*",
-    "scripts/@webcomponents/shadycss/**/*",
+    "scripts/@webcomponents/webcomponentsjs/[!gulpfile]*.js",
+    "scripts/@webcomponents/shadycss/[!gulpfile]*.js",
     "analysis.json"
   ],
   "builds": [{
