@@ -20,15 +20,15 @@ import { CatalystToggleButton } from '../node_modules/@catalyst-elements/catalys
  *
  * Property | Description | Default Value
  * -------- |------------ | -------------
- * `--catalyst-toggle-switch-bar-color`       | The color of the bar. | `#ced4da`
- * `--catalyst-toggle-switch-knob-color`      | The color of the knob. | `#ffffff`
- * `--catalyst-toggle-switch-bar-width`       | The width of the bar. | `44px`
- * `--catalyst-toggle-switch-bar-height`      | The height of the bar. | `16px`
- * `--catalyst-toggle-switch-knob-size`       | The size of the knob (width and height). | `26px`
+ * `--catalyst-toggle-switch-bar-color`       | The color of the bar.                      | `#ced4da`
+ * `--catalyst-toggle-switch-knob-color`      | The color of the knob.                     | `#ffffff`
+ * `--catalyst-toggle-switch-bar-width`       | The width of the bar.                      | `44px`
+ * `--catalyst-toggle-switch-bar-height`      | The height of the bar.                     | `16px`
+ * `--catalyst-toggle-switch-knob-size`       | The size of the knob (width and height).   | `26px`
  * `--catalyst-toggle-switch-knob-offset`     | The offset applied to the knob's location. | `5px`
- * `--catalyst-toggle-switch-bar-border`      | The bar's border. | `none`
- * `--catalyst-toggle-switch-knob-border`     | The knob's border. | `none`
- * `--catalyst-toggle-switch-knob-box-shadow` | The box shadow applied to the knob. | _Too Long..._
+ * `--catalyst-toggle-switch-bar-border`      | The bar's border.                          | `none`
+ * `--catalyst-toggle-switch-knob-border`     | The knob's border.                         | `none`
+ * `--catalyst-toggle-switch-knob-box-shadow` | The box shadow applied to the knob.        | _Too Long..._
  *
  * @class
  * @extends HTMLElement
