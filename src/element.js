@@ -1,5 +1,5 @@
 // Import dependencies.
-import { CatalystToggleButton } from '../node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js';
+import CatalystToggleButton from '../node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js';
 
 /**
  * `<catalyst-toggle-switch>` is a toggle switch web component.
@@ -160,4 +160,5 @@ if (!CatalystToggleSwitch._isRegistered) {
 }
 
 // Export the element.
+export default CatalystToggleSwitch;
 export { CatalystToggleSwitch };

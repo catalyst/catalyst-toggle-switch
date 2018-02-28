@@ -98,6 +98,7 @@ function createElementScript() {
             }
             break;
 
+          case 'ExportDefaultDeclaration':
           case 'ExportNamedDeclaration':
             codeIndexesToRemove.push(i);
             break;
