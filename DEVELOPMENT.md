@@ -36,8 +36,6 @@ Please note that as this is an unbuild version of the docs, not all browser will
 The build process will create the following versions of the component in the distribution folder (`./dist`):
 
 * an es6 module version
-* an es6 script version
-* an es6 minified script version
 * an es5 minified script version
 
 [Gulp](https://gulpjs.com) is used to run the build process.
@@ -84,6 +82,8 @@ Then visit http://127.0.0.1:8081/docs/
 ## Testing
 
 Testing is done using the [web-component-tester](https://github.com/Polymer/web-component-tester).
+
+Note: Test are run against the built version of the element. Make sure you build the element before testing or else your changes won't be present. See [Building](#building).
 
 ### Running Tests On The Command Line
 
