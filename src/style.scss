@@ -121,6 +121,7 @@ $shadow-dark:
     transform: translateX($bar-width + 2 * $knob-offset - $knob-size);
     transform: translateX(calc(var(--catalyst-toggle-switch-bar-width, #{$bar-width}) + 2 * var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) - var(--catalyst-toggle-switch-knob-size, #{$knob-size}) + var(--catalyst-toggle-switch-bar-border-left-wdith, 0px)));
   }
+
   .negitive-knob-offset {
     #knob {
       transform: translateX(calc(var(--catalyst-toggle-switch-bar-width, #{$bar-width}) + 2 * var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) - var(--catalyst-toggle-switch-knob-size, #{$knob-size}) + var(--catalyst-toggle-switch-bar-border-left-wdith, 0px) - (var(--catalyst-toggle-switch-bar-height, #{$bar-height}) - var(--catalyst-toggle-switch-knob-size, #{$knob-size})) / 2 + 1px));
