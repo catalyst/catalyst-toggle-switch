@@ -10,11 +10,10 @@ module.exports = {
       'browserOptions': {
         'chrome': [
           'headless',
-          'disable-gpu',
-          'no-sandbox'
+          'disable-gpu'
         ],
         'firefox': [
-          '--headless'
+          '-headless'
         ]
       }
     }
