@@ -301,6 +301,7 @@ gulp.task('docs-clone-dependencies', gulp.series(() => {
 }, () => {
   return gulp.src([
     'index.html',
+    'docs-imports-importer.js',
     'docs-imports.js',
     'analysis.json',
     'docs-build-config.json'
@@ -359,14 +360,14 @@ gulp.task('docs-build-imports', gulp.series(() => {
     }))
     .pipe(gulp.dest('./'));
 }, () => {
-  return gulp.src(`${tmpPath}/docs-imports.js`, { base: tmpPath })
+  return gulp.src(`${tmpPath}/docs-imports-importer.js`, { base: tmpPath })
     .pipe(named())
     .pipe(webpackStream({
       target: 'web',
       mode: 'production',
       output: {
         chunkFilename: 'docs-imports.[id].js',
-        filename: 'docs-imports.js'
+        filename: 'docs-imports-importer.js'
       },
       plugins: [
         new webpackClosureCompilerPlugin({
@@ -428,7 +429,7 @@ gulp.task('docs-build-demos', gulp.series(() => {
 
 // Build the imports for each demo.
 gulp.task('docs-build-demo-imports', () => {
-  return gulp.src(`${tmpPath}/scripts/@catalyst-elements/*/demo/import.js`)
+  return gulp.src(`${tmpPath}/scripts/@catalyst-elements/*/demo/imports-importer.js`)
     .pipe(foreach(function(stream, file) {
       let output = path.dirname(file.path);
       return stream
@@ -436,8 +437,8 @@ gulp.task('docs-build-demo-imports', () => {
           target: 'web',
           mode: 'production',
           output: {
-            chunkFilename: 'import.[id].js',
-            filename: 'import.js'
+            chunkFilename: 'imports.[id].js',
+            filename: 'imports-importer.js'
           },
           plugins: [
             new webpackClosureCompilerPlugin({
@@ -468,7 +469,7 @@ gulp.task('docs-build-demo-imports', () => {
 gulp.task('docs-generate', gulp.series(async () => {
   let buildConfig = require(`${tmpPath}/docs-build-config.json`);
 
-  let builtFiles = await globby(['docs-imports.js', 'docs-imports.*.js'], { cwd: tmpPath });
+  let builtFiles = await globby(['docs-imports-importer.js', 'docs-imports.*.js'], { cwd: tmpPath });
 
   for (let i = 0; i < builtFiles.length; i++) {
     buildConfig.extraDependencies.push(builtFiles[i]);
