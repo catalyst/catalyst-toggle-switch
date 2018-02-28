@@ -51,15 +51,6 @@ class CatalystToggleSwitch extends CatalystToggleButton {
   }
 
   /**
-   * Return's true if this element has been registered, otherwise false.
-   *
-   * @returns {boolean}
-   */
-  static get _isRegistered() {
-    return window.customElements !== undefined && window.customElements.get(CatalystToggleSwitch.is) !== undefined;
-  }
-
-  /**
    * Get the default template used by this element.
    *
    * @returns {HTMLTemplateElement}
@@ -75,26 +66,6 @@ class CatalystToggleSwitch extends CatalystToggleButton {
     }
 
     return template;
-  }
-
-  /**
-   * Register this class as an element.
-   */
-  static _register() {
-    const doRegister = () => {
-      window.customElements.define(CatalystToggleSwitch.is, CatalystToggleSwitch);
-    };
-
-    // If not using web component polyfills or if polyfills are ready, register the element.
-    if (window.WebComponents === undefined || window.WebComponents.ready) {
-      doRegister();
-    }
-    // Otherwise wait until the polyfills are ready, then register the element.
-    else {
-      window.addEventListener('WebComponentsReady', () => {
-        doRegister();
-      });
-    }
   }
 
   /**
@@ -154,10 +125,17 @@ class CatalystToggleSwitch extends CatalystToggleButton {
   }
 }
 
-// Register the element if it is not already registered.
-if (!CatalystToggleSwitch._isRegistered) {
-  CatalystToggleSwitch._register();
-}
+// Make sure the polyfills are ready (if they are being used).
+new Promise((resolve) => {
+  if (window.WebComponents === undefined || window.WebComponents.ready) {
+    resolve();
+  } else {
+    window.addEventListener('WebComponentsReady', () => resolve());
+  }
+}).then(() => {
+  // Register the element.
+  window.customElements.define(CatalystToggleSwitch.is, CatalystToggleSwitch);
+});
 
 // Export the element.
 export default CatalystToggleSwitch;
