@@ -71,9 +71,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@catalyst-elements/catalyst-toggle-button@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-button/-/catalyst-toggle-button-0.6.0.tgz#db35a607e46fb43dcb1d204d958b1965570ee584"
+"@catalyst-elements/catalyst-toggle-button@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-button/-/catalyst-toggle-button-0.6.1.tgz#14a27599ed65bcaa7566d74e916eaaaa637624f2"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -587,11 +587,11 @@
   dependencies:
     "@types/node" "*"
 
-"@webcomponents/shadycss@^1.0.0", "@webcomponents/shadycss@^1.1.0":
+"@webcomponents/shadycss@^1.0.0", "@webcomponents/shadycss@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@webcomponents/shadycss/-/shadycss-1.1.1.tgz#abc821961c99a2b1c5e0f225cd01b139899ebc4c"
 
-"@webcomponents/webcomponentsjs@^1.0.0", "@webcomponents/webcomponentsjs@^1.0.20", "@webcomponents/webcomponentsjs@^1.0.7":
+"@webcomponents/webcomponentsjs@^1.0.0", "@webcomponents/webcomponentsjs@^1.0.7", "@webcomponents/webcomponentsjs@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.1.0.tgz#1392799c266fca142622a720176f688beb74d181"
 
@@ -3221,6 +3221,10 @@ eslint-plugin-mocha@^4.11.0:
   dependencies:
     ramda "^0.24.1"
 
+eslint-plugin-promise@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.6.0.tgz#54b7658c8f454813dc2a870aff8152ec4969ba75"
+
 eslint-scope@^3.7.1, eslint-scope@~3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
@@ -3270,7 +3274,7 @@ eslint@^2.7.0:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
-eslint@^4.0.0, eslint@^4.15.0:
+eslint@^4.0.0, eslint@^4.18.1:
   version "4.18.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.18.1.tgz#b9138440cb1e98b2f44a0d578c6ecf8eae6150b0"
   dependencies:
