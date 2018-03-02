@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:promise/recommended"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "plugins": [
+    "promise"
+  ],
+  "globals": {
+    "Promise": false
+  },
+  "rules": {
+    "quotes":  ["error", "single", {
+      "avoidEscape": true
+    }]
+  }
+}
