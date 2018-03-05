@@ -9,13 +9,13 @@
 [![Polymer 2 not supported](https://img.shields.io/badge/Polymer_2-not_supported-red.svg?style=flat-square)]()
 [![Polymer 3 support pending](https://img.shields.io/badge/Polymer_3-support_pending-yellow.svg?style=flat-square)]()
 
-[Live Demo ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-switch/demos/basic)
+[Live Demo ↗](https://catalyst.github.io/CatalystElementsBundle/#/elements/catalyst-toggle-switch/demos/basic)
 |
-[API documentation ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-switch)
+[API documentation ↗](https://catalyst.github.io/CatalystElementsBundle/#/elements/catalyst-toggle-switch)
 
 `<catalyst-toggle-switch>` is a web component toggle switch, part of the `Catalyst Elements Collection`. It is essentially a checkbox.
 
-It extends [`<catalyst-toggle-button>`](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button)
+It extends [`<catalyst-toggle-button>`](https://github.com/catalyst/catalyst-toggle-button)
 
 ## Example Usage
 
