@@ -1,22 +1,16 @@
 // Load config.
 const config = require('./config.js');
 
-// Load util.
-const util = require('./util.js');
-
 // Libraries.
 const gulp = require('gulp');
 const Builder = require('polymer-build').PolymerProject;
-const del = require('del');
 const foreach = require('gulp-foreach');
-const fs = require('graceful-fs');
 const inject = require('gulp-inject');
 const mergeStream = require('merge-stream');
 const modifyFile = require('gulp-modify-file');
 const named = require('vinyl-named');
 const path = require('path');
 const rename = require('gulp-rename');
-const through = require('through2');
 const webpack = require('webpack');
 const webpackClosureCompilerPlugin = require('webpack-closure-compiler');
 const webpackStream = require('webpack-stream');
@@ -64,17 +58,14 @@ gulp.task('docs-update-analysis', gulp.series(() => {
 }));
 
 // Build the docs index.
-gulp.task('docs-build-index', gulp.series((done) => {
-  let content = '<script src="../../@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>';
-  fs.writeFileSync(`./${config.temp.path}/custom-elements-es5-adapter-import.html`, content);
-  done();
-}, () => {
+gulp.task('docs-build-index', gulp.series(() => {
   return gulp.src(`./${config.temp.path}/index.html`, { base: './' })
-    .pipe(inject(gulp.src(`./${config.temp.path}/custom-elements-es5-adapter-import.html`), {
+    // The file specified here don't matter but exactly one is needed.
+    .pipe(inject(gulp.src('./gulpfile.js', { base: './', read: false }), {
       starttag: '<!-- [[inject:custom-elements-es5-adapter]] -->',
       endtag: '<!-- [[endinject]] -->',
       removeTags: true,
-      transform: util.transforms.getFileContents
+      transform: () => '<script src="../../@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>'
     }))
     .pipe(gulp.dest('./'));
 }, () => {
@@ -135,23 +126,15 @@ gulp.task('docs-build-demos', gulp.series(() => {
     .pipe(foreach((stream, file) => {
       let relPath = path.relative(path.join(file.cwd, file.base), file.path);
       let dir = path.dirname(relPath);
-      let es5AdapterFile = `${dir}/custom-elements-es5-adapter-import.html`;
+
       let es5AdapterSrc = path.relative(dir, `./${config.temp.path}/${config.docs.nodeModulesPath}/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js`);
-
-      let content = `<script src="${es5AdapterSrc}"></script>`;
-      fs.writeFileSync(es5AdapterFile, content);
-
       return stream
-        .pipe(inject(gulp.src(es5AdapterFile, { base: './' }), {
+        // The file specified here don't matter but exactly one is needed.
+        .pipe(inject(gulp.src('./gulpfile.js', { base: './', read: false }), {
           starttag: '<!-- [[inject:custom-elements-es5-adapter]] -->',
           endtag: '<!-- [[endinject]] -->',
           removeTags: true,
-          transform: util.transforms.getFileContents
-        }))
-        .pipe(through.obj(function(file, enc, cb) {
-          del(es5AdapterFile);
-          this.push(file);
-          cb();
+          transform: () => `<script src="${es5AdapterSrc}"></script>`
         }))
         .pipe(gulp.dest('./'));
     }));
