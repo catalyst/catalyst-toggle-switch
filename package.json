@@ -36,7 +36,7 @@
     "postinstall": "scripts/fix-dependencies.sh"
   },
   "dependencies": {
-    "@catalyst-elements/catalyst-toggle-button": "^0.6.2"
+    "@catalyst-elements/catalyst-toggle-mixin": "^0.1.1"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^3.0.0-pre.1",

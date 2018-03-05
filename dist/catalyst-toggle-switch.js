@@ -1,5 +1,7 @@
 // Import dependencies.
-import CatalystToggleButton from '../../catalyst-toggle-button/dist/catalyst-toggle-button.js';
+import CatalystToggleMixin from '../../catalyst-toggle-mixin/catalyst-toggle-mixin.js';
+
+const SuperClass = CatalystToggleMixin(HTMLElement);
 
 /**
  * `<catalyst-toggle-switch>` is a toggle switch web component.
@@ -32,6 +34,7 @@ import CatalystToggleButton from '../../catalyst-toggle-button/dist/catalyst-tog
  *
  * @class
  * @extends HTMLElement
+ * @mixes CatalystToggleMixin
  *
  * @customElement
  * @group Catalyst Elements
@@ -39,7 +42,7 @@ import CatalystToggleButton from '../../catalyst-toggle-button/dist/catalyst-tog
  * @demo demo/basic.html Basic
  * @demo demo/styled.html Styled
  */
-class CatalystToggleSwitch extends CatalystToggleButton {
+class CatalystToggleSwitch extends SuperClass {
 
   /**
    * The element's tag name.

@@ -15,8 +15,6 @@
 
 `<catalyst-toggle-switch>` is a web component toggle switch, part of the `Catalyst Elements Collection`. It is essentially a checkbox.
 
-It extends [`<catalyst-toggle-button>`](https://github.com/catalyst/catalyst-toggle-button)
-
 ## Example Usage
 
 <!---
