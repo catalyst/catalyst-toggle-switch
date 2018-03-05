@@ -71,9 +71,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@catalyst-elements/catalyst-toggle-button@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-button/-/catalyst-toggle-button-0.6.1.tgz#14a27599ed65bcaa7566d74e916eaaaa637624f2"
+"@catalyst-elements/catalyst-toggle-button@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-button/-/catalyst-toggle-button-0.6.2.tgz#0fd7138426d216712c22d7cc363d89cf416dfceb"
 
 "@polymer/app-layout@^3.0.0-pre.10":
   version "3.0.0-pre.10"
