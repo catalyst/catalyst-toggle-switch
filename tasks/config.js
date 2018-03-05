@@ -27,6 +27,8 @@ module.exports = {
 
   demos: {
     path: 'demo',
+    importsFilename: 'imports.js',
+    importsImporterFilename: 'imports-importer.js',
   },
 
   docs: {

@@ -165,7 +165,9 @@ gulp.task('docs-build-demos', gulp.series(() => {
 
 // Build the imports for each demo.
 gulp.task('docs-build-demo-imports', () => {
-  return gulp.src(`./${config.temp.path}/${config.docs.nodeModulesPath}/${config.package.name}/${config.demos.path}/imports-importer.js`)
+  const demoImportsBaseName = path.basename(config.demos.importsFilename, '.js');
+
+  return gulp.src(`${config.temp.path}/${config.docs.nodeModulesPath}/${config.element.scope}/*/${config.demos.path}/${config.demos.importsImporterFilename}`)
     .pipe(foreach(function(stream, file) {
       let output = path.dirname(file.path);
       return stream
@@ -173,8 +175,8 @@ gulp.task('docs-build-demo-imports', () => {
           target: 'web',
           mode: 'production',
           output: {
-            chunkFilename: 'imports.[id].js',
-            filename: 'imports-importer.js'
+            chunkFilename: `${demoImportsBaseName}.[id].js`,
+            filename: `${config.demos.importsImporterFilename}`
           },
           plugins: [
             new webpackClosureCompilerPlugin({
