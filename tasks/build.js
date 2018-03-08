@@ -46,6 +46,7 @@ function createElementScript() {
       // Get info about the code.
       let codeIndexesToRemove = [];
       let catalystImports = {};
+      let catalystExports = {};
       for (let i = 0; i < parsed.body.length; i++) {
         switch (parsed.body[i].type) {
           case 'ImportDeclaration':
@@ -60,6 +61,7 @@ function createElementScript() {
 
           case 'ExportDefaultDeclaration':
           case 'ExportNamedDeclaration':
+            catalystExports[i] = parsed.body[i];
             codeIndexesToRemove.push(i);
             break;
         }
@@ -80,14 +82,26 @@ function createElementScript() {
         }
       }
 
+      // Replace exports with globally accessible object exports.
+      for (let i in catalystExports) {
+        if (catalystExports[i].declaration === null) {
+          for (let j = catalystExports[i].specifiers.length - 1; j >=0 ; j--) {
+            let localName = catalystExports[i].specifiers[j].local.name;
+            let exportedName = catalystExports[i].specifiers[j].imported ? catalystExports[i].specifiers[j].imported.name : localName;
+
+            parsed.body.splice(i, 0, esprima.parseScript(`window.CatalystElements.${exportedName} = ${localName};`));
+          }
+        } else if (catalystExports[i].declaration.type === 'Identifier') {
+          parsed.body.splice(i, 0, esprima.parseScript(`window.CatalystElements.${catalystExports[i].declaration.type.name} = ${catalystExports[i].declaration.type.name};`));
+        } else {
+          console.error(`Cannot automatically process declaration in ${catalystExports[i].type}.`); // eslint-disable-line no-console
+        }
+      }
+
       // Generate the updated code.
       content = escodegen.generate(parsed);
 
-      return `(() => {
-window.CatalystElements = window.CatalystElements || {};
-${content}
-window.CatalystElements.${config.element.class} = ${config.element.class};
-})();`;
+      return `window.CatalystElements = window.CatalystElements || {};${content}`;
     }))
     .pipe(rename({
       basename: config.element.tag,
