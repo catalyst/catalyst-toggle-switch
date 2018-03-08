@@ -1,5 +1,5 @@
 // Import dependencies.
-import CatalystToggleMixin from '../../catalyst-toggle-mixin/catalyst-toggle-mixin.js';
+import CatalystToggleMixin from '../../catalyst-toggle-mixin/dist/catalyst-toggle-mixin.js';
 
 const SuperClass = CatalystToggleMixin(HTMLElement);
 
@@ -73,12 +73,13 @@ class CatalystToggleSwitch extends SuperClass {
 
   /**
    * Construct the element.
-   *
-   * @param {HTMLTemplate} [template]
-   *   The template to use.
    */
-  constructor(template = CatalystToggleSwitch.template) {
-    super(template);
+  constructor() {
+    super();
+
+    // Create a shadow root and stamp out the template's content inside.
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.appendChild(CatalystToggleSwitch.template.content.cloneNode(true));
 
     /**
      * The bar.
@@ -103,12 +104,6 @@ class CatalystToggleSwitch extends SuperClass {
   connectedCallback() {
     // Update the element's style.
     this.styleUpdated();
-
-    // Set this element's role if it's not already set.
-    if (!this.hasAttribute('role')) {
-      this.setAttribute('role', 'checkbox');
-    }
-
     super.connectedCallback();
   }
 

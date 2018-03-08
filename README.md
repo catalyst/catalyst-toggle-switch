@@ -64,11 +64,11 @@ Then simply use it like any other tag.
 
 Import the script for the component on each page that it is uses on.
 
-Note: you will also have to import the dependancies the component uses first.
+Note: you will also have to import the dependencies the component uses first.
 
 ```html
 <!-- Import dependencies -->
-<script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.es5.min.js"></script>
+<script src="node_modules/@catalyst-elements/catalyst-toggle-mixin/dist/catalyst-toggle-mixin.es5.min.js"></script>
 
 <!-- Import the element -->
 <script src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.es5.min.js"></script>
