@@ -5,7 +5,7 @@
  * @param {File} file
  */
 function transformGetFileContents(filePath, file) {
-  return file.contents.toString('utf8')
+  return file.contents.toString('utf8');
 }
 
 module.exports = {

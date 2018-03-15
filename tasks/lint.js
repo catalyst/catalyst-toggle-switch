@@ -9,7 +9,8 @@ const sassLint = require('gulp-sass-lint');
 
 // Lint JS
 gulp.task('lint:js', () => {
-  return gulp.src([
+  return gulp
+    .src([
       './*.js',
       `./${config.src.path}/**/*.js`,
       `./${config.test.path}/**/*.js`,
@@ -23,17 +24,20 @@ gulp.task('lint:js', () => {
 
 // Lint JS in HTML
 gulp.task('lint:js-in-html', () => {
-  return gulp.src([
+  return gulp
+    .src([
       './*.html',
       `./${config.src.path}/**/*.html`,
       `./${config.test.path}/**/*.html`,
       `./${config.demos.path}/**/*.html`,
       `./${config.tasks.path}/**/*.html`
     ])
-    .pipe(htmlExtract({
-      sel: 'script',
-      strip: true
-    }))
+    .pipe(
+      htmlExtract({
+        sel: 'script',
+        strip: true
+      })
+    )
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
@@ -41,10 +45,11 @@ gulp.task('lint:js-in-html', () => {
 
 // Lint SASS
 gulp.task('lint:sass', () => {
-  return gulp.src(`./${config.src.path}/**/*.scss`)
+  return gulp
+    .src(`./${config.src.path}/**/*.scss`)
     .pipe(sassLint())
     .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
+    .pipe(sassLint.failOnError());
 });
 
 // Lint the project

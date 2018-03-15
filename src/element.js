@@ -43,7 +43,6 @@ const SuperClass = CatalystToggleMixin(HTMLElement);
  * @demo demo/styled.html Styled
  */
 class CatalystToggleSwitch extends SuperClass {
-
   /**
    * The element's tag name.
    *
@@ -60,7 +59,7 @@ class CatalystToggleSwitch extends SuperClass {
    */
   static get template() {
     let template = document.createElement('template');
-    template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
+    template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`; // eslint-disable-line quotes
 
     // If using ShadyCSS.
     if (window.ShadyCSS !== undefined) {
@@ -78,8 +77,10 @@ class CatalystToggleSwitch extends SuperClass {
     super();
 
     // Create a shadow root and stamp out the template's content inside.
-    this.attachShadow({mode: 'open'});
-    this.shadowRoot.appendChild(CatalystToggleSwitch.template.content.cloneNode(true));
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(
+      CatalystToggleSwitch.template.content.cloneNode(true)
+    );
 
     /**
      * The bar.
@@ -113,18 +114,30 @@ class CatalystToggleSwitch extends SuperClass {
   styleUpdated() {
     // Adjust the knob slide distance based on the width of the x borders.
     let barStyle = getComputedStyle(this._bar);
-    this.style.setProperty('--catalyst-toggle-switch-bar-border-top-wdith', barStyle.borderTopWidth);
-    this.style.setProperty('--catalyst-toggle-switch-bar-border-left-wdith', barStyle.borderLeftWidth);
+    this.style.setProperty(
+      '--catalyst-toggle-switch-bar-border-top-wdith',
+      barStyle.borderTopWidth
+    );
+    this.style.setProperty(
+      '--catalyst-toggle-switch-bar-border-left-wdith',
+      barStyle.borderLeftWidth
+    );
 
     // Figure out if the knob-offset is negitive.
-    if (Number.parseFloat(getComputedStyle(this).getPropertyValue('--catalyst-toggle-switch-knob-offset')) < 0) {
+    if (
+      Number.parseFloat(
+        getComputedStyle(this).getPropertyValue(
+          '--catalyst-toggle-switch-knob-offset'
+        )
+      ) < 0
+    ) {
       this._bar.classList.add('negitive-knob-offset');
     }
   }
 }
 
 // Make sure the polyfills are ready (if they are being used).
-new Promise((resolve) => {
+new Promise(resolve => {
   if (window.WebComponents === undefined || window.WebComponents.ready) {
     resolve();
   } else {

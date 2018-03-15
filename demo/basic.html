@@ -36,7 +36,7 @@
         <script>
           let toggleSwitch = document.querySelector('#toggle-switch');
           let toggleSwitchLabel = document.querySelector('#toggle-switch-label');
-          toggleSwitch.addEventListener('change', (event) => {
+          toggleSwitch.addEventListener('change', event => {
             toggleSwitchLabel.textContent = event.detail.checked ? 'On' : 'Off';
           });
         </script>

@@ -44,12 +44,10 @@
        * Test the initial state of the element.
        */
       suite('Initial State', () => {
-
         /**
          * Test the attributes and properties of the element in it's initial state.
          */
         suite('Attributes & Properties', () => {
-
           /**
            * Test checked.
            */
@@ -63,29 +61,36 @@
          * Test the accessibility of the element in it's initial state.
          */
         suite('Accessibility', () => {
-
           /**
            * Test role.
            */
           test('role', () => {
             // role
             expect(element.hasAttribute('role'), '"role" missing').to.be.true;
-            expect(element.getAttribute('role')).to.equal('checkbox', '"role" should be set to "checkbox"');
+            expect(element.getAttribute('role')).to.equal(
+              'checkbox',
+              '"role" should be set to "checkbox"'
+            );
           });
 
           /**
            * Test tabindex.
            */
           test('tabindex', () => {
-            expect(element.hasAttribute('tabindex'), '"tabindex" missing').to.be.true;
-            expect(Number.parseInt(element.getAttribute('tabindex'))).to.equal(0, '"tabindex" should be 0');
+            expect(element.hasAttribute('tabindex'), '"tabindex" missing').to.be
+              .true;
+            expect(Number.parseInt(element.getAttribute('tabindex'))).to.equal(
+              0,
+              '"tabindex" should be 0'
+            );
           });
 
           /**
            * Test aria-checked.
            */
           test('aria-checked', () => {
-            expect(element.hasAttribute('aria-checked'), '"aria-checked" missing').to.be.true;
+            expect(element.hasAttribute('aria-checked'), '"aria-checked" missing')
+              .to.be.true;
             expect(element.getAttribute('aria-checked')).to.equal('false');
           });
 
@@ -93,7 +98,8 @@
            * Test aria-disabled.
            */
           test('aria-disabled', () => {
-            expect(element.hasAttribute('aria-disabled'), '"aria-disabled" missing').to.be.true;
+            expect(element.hasAttribute('aria-disabled'), '"aria-disabled" missing')
+              .to.be.true;
             expect(element.getAttribute('aria-disabled')).to.equal('false');
           });
         });
@@ -103,16 +109,14 @@
        * Test the attributes and properties of the element in it's initial state.
        */
       suite('Changing State', () => {
-
         /**
          * Mouse Interaction.
          */
         suite('Mouse Interaction', () => {
-
           /**
            * Test clicking the element.
            */
-          test('Click Once', (done) => {
+          test('Click Once', done => {
             let testRunning = true;
 
             // Change event needs to be fired.
@@ -130,7 +134,7 @@
             expect(element).to.have.property('checked', true);
             expect(element.getAttribute('aria-checked')).to.equal('true');
 
-            setTimeout(function () {
+            setTimeout(function() {
               if (testRunning) {
                 testRunning = false;
                 assert(false, 'Change event was not fired within 10 ms.');
@@ -154,7 +158,7 @@
           /**
            * Test clicking the element when disabled.
            */
-           test('Click When Disabled', (done) => {
+          test('Click When Disabled', done => {
             let testRunning = true;
             element.disabled = true;
 
@@ -173,7 +177,7 @@
             expect(element).to.have.property('checked', false);
             expect(element.getAttribute('aria-checked')).to.equal('false');
 
-            setTimeout(function () {
+            setTimeout(function() {
               if (testRunning) {
                 testRunning = false;
                 done();
@@ -186,9 +190,7 @@
          * KeyBoard Interaction.
          * TODO: write tests.
          */
-        suite('KeyBoard Interaction', () => {
-
-        });
+        suite('KeyBoard Interaction', () => {});
       });
     });
   </script>

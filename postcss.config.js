@@ -8,9 +8,9 @@ module.exports = {
         customProperties: false
       }
     },
-    'cssnano': {
+    cssnano: {
       autoprefixer: false
     },
     'postcss-reporter': {}
   }
-}
+};

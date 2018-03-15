@@ -1,18 +1,12 @@
 {
   "name": "@catalyst-elements/catalyst-toggle-switch",
   "description": "A switch that toggles between two states; on and off.",
-  "authors": [
-    "Rebecca Stevens <rebeccastevens@catalyst.net.nz>"
-  ],
+  "authors": ["Rebecca Stevens <rebeccastevens@catalyst.net.nz>"],
   "license": "BSD-3-Clause",
-  "keywords": [
-    "web-components",
-    "toggle",
-    "switch",
-    "checkbox"
-  ],
+  "keywords": ["web-components", "toggle", "switch", "checkbox"],
   "homepage": "https://github.com/catalyst/catalyst-toggle-switch",
   "dependencies": {
-    "@catalyst-elements/catalyst-toggle-button": "catalyst/catalyst-toggle-button#^0.5.3"
+    "@catalyst-elements/catalyst-toggle-button":
+      "catalyst/catalyst-toggle-button#^0.5.3"
   }
 }

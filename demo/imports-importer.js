@@ -1,5 +1,5 @@
 // Make sure the polyfills are ready (if they are being used).
-new Promise((resolve) => {
+new Promise(resolve => {
   if (window.WebComponents === undefined || window.WebComponents.ready) {
     resolve();
   } else {

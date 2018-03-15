@@ -10,7 +10,6 @@ if (scope === '') {
 }
 
 module.exports = {
-
   element: {
     tag: 'catalyst-toggle-switch',
     scope: scope,
@@ -33,7 +32,7 @@ module.exports = {
   demos: {
     path: 'demo',
     importsFilename: 'imports.js',
-    importsImporterFilename: 'imports-importer.js',
+    importsImporterFilename: 'imports-importer.js'
   },
 
   docs: {
@@ -46,7 +45,7 @@ module.exports = {
   },
 
   tasks: {
-    path: 'tasks',
+    path: 'tasks'
   },
 
   test: {

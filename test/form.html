@@ -49,12 +49,10 @@
        * Test the initial state of the element.
        */
       suite('Initial State', () => {
-
         /**
          * Test the attributes and properties of the element in it's initial state.
          */
         suite('Attributes & Properties', () => {
-
           /**
            * Test element has name.
            */
@@ -86,11 +84,10 @@
          * Test the form.
          */
         suite('Form', () => {
-
           /**
            * Test form has element.
            */
-           test('Element is part of the form', () => {
+          test('Element is part of the form', () => {
             expect(form.elements['foo']).to.exist;
           });
         });
