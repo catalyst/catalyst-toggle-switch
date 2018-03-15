@@ -321,6 +321,12 @@ gulp.task(
   )
 );
 
+gulp.task('build-symlinks', () => {
+  return gulp
+    .src(`./${config.dist.path}/${config.element.tag}**.js`)
+    .pipe(gulp.symlink('./'));
+});
+
 // Build all the component's versions.
 gulp.task(
   'build',
@@ -328,6 +334,7 @@ gulp.task(
     'clean-dist',
     gulp.parallel('html-min', 'sass-compile'),
     gulp.parallel('build-module', 'build-script'),
-    gulp.parallel('build-finalize', 'clean-tmp')
+    gulp.parallel('build-finalize', 'clean-tmp'),
+    'build-symlinks'
   )
 );

@@ -281,6 +281,29 @@ gulp.task(
           })
         )
         .pipe(gulp.dest('./'));
+    },
+    () => {
+      return gulp
+        .src(
+          `./${config.temp.path}/${config.docs.nodeModulesPath}/${
+            config.package.name
+          }/${config.demos.path}/*.js`,
+          { base: './' }
+        )
+        .pipe(
+          modifyFile(content => {
+            return content.replace(
+              new RegExp(
+                `${config.element.tag}/${config.dist.path}/${
+                  config.element.tag
+                }.js`,
+                'g'
+              ),
+              `${config.element.tag}/${config.element.tag}.js`
+            );
+          })
+        )
+        .pipe(gulp.dest('./'));
     }
   )
 );
