@@ -1,11 +1,10 @@
 /tmp/
+/dist/
 
 # Node
-# "yarn.lock" file is used instead of "package-lock.json"
-/node_modules/
-/npm-debug.log
-/yarn-error.log
-/package-lock.json
+node_modules/
+npm-debug.log
+yarn-error.log
 
 # Docs
 /docs/

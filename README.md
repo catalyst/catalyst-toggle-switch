@@ -21,7 +21,7 @@
 ```
 <custom-element-demo>
   <template>
-    <script type="module" src="dist/catalyst-toggle-switch.js"></script>
+    <script type="module" src="catalyst-toggle-switch.js"></script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
@@ -55,7 +55,7 @@ Please note that this package is not compatible with Bower.
 Import the module on each page that uses the component.
 
 ```html
-<script type="module" src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.js"></script>
+<script type="module" src="node_modules/@catalyst-elements/catalyst-toggle-switch/catalyst-toggle-switch.js"></script>
 ```
 
 Then simply use it like any other tag.
@@ -68,10 +68,10 @@ Note: you will also have to import the dependencies the component uses first.
 
 ```html
 <!-- Import dependencies -->
-<script src="node_modules/@catalyst-elements/catalyst-toggle-mixin/dist/catalyst-toggle-mixin.es5.min.js"></script>
+<script src="node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.es5.min.js"></script>
 
 <!-- Import the element -->
-<script src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.es5.min.js"></script>
+<script src="node_modules/@catalyst-elements/catalyst-toggle-switch/catalyst-toggle-switch.es5.min.js"></script>
 ```
 
 Please note that this script has been transpiled to es5 and thus use of `custom-elements-es5-adapter.js` or an equivalent library is required. See [es5 support](https://github.com/catalyst/CatalystElements/wiki/Browser-Compatibility#es5-support) on the Catalyst Elements wiki for details.

@@ -21,4 +21,3 @@ Please ensure that:
 * your pull request is associated with at least one issue.
 * all tests are passing.
 * your code is compliant with our code linters.
-* you have run `yarn run build`.

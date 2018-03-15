@@ -71,9 +71,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@catalyst-elements/catalyst-toggle-mixin@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-mixin/-/catalyst-toggle-mixin-0.4.2.tgz#8b284d4d71113a27dd70b95fb85691677ecbb59b"
+"@catalyst-elements/catalyst-toggle-mixin@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-mixin/-/catalyst-toggle-mixin-0.5.1.tgz#119f6ece66ad80d72c01c466ff83b30cccc37be5"
 
 "@polymer/app-layout@^3.0.0-pre.10":
   version "3.0.0-pre.10"

@@ -1,5 +1,5 @@
 // Import dependencies.
-import CatalystToggleMixin from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/dist/catalyst-toggle-mixin.js';
+import CatalystToggleMixin from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.js';
 
 const SuperClass = CatalystToggleMixin(HTMLElement);
 

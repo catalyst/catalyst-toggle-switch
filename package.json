@@ -3,7 +3,7 @@
   "license": "BSD-3-Clause",
   "version": "0.6.1",
   "description": "A switch that toggles between two states; on and off.",
-  "main": "dist/catalyst-toggle-switch.js",
+  "main": "src/element.js",
   "directories": {
     "doc": "docs",
     "test": "test"
@@ -35,10 +35,11 @@
     "test": "node node_modules/gulp/bin/gulp.js test",
     "lint": "node node_modules/gulp/bin/gulp.js lint",
     "serve": "node node_modules/polyserve/bin/polyserve --npm",
-    "postinstall": "node node_modules/gulp/bin/gulp.js fix-dependencies"
+    "postinstall": "node node_modules/gulp/bin/gulp.js fix-dependencies",
+    "prepublishOnly": "echo \"Error: must publish from dist/\" && exit 1"
   },
   "dependencies": {
-    "@catalyst-elements/catalyst-toggle-mixin": "^0.4.2"
+    "@catalyst-elements/catalyst-toggle-mixin": "^0.5.1"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^3.0.0-pre.1",
