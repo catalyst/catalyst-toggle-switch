@@ -29,13 +29,13 @@
   "scripts": {
     "format": "node node_modules/prettier-eslint-cli/dist/index.js --write \"{{src,test,demo,tasks}/**/*.{js,css,scss},./*.{js,json,md}}\"",
     "format:check": "node node_modules/prettier-eslint-cli/dist/index.js --list-different \"{{src,test,demo,tasks}/**/*.{js,css,scss},./*.{js,json,md}}\"",
-    "build": "scripts/build.sh",
-    "analyze": "scripts/analyze.sh",
-    "build-docs": "scripts/build-docs.sh",
-    "test": "scripts/test.sh",
-    "lint": "scripts/lint.sh",
-    "serve": "scripts/serve.sh",
-    "postinstall": "scripts/fix-dependencies.sh"
+    "build": "node node_modules/gulp/bin/gulp.js build",
+    "analyze": "node node_modules/gulp/bin/gulp.js analyze",
+    "build-docs": "node node_modules/gulp/bin/gulp.js build-docs",
+    "test": "node node_modules/gulp/bin/gulp.js test",
+    "lint": "node node_modules/gulp/bin/gulp.js lint",
+    "serve": "node node_modules/polyserve/bin/polyserve --npm",
+    "postinstall": "node node_modules/gulp/bin/gulp.js fix-dependencies"
   },
   "dependencies": {
     "@catalyst-elements/catalyst-toggle-mixin": "^0.4.2"
