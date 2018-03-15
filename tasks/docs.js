@@ -231,7 +231,7 @@ gulp.task('docs-generate', () => {
       if (filepath.dirname === config.temp.path) {
         filepath.dirname = './';
       } else {
-        let prefix = `${config.temp.path}/`;
+        let prefix = path.normalize(`${config.temp.path}/`);
         if (filepath.dirname.indexOf(prefix) === 0) {
           filepath.dirname = filepath.dirname.substring(prefix.length);
         }
