@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Test runner</title>
+
+  <!-- Polyfills -->
+  <script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../node_modules/@webcomponents/shadycss/scoping-shim.min.js"></script>
+
+  <!-- Web Tester -->
+  <script src="../node_modules/web-component-tester/browser.js"></script>
+  <script src="../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+
+  <!-- Dependencies -->
+  <script src="../node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.es5.min.js"></script>
+
+  <!-- Element -->
+  <script src="../dist/catalyst-toggle-switch.es5.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Fixtures -->
+  <test-fixture id="basic">
+    <template>
+      <catalyst-toggle-switch></catalyst-toggle-switch>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="form">
+    <template>
+      <form>
+        <catalyst-toggle-switch name="foo" value="bar"></catalyst-toggle-switch>
+        <input type="submit" name="submit-btn">
+      </form>
+    </template>
+  </test-fixture>
+
+  <!-- Test Scripts -->
+  <script src="basics.js"></script>
+  <script src="form.js"></script>
+</body>
+
+</html>
