@@ -1,46 +1,51 @@
 <!doctype html>
 <html>
-  <head>
-    <title>&lt;catalyst-toggle-switch&gt; Basic Demo</title>
 
-    <!-- Web Component Pollyfills -->
-    <!-- [[inject:custom-elements-es5-adapter]] --><script>console.info('custom-elements-es5-adapter is not in use.'); // eslint-disable-line no-console</script><!-- [[endinject]] -->
-    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../../@webcomponents/shadycss/scoping-shim.min.js"></script>
-    <script src="../../../@webcomponents/shadycss/apply-shim.min.js"></script>
+<head>
+  <title>&lt;catalyst-toggle-switch&gt; Basic Demo</title>
 
-    <!-- Import the things we need -->
-    <script src="../../../marked/marked.min.js"></script>
-    <script type="module" src="imports-importer.js"></script>
+  <!-- Web Component Pollyfills -->
+  <!-- [[inject:custom-elements-es5-adapter]] -->
+  <script>console.info('custom-elements-es5-adapter is not in use.'); // eslint-disable-line no-console</script>
+  <!-- [[endinject]] -->
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../../@webcomponents/shadycss/scoping-shim.min.js"></script>
+  <script src="../../../@webcomponents/shadycss/apply-shim.min.js"></script>
 
-    <style>
-      body {
-        font-family: Arial;
-      }
-    </style>
-  </head>
-  <body>
-    <h3>Basic:</h3>
-    <demo-snippet>
-      <template>
-        <catalyst-toggle-switch></catalyst-toggle-switch>
-      </template>
-    </demo-snippet>
+  <!-- Import the things we need -->
+  <script src="../../../marked/marked.min.js"></script>
+  <script type="module" src="imports-importer.js"></script>
 
-    <h3>With Label:</h3>
-    <demo-snippet>
-      <template>
-        <label for="toggle-switch" id="toggle-switch-label" style="display:inline-block;width:30px;">Off</label>
-        <catalyst-toggle-switch id="toggle-switch"></catalyst-toggle-switch>
+  <style>
+    body {
+      font-family: Arial;
+    }
+  </style>
+</head>
 
-        <script>
-          let toggleSwitch = document.querySelector('#toggle-switch');
-          let toggleSwitchLabel = document.querySelector('#toggle-switch-label');
-          toggleSwitch.addEventListener('change', event => {
-            toggleSwitchLabel.textContent = event.detail.checked ? 'On' : 'Off';
-          });
-        </script>
-      </template>
-    </demo-snippet>
-  </body>
+<body>
+  <h3>Basic:</h3>
+  <demo-snippet>
+    <template>
+      <catalyst-toggle-switch></catalyst-toggle-switch>
+    </template>
+  </demo-snippet>
+
+  <h3>With Label:</h3>
+  <demo-snippet>
+    <template>
+      <label for="toggle-switch" id="toggle-switch-label" style="display:inline-block;width:30px;">Off</label>
+      <catalyst-toggle-switch id="toggle-switch"></catalyst-toggle-switch>
+
+      <script>
+        let toggleSwitch = document.querySelector('#toggle-switch');
+        let toggleSwitchLabel = document.querySelector('#toggle-switch-label');
+        toggleSwitch.addEventListener('change', event => {
+          toggleSwitchLabel.textContent = event.detail.checked ? 'On' : 'Off';
+        });
+      </script>
+    </template>
+  </demo-snippet>
+</body>
+
 </html>

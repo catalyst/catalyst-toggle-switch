@@ -1,108 +1,113 @@
 <!doctype html>
 <html>
-  <head>
-    <title>&lt;catalyst-toggle-switch&gt; Styled Demo</title>
 
-    <!-- Web Component Pollyfills -->
-    <!-- [[inject:custom-elements-es5-adapter]] --><script>console.info('custom-elements-es5-adapter is not in use.'); // eslint-disable-line no-console</script><!-- [[endinject]] -->
-    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../../@webcomponents/shadycss/scoping-shim.min.js"></script>
-    <script src="../../../@webcomponents/shadycss/apply-shim.min.js"></script>
+<head>
+  <title>&lt;catalyst-toggle-switch&gt; Styled Demo</title>
 
-    <!-- Import the things we need -->
-    <script src="../../../marked/marked.min.js"></script>
-    <script type="module" src="imports-importer.js"></script>
+  <!-- Web Component Pollyfills -->
+  <!-- [[inject:custom-elements-es5-adapter]] -->
+  <script>console.info('custom-elements-es5-adapter is not in use.'); // eslint-disable-line no-console</script>
+  <!-- [[endinject]] -->
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../../@webcomponents/shadycss/scoping-shim.min.js"></script>
+  <script src="../../../@webcomponents/shadycss/apply-shim.min.js"></script>
 
-    <style>
-      body {
-        font-family: Arial;
-      }
-    </style>
-  </head>
-  <body>
-    <h3>Styled:</h3>
-    <demo-snippet>
-      <template>
-        <style>
-          .default-colored {
-            --catalyst-toggle-switch-bar-color: #ff0000;
-            --catalyst-toggle-switch-knob-color: #ffeeee;
-            --catalyst-toggle-switch-knob-border: solid 2px #ff0000;
-          }
+  <!-- Import the things we need -->
+  <script src="../../../marked/marked.min.js"></script>
+  <script type="module" src="imports-importer.js"></script>
 
-          .default-colored:focus {
-            --catalyst-toggle-switch-knob-color: #ffdddd;
-          }
+  <style>
+    body {
+      font-family: Arial;
+    }
+  </style>
+</head>
 
-          .default-colored[checked] {
-            --catalyst-toggle-switch-bar-color: #008000;
-            --catalyst-toggle-switch-knob-color: #eeffee;
-            --catalyst-toggle-switch-knob-border: solid 2px #008000;
-          }
+<body>
+  <h3>Styled:</h3>
+  <demo-snippet>
+    <template>
+      <style>
+        .default-colored {
+          --catalyst-toggle-switch-bar-color: #ff0000;
+          --catalyst-toggle-switch-knob-color: #ffeeee;
+          --catalyst-toggle-switch-knob-border: solid 2px #ff0000;
+        }
 
-          .default-colored:focus[checked] {
-            --catalyst-toggle-switch-knob-color: #ddffdd;
-          }
-        </style>
+        .default-colored:focus {
+          --catalyst-toggle-switch-knob-color: #ffdddd;
+        }
 
-        <catalyst-toggle-switch class="default-colored"></catalyst-toggle-switch>
-      </template>
-    </demo-snippet>
+        .default-colored[checked] {
+          --catalyst-toggle-switch-bar-color: #008000;
+          --catalyst-toggle-switch-knob-color: #eeffee;
+          --catalyst-toggle-switch-knob-border: solid 2px #008000;
+        }
 
-    <h3>Alternative Style:</h3>
-    <demo-snippet>
-      <template>
-        <style>
-          .alt-style-1 {
-            --catalyst-toggle-switch-bar-color: transparent;
-            --catalyst-toggle-switch-bar-border: solid 2px #0000bb;
-            --catalyst-toggle-switch-bar-width: 50px;
-            --catalyst-toggle-switch-bar-height: 24px;
-            --catalyst-toggle-switch-knob-color: #0000bb;
-            --catalyst-toggle-switch-knob-size: 16px;
-            --catalyst-toggle-switch-knob-offset: -4px;
-            --catalyst-toggle-switch-knob-box-shadow: none;
-          }
+        .default-colored:focus[checked] {
+          --catalyst-toggle-switch-knob-color: #ddffdd;
+        }
+      </style>
 
-          .alt-style-1:focus {
-            --catalyst-toggle-switch-knob-color: #4499ff;
-          }
-        </style>
+      <catalyst-toggle-switch class="default-colored"></catalyst-toggle-switch>
+    </template>
+  </demo-snippet>
 
-        <catalyst-toggle-switch class="alt-style-1"></catalyst-toggle-switch>
-      </template>
-    </demo-snippet>
+  <h3>Alternative Style:</h3>
+  <demo-snippet>
+    <template>
+      <style>
+        .alt-style-1 {
+          --catalyst-toggle-switch-bar-color: transparent;
+          --catalyst-toggle-switch-bar-border: solid 2px #0000bb;
+          --catalyst-toggle-switch-bar-width: 50px;
+          --catalyst-toggle-switch-bar-height: 24px;
+          --catalyst-toggle-switch-knob-color: #0000bb;
+          --catalyst-toggle-switch-knob-size: 16px;
+          --catalyst-toggle-switch-knob-offset: -4px;
+          --catalyst-toggle-switch-knob-box-shadow: none;
+        }
 
-    <h3>Alternative Style 2:</h3>
-    <demo-snippet>
-      <template>
-        <style>
-          .alt-style-2 {
-            --catalyst-toggle-switch-bar-color: transparent;
-            --catalyst-toggle-switch-bar-border: solid 1px #bbbbbb;
-            --catalyst-toggle-switch-bar-width: 46px;
-            --catalyst-toggle-switch-bar-height: 28px;
-            --catalyst-toggle-switch-knob-color: #ffffff;
-            --catalyst-toggle-switch-knob-border: solid 1px rgba(0, 0, 0, 0.14);
-            --catalyst-toggle-switch-knob-size: 26px;
-            --catalyst-toggle-switch-knob-offset: -1px;
-          }
+        .alt-style-1:focus {
+          --catalyst-toggle-switch-knob-color: #4499ff;
+        }
+      </style>
 
-          .alt-style-2:focus {
-            --catalyst-toggle-switch-knob-color: #fafafa;
-            --catalyst-toggle-switch-knob-border: solid 1px rgba(0, 0, 0, 0.33);
-          }
+      <catalyst-toggle-switch class="alt-style-1"></catalyst-toggle-switch>
+    </template>
+  </demo-snippet>
 
-          .alt-style-2[checked] {
-            --catalyst-toggle-switch-bar-border: solid 1px transparent;
-            --catalyst-toggle-switch-bar-color: #50d865;
-            --catalyst-toggle-switch-knob-size: 24px;
-            --catalyst-toggle-switch-knob-offset: -2px;
-          }
-        </style>
+  <h3>Alternative Style 2:</h3>
+  <demo-snippet>
+    <template>
+      <style>
+        .alt-style-2 {
+          --catalyst-toggle-switch-bar-color: transparent;
+          --catalyst-toggle-switch-bar-border: solid 1px #bbbbbb;
+          --catalyst-toggle-switch-bar-width: 46px;
+          --catalyst-toggle-switch-bar-height: 28px;
+          --catalyst-toggle-switch-knob-color: #ffffff;
+          --catalyst-toggle-switch-knob-border: solid 1px rgba(0, 0, 0, 0.14);
+          --catalyst-toggle-switch-knob-size: 26px;
+          --catalyst-toggle-switch-knob-offset: -1px;
+        }
 
-        <catalyst-toggle-switch class="alt-style-2"></catalyst-toggle-switch>
-      </template>
-    </demo-snippet>
-  </body>
+        .alt-style-2:focus {
+          --catalyst-toggle-switch-knob-color: #fafafa;
+          --catalyst-toggle-switch-knob-border: solid 1px rgba(0, 0, 0, 0.33);
+        }
+
+        .alt-style-2[checked] {
+          --catalyst-toggle-switch-bar-border: solid 1px transparent;
+          --catalyst-toggle-switch-bar-color: #50d865;
+          --catalyst-toggle-switch-knob-size: 24px;
+          --catalyst-toggle-switch-knob-offset: -2px;
+        }
+      </style>
+
+      <catalyst-toggle-switch class="alt-style-2"></catalyst-toggle-switch>
+    </template>
+  </demo-snippet>
+</body>
+
 </html>
