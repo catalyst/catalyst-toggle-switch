@@ -38,10 +38,11 @@
       <catalyst-toggle-switch id="toggle-switch"></catalyst-toggle-switch>
 
       <script>
-        let toggleSwitch = document.querySelector('#toggle-switch');
-        let toggleSwitchLabel = document.querySelector('#toggle-switch-label');
-        toggleSwitch.addEventListener('change', event => {
-          toggleSwitchLabel.textContent = event.detail.checked ? 'On' : 'Off';
+        const tSwitch = document.querySelector('#toggle-switch');
+        const label = document.querySelector('#toggle-switch-label');
+
+        tSwitch.addEventListener('change', event => {
+          label.textContent = event.detail.checked ? 'On' : 'Off';
         });
       </script>
     </template>
