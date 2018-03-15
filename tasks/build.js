@@ -93,7 +93,7 @@ function createElementScript() {
             parsed.body.splice(i, 0, esprima.parseScript(`window.CatalystElements.${exportedName} = ${localName};`));
           }
         } else if (catalystExports[i].declaration.type === 'Identifier') {
-          parsed.body.splice(i, 0, esprima.parseScript(`window.CatalystElements.${catalystExports[i].declaration.type.name} = ${catalystExports[i].declaration.type.name};`));
+          parsed.body.splice(i, 0, esprima.parseScript(`window.CatalystElements.${catalystExports[i].declaration.name} = ${catalystExports[i].declaration.name};`));
         } else {
           console.error(`Cannot automatically process declaration in ${catalystExports[i].type}.`); // eslint-disable-line no-console
         }
