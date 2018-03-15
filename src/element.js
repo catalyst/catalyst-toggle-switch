@@ -115,15 +115,15 @@ class CatalystToggleSwitch extends SuperClass {
     // Adjust the knob slide distance based on the width of the x borders.
     let barStyle = getComputedStyle(this._bar);
     this.style.setProperty(
-      '--catalyst-toggle-switch-bar-border-top-wdith',
+      '--catalyst-toggle-switch-bar-border-top-width',
       barStyle.borderTopWidth
     );
     this.style.setProperty(
-      '--catalyst-toggle-switch-bar-border-left-wdith',
+      '--catalyst-toggle-switch-bar-border-left-width',
       barStyle.borderLeftWidth
     );
 
-    // Figure out if the knob-offset is negitive.
+    // Figure out if the knob-offset is negative.
     if (
       Number.parseFloat(
         getComputedStyle(this).getPropertyValue(
@@ -131,7 +131,7 @@ class CatalystToggleSwitch extends SuperClass {
         )
       ) < 0
     ) {
-      this._bar.classList.add('negitive-knob-offset');
+      this._bar.classList.add('negative-knob-offset');
     }
   }
 }

@@ -66,7 +66,7 @@ $shadow-dark: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12)
   transition: background-color 0.3s ease, border 0.3s ease;
   will-change: background-color, border;
 
-  &.negitive-knob-offset {
+  &.negative-knob-offset {
     top: 0;
     left: 0;
   }
@@ -77,12 +77,12 @@ $shadow-dark: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12)
   top: -$knob-offset;
   top: calc(
     0px - var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) -
-      var(--catalyst-toggle-switch-bar-border-top-wdith, 0px)
+      var(--catalyst-toggle-switch-bar-border-top-width, 0px)
   );
   left: -$knob-offset;
   left: calc(
     0px - var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) -
-      var(--catalyst-toggle-switch-bar-border-left-wdith, 0px)
+      var(--catalyst-toggle-switch-bar-border-left-width, 0px)
   );
   width: $knob-size;
   width: var(--catalyst-toggle-switch-knob-size, $knob-size);
@@ -118,19 +118,19 @@ $shadow-dark: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12)
         var(--catalyst-toggle-switch-bar-width, #{$bar-width}) + 2 *
           var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) -
           var(--catalyst-toggle-switch-knob-size, #{$knob-size}) +
-          var(--catalyst-toggle-switch-bar-border-left-wdith, 0px)
+          var(--catalyst-toggle-switch-bar-border-left-width, 0px)
       )
     );
   }
 
-  .negitive-knob-offset {
+  .negative-knob-offset {
     #knob {
       transform: translateX(
         calc(
           var(--catalyst-toggle-switch-bar-width, #{$bar-width}) + 2 *
             var(--catalyst-toggle-switch-knob-offset, #{$knob-offset}) -
             var(--catalyst-toggle-switch-knob-size, #{$knob-size}) +
-            var(--catalyst-toggle-switch-bar-border-left-wdith, 0px) -
+            var(--catalyst-toggle-switch-bar-border-left-width, 0px) -
             (
               var(--catalyst-toggle-switch-bar-height, #{$bar-height}) -
                 var(--catalyst-toggle-switch-knob-size, #{$knob-size})
