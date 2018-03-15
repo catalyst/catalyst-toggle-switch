@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
     "mocha": true
@@ -9,11 +9,7 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "plugins": [
-    "html",
-    "promise",
-    "mocha"
-  ],
+  "plugins": ["html", "promise", "mocha", "prettier"],
   "globals": {
     "Promise": false,
     "ShadyCSS": false,
@@ -24,9 +20,13 @@
     "WCT": false
   },
   "rules": {
-    "quotes":  ["error", "single", {
-      "avoidEscape": true
-    }],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
     "promise/always-return": "off",
     "promise/avoid-new": "off",
     "promise/catch-or-return": "off",
