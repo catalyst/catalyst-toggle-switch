@@ -1,5 +1,7 @@
 # node_modules are automatically ignored
 
-docs/
-dist/
-tmp/
+/docs/
+/dist/
+/tmp/
+/catalyst-toggle-switch.js
+/catalyst-toggle-switch.es5.min.js
