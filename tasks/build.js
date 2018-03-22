@@ -17,11 +17,13 @@ const replace = require('gulp-replace');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const webpack = require('webpack');
-const webpackClosureCompilerPlugin = require('webpack-closure-compiler');
+const WebpackClosureCompilerPlugin = require('webpack-closure-compiler');
 const webpackStream = require('webpack-stream');
 
 /**
  * Create the element module file.
+ *
+ * @returns {NodeJS.ReadWriteStream}
  */
 function createElementModule() {
   return gulp
@@ -45,118 +47,170 @@ function createElementModule() {
 
 /**
  * Create the element file.
+ *
+ * @returns {NodeJS.ReadWriteStream}
  */
 function createElementScript() {
   return gulp
     .src(`./${config.src.path}/${config.src.entrypoint}`)
     .pipe(
       modifyFile(content => {
-        // Parse the code.
-        let parsed = esprima.parseModule(content);
-
-        // Get info about the code.
-        let codeIndexesToRemove = [];
-        let catalystImports = {};
-        let catalystExports = {};
-        for (let i = 0; i < parsed.body.length; i++) {
-          switch (parsed.body[i].type) {
-            case 'ImportDeclaration':
-              for (let j = 0; j < parsed.body[i].specifiers.length; j++) {
-                if (
-                  (parsed.body[i].specifiers[j].type ===
-                    'ImportDefaultSpecifier' &&
-                    parsed.body[i].specifiers[j].local.name.startsWith(
-                      'Catalyst'
-                    )) ||
-                  (parsed.body[i].specifiers[j].type === 'ImportSpecifier' &&
-                    parsed.body[i].specifiers[j].imported.name.startsWith(
-                      'Catalyst'
-                    ))
-                ) {
-                  catalystImports[i] = parsed.body[i];
-                  codeIndexesToRemove.push(i);
+        /**
+         * Strip the imports and exports out of the parse code and return them.
+         *
+         * @param {Program} parsedCode
+         *   The parsed code.
+         * @returns {{imports:Map<number,Object>, exports:Map<number,Object>}}
+         */
+        const stripImportsAndExports = parsedCode => {
+          // Get info about the code.
+          const codeIndexesToRemove = [];
+          const imports = new Map();
+          const exports = new Map();
+          for (let i = 0; i < parsedCode.body.length; i++) {
+            switch (parsedCode.body[i].type) {
+              case 'ImportDeclaration':
+                for (let j = 0; j < parsedCode.body[i].specifiers.length; j++) {
+                  if (
+                    (parsedCode.body[i].specifiers[j].type ===
+                      'ImportDefaultSpecifier' &&
+                      parsedCode.body[i].specifiers[j].local.name.startsWith(
+                        'Catalyst'
+                      )) ||
+                    (parsedCode.body[i].specifiers[j].type ===
+                      'ImportSpecifier' &&
+                      parsedCode.body[i].specifiers[j].imported.name.startsWith(
+                        'Catalyst'
+                      ))
+                  ) {
+                    imports.set(i, parsedCode.body[i]);
+                    codeIndexesToRemove.push(i);
+                  }
                 }
-              }
-              break;
+                break;
 
-            case 'ExportDefaultDeclaration':
-            case 'ExportNamedDeclaration':
-              catalystExports[i] = parsed.body[i];
-              codeIndexesToRemove.push(i);
-              break;
-          }
-        }
+              case 'ExportDefaultDeclaration':
+              case 'ExportNamedDeclaration':
+                exports.set(i, parsedCode.body[i]);
+                codeIndexesToRemove.push(i);
+                break;
 
-        // Remove imports and exports.
-        parsed.body = parsed.body.filter(
-          (e, i) => !codeIndexesToRemove.includes(i)
-        );
-
-        // Replace catalyst element's imports with globally accessible object import.
-        for (let i in catalystImports) {
-          for (let j = catalystImports[i].specifiers.length - 1; j >= 0; j--) {
-            let localName = catalystImports[i].specifiers[j].local.name;
-            let importedName = catalystImports[i].specifiers[j].imported
-              ? catalystImports[i].specifiers[j].imported.name
-              : localName;
-
-            if (importedName.startsWith('Catalyst')) {
-              parsed.body.splice(
-                i,
-                0,
-                esprima.parseScript(
-                  `let ${localName} = window.CatalystElements.${importedName};`
-                )
-              );
+              // Different type? Do nothing.
+              default:
             }
           }
-        }
 
-        // Replace exports with globally accessible object exports.
-        for (let i in catalystExports) {
-          if (catalystExports[i].declaration === null) {
-            for (
-              let j = catalystExports[i].specifiers.length - 1;
-              j >= 0;
-              j--
-            ) {
-              let localName = catalystExports[i].specifiers[j].local.name;
-              let exportedName = catalystExports[i].specifiers[j].imported
-                ? catalystExports[i].specifiers[j].imported.name
+          // Remove imports and exports.
+          parsedCode.body = parsedCode.body.filter(
+            (e, i) => !codeIndexesToRemove.includes(i)
+          );
+
+          return {
+            imports: imports,
+            exports: exports
+          };
+        };
+
+        /**
+         * Replace catalyst element's imports with globally accessible object import.
+         *
+         * @param {Program} parsedCode
+         *   The parsed code with the imports already stripped out.
+         * @param {Map<number,Object>} imports
+         *   The imports that have been stripped out of the parsed code.
+         */
+        const processImports = (parsedCode, imports) => {
+          for (const importDefIndex of Object.keys(imports)) {
+            const importDef = imports[importDefIndex];
+            for (const specifier of Object.values(importDef.specifiers)) {
+              const localName = specifier.local.name;
+              const importedName = specifier.imported
+                ? specifier.imported.name
                 : localName;
 
-              parsed.body.splice(
-                i,
-                0,
-                esprima.parseScript(
-                  `window.CatalystElements.${exportedName} = ${localName};`
-                )
+              if (importedName.startsWith('Catalyst')) {
+                parsedCode.body.splice(
+                  importDefIndex,
+                  0,
+                  esprima.parseScript(
+                    `let ${localName} = window.CatalystElements.${importedName};`
+                  )
+                );
+              } else {
+                throw new Error(
+                  `Cannot automatically process import "${importedName}"`
+                );
+              }
+            }
+          }
+        };
+
+        /**
+         * Replace exports with globally accessible object exports.
+         *
+         * @param {Program} parsedCode
+         *   The parsed code with the exports already stripped out.
+         * @param {Map<number,Object>} exports
+         *   The exports that have been stripped out of the parsed code.
+         */
+        const processExports = (parsedCode, exports) => {
+          const exportNamesUsed = [];
+
+          // Replace exports with globally accessible object exports.
+          for (const exportDefIndex of Object.keys(exports)) {
+            const exportDef = exports[exportDefIndex];
+            if (exportDef.declaration === null) {
+              for (const specifier of Object.values(exportDef.specifiers)) {
+                const localName = specifier.local.name;
+                const exportedName = specifier.imported
+                  ? specifier.imported.name
+                  : localName;
+
+                if (!exportNamesUsed.includes(exportedName)) {
+                  parsedCode.body.splice(
+                    exportDefIndex,
+                    0,
+                    esprima.parseScript(
+                      `window.CatalystElements.${exportedName} = ${localName};`
+                    )
+                  );
+                  exportNamesUsed.push(exportedName);
+                }
+              }
+            } else if (exportDef.declaration.type === 'Identifier') {
+              if (!exportNamesUsed.includes(exportDef.declaration.name)) {
+                parsedCode.body.splice(
+                  exportDefIndex,
+                  0,
+                  esprima.parseScript(
+                    `window.CatalystElements.${exportDef.declaration.name} = ${
+                      exportDef.declaration.name
+                    };`
+                  )
+                );
+                exportNamesUsed.push(exportDef.declaration.name);
+              }
+            } else {
+              console.error(
+                `Cannot automatically process declaration in ${exportDef.type}.`
               );
             }
-          } else if (catalystExports[i].declaration.type === 'Identifier') {
-            parsed.body.splice(
-              i,
-              0,
-              esprima.parseScript(
-                `window.CatalystElements.${
-                  catalystExports[i].declaration.name
-                } = ${catalystExports[i].declaration.name};`
-              )
-            );
-          } else {
-            // eslint-disable-next-line no-console
-            console.error(
-              `Cannot automatically process declaration in ${
-                catalystExports[i].type
-              }.`
-            );
           }
-        }
+        };
+
+        // Parse the code.
+        const parsedCode = esprima.parseModule(content);
+
+        // Run functions defined above.
+        const { imports, exports } = stripImportsAndExports(parsedCode);
+        processImports(parsedCode, imports);
+        processExports(parsedCode, exports);
 
         // Generate the updated code.
-        content = escodegen.generate(parsed);
-
-        return `window.CatalystElements = window.CatalystElements || {};${content}`;
+        return (
+          'window.CatalystElements = window.CatalystElements || {};\n' +
+          `${escodegen.generate(parsedCode)}`
+        );
       })
     )
     .pipe(
@@ -171,7 +225,10 @@ function createElementScript() {
 /**
  * Inject the template into the element.
  *
- * @param {Boolean} forModule
+ * @param {boolean} forModule
+ *   States whether or not the injection is for the module.
+ *   If not, it is assumed to be for the script.
+ * @returns {NodeJS.ReadWriteStream}
  */
 function injectTemplate(forModule) {
   return (
@@ -181,6 +238,7 @@ function injectTemplate(forModule) {
           ? `./${config.temp.path}/${config.element.tag}.js`
           : `./${config.temp.path}/${config.element.tag}.script.js`
       )
+
       // Inject the template html.
       .pipe(
         inject(gulp.src(`./${config.temp.path}/${config.src.template.html}`), {
@@ -190,6 +248,7 @@ function injectTemplate(forModule) {
           transform: util.transforms.getFileContents
         })
       )
+
       // Inject the style css.
       .pipe(
         inject(gulp.src(`./${config.temp.path}/${config.src.template.css}`), {
@@ -274,9 +333,9 @@ gulp.task(
               filename: `${config.element.tag}.es5.min.js`
             },
             plugins: [
-              new webpackClosureCompilerPlugin({
+              new WebpackClosureCompilerPlugin({
                 compiler: {
-                  language_in: 'ECMASCRIPT6',
+                  language_in: 'ECMASCRIPT_NEXT',
                   language_out: 'ECMASCRIPT5',
                   compilation_level: 'SIMPLE',
                   assume_function_wrapper: true,
@@ -313,6 +372,7 @@ gulp.task(
             };
             delete json.directories;
             delete json.engines;
+            delete json.devDependencies;
             return prettier.format(JSON.stringify(json), { parser: 'json' });
           })
         )

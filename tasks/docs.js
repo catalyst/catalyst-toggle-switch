@@ -12,7 +12,7 @@ const named = require('vinyl-named');
 const path = require('path');
 const rename = require('gulp-rename');
 const webpack = require('webpack');
-const webpackClosureCompilerPlugin = require('webpack-closure-compiler');
+const WebpackClosureCompilerPlugin = require('webpack-closure-compiler');
 const webpackStream = require('webpack-stream');
 
 // Clone all the dependencies needed for docs.
@@ -87,7 +87,7 @@ gulp.task(
       })
       .pipe(
         modifyFile(content => {
-          let analysis = JSON.parse(content);
+          const analysis = JSON.parse(content);
           if (analysis.elements) {
             for (let i = 0; i < analysis.elements.length; i++) {
               if (analysis.elements[i].demos) {
@@ -116,6 +116,7 @@ gulp.task(
       return (
         gulp
           .src(`./${config.temp.path}/index.html`, { base: './' })
+
           // The file specified here don't matter but exactly one is needed.
           .pipe(
             inject(gulp.src('./gulpfile.js', { base: './', read: false }), {
@@ -134,11 +135,12 @@ gulp.task(
         .src(`./${config.temp.path}/index.html`, { base: './' })
         .pipe(
           modifyFile(content => {
-            content = content.replace(
+            let moddedContent = content;
+            moddedContent = moddedContent.replace(
               /\.\.\/\.\.\//g,
               `./${config.docs.nodeModulesPath}/`
             );
-            return content.replace(/<script type="module"/g, '<script');
+            return moddedContent.replace(/<script type="module"/g, '<script');
           })
         )
         .pipe(gulp.dest('./'));
@@ -186,9 +188,9 @@ gulp.task(
                 filename: `${config.docs.importsImporterFilename}`
               },
               plugins: [
-                new webpackClosureCompilerPlugin({
+                new WebpackClosureCompilerPlugin({
                   compiler: {
-                    language_in: 'ECMASCRIPT6',
+                    language_in: 'ECMASCRIPT_NEXT',
                     language_out: 'ECMASCRIPT5',
                     compilation_level: 'SIMPLE',
                     assume_function_wrapper: true,
@@ -201,7 +203,7 @@ gulp.task(
           )
         )
         .pipe(
-          foreach(function(stream, file) {
+          foreach((stream, file) => {
             return stream
               .pipe(
                 modifyFile(content => {
@@ -234,13 +236,13 @@ gulp.task(
         )
         .pipe(
           foreach((stream, file) => {
-            let relPath = path.relative(
+            const relPath = path.relative(
               path.join(file.cwd, file.base),
               file.path
             );
-            let dir = path.dirname(relPath);
+            const dir = path.dirname(relPath);
 
-            let es5AdapterSrc = path.relative(
+            const es5AdapterSrc = path.relative(
               dir,
               `./${config.temp.path}/${
                 config.docs.nodeModulesPath
@@ -248,6 +250,7 @@ gulp.task(
             );
             return (
               stream
+
                 // The file specified here don't matter but exactly one is needed.
                 .pipe(
                   inject(
@@ -322,9 +325,9 @@ gulp.task('docs-build-demo-imports', () => {
       }/*/${config.demos.path}/${config.demos.importsImporterFilename}`
     )
     .pipe(
-      foreach(function(stream, file) {
-        let output = path.dirname(file.path);
-        return stream
+      foreach((importerStream, importerFile) => {
+        const output = path.dirname(importerFile.path);
+        return importerStream
           .pipe(
             webpackStream(
               {
@@ -335,9 +338,9 @@ gulp.task('docs-build-demo-imports', () => {
                   filename: `${config.demos.importsImporterFilename}`
                 },
                 plugins: [
-                  new webpackClosureCompilerPlugin({
+                  new WebpackClosureCompilerPlugin({
                     compiler: {
-                      language_in: 'ECMASCRIPT6',
+                      language_in: 'ECMASCRIPT_NEXT',
                       language_out: 'ECMASCRIPT5',
                       compilation_level: 'SIMPLE',
                       assume_function_wrapper: true,
@@ -350,8 +353,8 @@ gulp.task('docs-build-demo-imports', () => {
             )
           )
           .pipe(
-            foreach(function(stream, file) {
-              return stream
+            foreach((wpStream, wpFile) => {
+              return wpStream
                 .pipe(
                   modifyFile(content => {
                     return content.replace(/\\\\\$/g, '$');
@@ -359,7 +362,7 @@ gulp.task('docs-build-demo-imports', () => {
                 )
                 .pipe(
                   rename({
-                    basename: path.basename(file.path, '.js')
+                    basename: path.basename(wpFile.path, '.js')
                   })
                 )
                 .pipe(gulp.dest(output));
@@ -411,7 +414,7 @@ gulp.task('docs-generate', () => {
         if (filepath.dirname === config.temp.path) {
           filepath.dirname = './';
         } else {
-          let prefix = path.normalize(`${config.temp.path}/`);
+          const prefix = path.normalize(`${config.temp.path}/`);
           if (filepath.dirname.indexOf(prefix) === 0) {
             filepath.dirname = filepath.dirname.substring(prefix.length);
           }

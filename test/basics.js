@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions, max-nested-callbacks */
+
 /**
  * Basics suite.
  */
@@ -36,7 +38,6 @@ suite('Basics', () => {
        * Test role.
        */
       test('role', () => {
-        // role
         expect(element.hasAttribute('role'), '"role" missing').to.be.true;
         expect(element.getAttribute('role')).to.equal(
           'checkbox',
@@ -50,7 +51,7 @@ suite('Basics', () => {
       test('tabindex', () => {
         expect(element.hasAttribute('tabindex'), '"tabindex" missing').to.be
           .true;
-        expect(Number.parseInt(element.getAttribute('tabindex'))).to.equal(
+        expect(Number.parseInt(element.getAttribute('tabindex'), 10)).to.equal(
           0,
           '"tabindex" should be 0'
         );
@@ -105,7 +106,7 @@ suite('Basics', () => {
         expect(element).to.have.property('checked', true);
         expect(element.getAttribute('aria-checked')).to.equal('true');
 
-        setTimeout(function() {
+        setTimeout(() => {
           if (testRunning) {
             testRunning = false;
             assert(false, 'Change event was not fired within 10 ms.');
@@ -148,7 +149,7 @@ suite('Basics', () => {
         expect(element).to.have.property('checked', false);
         expect(element.getAttribute('aria-checked')).to.equal('false');
 
-        setTimeout(function() {
+        setTimeout(() => {
           if (testRunning) {
             testRunning = false;
             done();

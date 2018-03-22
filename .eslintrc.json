@@ -1,17 +1,18 @@
 {
+  "root": true,
   "parser": "babel-eslint",
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
-    "mocha": true
+    "mocha": true,
+    "es6": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 9,
     "sourceType": "module"
   },
   "plugins": ["html", "promise", "mocha", "prettier"],
   "globals": {
-    "Promise": false,
     "ShadyCSS": false,
     "expect": false,
     "should": false,
@@ -24,7 +25,14 @@
       "error",
       "single",
       {
-        "avoidEscape": true
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
       }
     ],
     "promise/always-return": "off",

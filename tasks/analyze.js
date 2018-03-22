@@ -33,7 +33,7 @@ gulp.task('create-analysis', async () => {
       return analyzer.analyze(elements);
     })
     .then(analysis => {
-      let analysisFileContents = JSON.stringify(
+      const analysisFileContents = JSON.stringify(
         generateAnalysis(analysis, analyzer.urlResolver)
       );
       return file(config.docs.analysisFilename, analysisFileContents, {

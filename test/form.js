@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions, max-nested-callbacks */
+
 /**
  * Form suite.
  */
@@ -56,7 +58,7 @@ suite('Form', () => {
        * Test form has element.
        */
       test('Element is part of the form', () => {
-        expect(form.elements['foo']).to.exist;
+        expect(form.elements.foo).to.exist;
       });
     });
   });
