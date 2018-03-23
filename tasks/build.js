@@ -38,8 +38,7 @@ function createElementModule() {
     )
     .pipe(
       rename({
-        basename: config.element.tag,
-        extname: '.js'
+        basename: config.element.tag
       })
     )
     .pipe(gulp.dest(`./${config.temp.path}`));
@@ -215,9 +214,9 @@ function createElementScript() {
       })
     )
     .pipe(
-      rename({
-        basename: config.element.tag,
-        extname: '.script.js'
+      rename(path => {
+        path.basename = config.element.tag;
+        path.extname = `.script${path.extname}`;
       })
     )
     .pipe(gulp.dest(`./${config.temp.path}`));
@@ -328,7 +327,7 @@ gulp.task(
         webpackStream(
           {
             target: 'web',
-            mode: 'production',
+            mode: 'none',
             output: {
               chunkFilename: `${config.element.tag}.part-[id].es5.min.js`,
               filename: `${config.element.tag}.es5.min.js`

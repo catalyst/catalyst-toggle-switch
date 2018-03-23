@@ -182,7 +182,7 @@ gulp.task(
           webpackStream(
             {
               target: 'web',
-              mode: 'production',
+              mode: 'none',
               output: {
                 chunkFilename: `${docsImportsBaseName}.[id].js`,
                 filename: `${config.docs.importsImporterFilename}`
@@ -332,7 +332,7 @@ gulp.task('docs-build-demo-imports', () => {
             webpackStream(
               {
                 target: 'web',
-                mode: 'production',
+                mode: 'none',
                 output: {
                   chunkFilename: `${demoImportsBaseName}.[id].js`,
                   filename: `${config.demos.importsImporterFilename}`
