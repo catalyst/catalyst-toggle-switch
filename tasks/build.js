@@ -67,32 +67,35 @@ function createElementScript() {
           const codeIndexesToRemove = [];
           const imports = new Map();
           const exports = new Map();
-          for (let i = 0; i < parsedCode.body.length; i++) {
-            switch (parsedCode.body[i].type) {
+          for (const [nodeIndex, node] of parsedCode.body.entries()) {
+            switch (node.type) {
               case 'ImportDeclaration':
-                for (let j = 0; j < parsedCode.body[i].specifiers.length; j++) {
+                for (const specifiers of node.specifiers) {
+                  let importedName;
+                  if (specifiers.type === 'ImportDefaultSpecifier') {
+                    importedName = specifiers.local.name;
+                  } else if (specifiers.type === 'ImportSpecifier') {
+                    importedName = specifiers.imported.name;
+                  }
+
                   if (
-                    (parsedCode.body[i].specifiers[j].type ===
-                      'ImportDefaultSpecifier' &&
-                      parsedCode.body[i].specifiers[j].local.name.startsWith(
-                        'Catalyst'
-                      )) ||
-                    (parsedCode.body[i].specifiers[j].type ===
-                      'ImportSpecifier' &&
-                      parsedCode.body[i].specifiers[j].imported.name.startsWith(
-                        'Catalyst'
-                      ))
+                    importedName != null &&
+                    importedName.toLowerCase().startsWith('catalyst')
                   ) {
-                    imports.set(i, parsedCode.body[i]);
-                    codeIndexesToRemove.push(i);
+                    imports.set(nodeIndex, node);
+                    codeIndexesToRemove.push(nodeIndex);
+                  } else {
+                    throw new Error(
+                      `Cannot automatically process import "${importedName}."`
+                    );
                   }
                 }
                 break;
 
               case 'ExportDefaultDeclaration':
               case 'ExportNamedDeclaration':
-                exports.set(i, parsedCode.body[i]);
-                codeIndexesToRemove.push(i);
+                exports.set(nodeIndex, parsedCode.body[nodeIndex]);
+                codeIndexesToRemove.push(nodeIndex);
                 break;
 
               // Different type? Do nothing.
@@ -120,15 +123,14 @@ function createElementScript() {
          *   The imports that have been stripped out of the parsed code.
          */
         const processImports = (parsedCode, imports) => {
-          for (const importDefIndex of Object.keys(imports)) {
-            const importDef = imports[importDefIndex];
+          for (const [importDefIndex, importDef] of imports) {
             for (const specifier of Object.values(importDef.specifiers)) {
               const localName = specifier.local.name;
               const importedName = specifier.imported
                 ? specifier.imported.name
                 : localName;
 
-              if (importedName.startsWith('Catalyst')) {
+              if (importedName.toLowerCase().startsWith('catalyst')) {
                 parsedCode.body.splice(
                   importDefIndex,
                   0,
@@ -138,7 +140,7 @@ function createElementScript() {
                 );
               } else {
                 throw new Error(
-                  `Cannot automatically process import "${importedName}"`
+                  `Cannot automatically process import "${importedName}."`
                 );
               }
             }
@@ -157,8 +159,7 @@ function createElementScript() {
           const exportNamesUsed = [];
 
           // Replace exports with globally accessible object exports.
-          for (const exportDefIndex of Object.keys(exports)) {
-            const exportDef = exports[exportDefIndex];
+          for (const [exportDefIndex, exportDef] of exports) {
             if (exportDef.declaration === null) {
               for (const specifier of Object.values(exportDef.specifiers)) {
                 const localName = specifier.local.name;
