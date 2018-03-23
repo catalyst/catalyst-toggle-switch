@@ -71,9 +71,20 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@catalyst-elements/catalyst-toggle-mixin@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-mixin/-/catalyst-toggle-mixin-0.5.1.tgz#119f6ece66ad80d72c01c466ff83b30cccc37be5"
+"@catalyst-elements/catalyst-labelable-mixin@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-labelable-mixin/-/catalyst-labelable-mixin-0.1.0.tgz#434c98b4d0349809c19d22c7ae81fd21aa9a6dea"
+
+"@catalyst-elements/catalyst-lazy-properties-mixin@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-lazy-properties-mixin/-/catalyst-lazy-properties-mixin-0.1.0.tgz#71032610ce031606ae29b4f8d5af9292bdebb953"
+
+"@catalyst-elements/catalyst-toggle-mixin@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@catalyst-elements/catalyst-toggle-mixin/-/catalyst-toggle-mixin-0.5.2.tgz#3d3140192633ddea23559d1d2d7450134de51f75"
+  dependencies:
+    "@catalyst-elements/catalyst-labelable-mixin" "^0.1.0"
+    "@catalyst-elements/catalyst-lazy-properties-mixin" "^0.1.0"
 
 "@polymer/app-layout@^3.0.0-pre.10":
   version "3.0.0-pre.10"

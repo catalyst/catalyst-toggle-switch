@@ -68,6 +68,8 @@ Note: you will also have to import the dependencies the component uses first.
 
 ```html
 <!-- Import dependencies -->
+<script src="node_modules/@catalyst-elements/catalyst-labelable-mixin/catalyst-labelable-mixin.es5.min.js"></script>
+<script src="node_modules/@catalyst-elements/catalyst-lazy-properties-mixin/catalyst-lazy-properties-mixin.es5.min.js"></script>
 <script src="node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.es5.min.js"></script>
 
 <!-- Import the element -->
