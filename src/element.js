@@ -1,5 +1,5 @@
 // Import dependencies.
-import catalystToggleMixin from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.js';
+import { catalystToggleMixin } from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.js';
 
 const SuperClass = catalystToggleMixin(HTMLElement);
 
@@ -161,5 +161,4 @@ class CatalystToggleSwitch extends SuperClass {
 })();
 
 // Export the element.
-export default CatalystToggleSwitch;
 export { CatalystToggleSwitch };
