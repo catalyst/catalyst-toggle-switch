@@ -153,7 +153,9 @@ class CatalystToggleSwitch extends SuperClass {
     if (window.WebComponents == null || window.WebComponents.ready) {
       resolve();
     } else {
-      window.addEventListener('WebComponentsReady', () => resolve());
+      window.addEventListener('WebComponentsReady', () => resolve(), {
+        once: true
+      });
     }
   });
 
